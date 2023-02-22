@@ -5,11 +5,13 @@
  */
 package dades;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Aitor
  */
-public class Combat extends Pilotada implements TesteableEntity {
+public class Combat extends Pilotada implements TesteableEntity, Serializable {
     private Integer aeronauCombatMaxMissils;
     private Integer aeronauCombatMaxMunicioCano;
 }

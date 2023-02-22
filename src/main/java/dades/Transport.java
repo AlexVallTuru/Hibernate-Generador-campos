@@ -5,11 +5,13 @@
  */
 package dades;
 
+import java.io.Serializable;
+
 /**
  *
- * @author mole6
+ * @author Aitor
  */
-public class Transport extends Pilotada implements TesteableEntity {
+public class Transport extends Pilotada implements TesteableEntity, Serializable {
     private Integer aeronauTransportMaxTripulants;
     private Integer aeronauTransportMaxPes;
 }
