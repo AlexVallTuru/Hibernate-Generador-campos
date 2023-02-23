@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dades;
+package entitats;
 
+import Interficies.TesteableEntity;
 import java.io.Serializable;
 
 /**
  *
  * @author Aitor
  */
-public class Combat extends Pilotada implements TesteableEntity, Serializable {
-    private Integer aeronauCombatMaxMissils;
-    private Integer aeronauCombatMaxMunicioCano;
+public class Transport extends Pilotada implements TesteableEntity, Serializable {
+    private Integer aeronauTransportMaxTripulants;
+    private Integer aeronauTransportMaxPes;
 }
