@@ -5,17 +5,24 @@
  */
 package entitats;
 
+import jakarta.persistence.ManyToMany;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
- * 
+ *
  * @author Aitor
  */
 public abstract class Aeronau {
+
     private Integer aeronauMatricula;
     private String aeronauNom;
     private Float aeronauRitmePujada;
     private Integer aeronauVelocitatMaxima;
     private boolean aeronauAutopilotada;
     private Date aeronauDataFabricacio;
+
+    @ManyToMany(mappedBy = "aeronaus")
+    private List<Pilotada> pilotades = new ArrayList<>();
 }
