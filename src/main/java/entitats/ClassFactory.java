@@ -18,33 +18,34 @@ public class ClassFactory implements TesteableFactory {
     private Faker fake = new Faker();
 
     @Override
-    public AeronauTest addMecanicsToPilotada(List<Soldat> lo, PilotadaTest p) throws Exception {
+    public Aeronau addMecanicsToPilotada(List<Soldat> lo, Pilotada p) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public AeronauTest addMissionsToAeronau(List<MissioTest> lm, AeronauTest a) throws Exception {
+    public Aeronau addMissionsToAeronau(List<MissioTest> lm, Aeronau a) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public MissioTest addAeronausToMissio(List<AeronauTest> la, MissioTest m) throws Exception {
+    public MissioTest addAeronausToMissio(List<Aeronau> la, MissioTest m) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public AeronauTest addPilotToAeronauPilotada(Pilot p, PilotadaTest a) throws Exception {
+    public Aeronau addPilotToAeronauPilotada(Pilot p, Pilotada a) throws Exception {
         
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public AeronauTest aeronauFactory(Class<?> tipus) {
-        AeronauTest aeronau = null;
+    public Aeronau aeronauFactory(Class<?> tipus) {
+        Aeronau aeronau = null;
+        Autonoma autonoma = new DronTest();
         if (tipus == TransportTest.class) {
-            aeronau = new TransportTest();
+            aeronau = new Transport();
         } else if (tipus == CombatTest.class) {
-            aeronau = new CombatTest();
+            aeronau = new Combat();
 
         } else if (tipus == DronTest.class) {
             aeronau = new DronTest();
@@ -100,8 +101,8 @@ public class ClassFactory implements TesteableFactory {
         return soldat;
     }
     
-    public PilotadaTest pilotadaFactory(){
-        PilotadaTest pilotada = null;
+    public Pilotada pilotadaFactory(){
+        Pilotada pilotada = null;
         return null;
         
     }

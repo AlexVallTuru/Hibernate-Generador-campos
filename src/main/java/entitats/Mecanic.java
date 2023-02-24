@@ -23,7 +23,7 @@ public class Mecanic extends Soldat implements TesteableEntity,Serializable {
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="pilotada")
-    private PilotadaTest pilotada;
+    private Pilotada pilotada;
 
     public  Mecanic() {
         super();

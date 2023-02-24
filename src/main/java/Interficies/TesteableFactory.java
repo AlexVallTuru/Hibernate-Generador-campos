@@ -5,10 +5,10 @@
  */
 package Interficies;
 
-import entitats.AeronauTest;
+import entitats.Aeronau;
 import entitats.MissioTest;
 import entitats.Pilot;
-import entitats.PilotadaTest;
+import entitats.Pilotada;
 import entitats.Soldat;
 import java.util.List;
 
@@ -27,7 +27,7 @@ public interface TesteableFactory {
      * @return
      * @throws java.lang.Exception
      */
-    AeronauTest addMecanicsToPilotada(List<Soldat> lo, PilotadaTest p) throws Exception;
+    Aeronau addMecanicsToPilotada(List<Soldat> lo, Pilotada p) throws Exception;
 
     /**
      * Afegeix missions a Aeronau
@@ -36,7 +36,7 @@ public interface TesteableFactory {
      * @return
      * @throws java.lang.Exception
      */
-    AeronauTest addMissionsToAeronau(List<MissioTest> lm, AeronauTest a) throws Exception;
+    Aeronau addMissionsToAeronau(List<MissioTest> lm, Aeronau a) throws Exception;
     
     
     /***
@@ -46,7 +46,7 @@ public interface TesteableFactory {
      * @return 
      * @throws java.lang.Exception 
      */
-    MissioTest addAeronausToMissio(List<AeronauTest> la, MissioTest m) throws Exception;
+    MissioTest addAeronausToMissio(List<Aeronau> la, MissioTest m) throws Exception;
 
     /**
      * Afegeix pilot a aeronau pilotada
@@ -55,7 +55,7 @@ public interface TesteableFactory {
      * @return
      * @throws java.lang.Exception
      */
-    AeronauTest addPilotToAeronauPilotada(Pilot p, PilotadaTest a) throws Exception;
+    Aeronau addPilotToAeronauPilotada(Pilot p, Pilotada a) throws Exception;
 
     /**
      * Retorna una instancia del tipus demanat amb dades ficticies
@@ -63,7 +63,7 @@ public interface TesteableFactory {
      * @param tipus (Dron, Transport, Combat)
      * @return
      */
-    AeronauTest aeronauFactory(Class<?> tipus);
+    Aeronau aeronauFactory(Class<?> tipus);
 
     /**
      * REtorna una llista de l'entitat demanada amb dades ficticies
