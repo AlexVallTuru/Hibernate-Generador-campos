@@ -42,13 +42,13 @@ public class ClassFactory implements TesteableFactory {
     public Aeronau aeronauFactory(Class<?> tipus) {
         Aeronau aeronau = null;
         Autonoma autonoma = new DronTest();
-        if (tipus == TransportTest.class) {
+        if (tipus == Transport.class) {
             aeronau = new Transport();
-        } else if (tipus == CombatTest.class) {
+        } else if (tipus == Combat.class) {
             aeronau = new Combat();
 
         } else if (tipus == DronTest.class) {
-            aeronau = new DronTest();
+            aeronau = new Dron();
         }
         return aeronau;
 

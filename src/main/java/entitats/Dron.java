@@ -14,19 +14,23 @@ import Interficies.TesteableEntity;
  */
 @Entity
 @Table(name = "Dron")
-public abstract class Dron extends Autonoma implements TesteableEntity{
+public class Dron extends Autonoma implements TesteableEntity{
 
     @Column(name = "numHelices")
     int numHelices;
 
-    public Dron(int numHelices) {
+    public Dron() {
+        super();
+        
+    }
+
+    public Dron(int numHelices, int tempsMaximDeVol, float pes, int sensors, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
+        super(tempsMaximDeVol, pes, sensors, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.numHelices = numHelices;
     }
 
-    public Dron(int numHelices, int tempsMaximDeVol, float pes, int sensors, int idAeronave, String modelo, float velocidadMaxima, int alcance, Date fechaFabricacion, Boolean enExpedicion) {
-        super(tempsMaximDeVol, pes, sensors, idAeronave, modelo, velocidadMaxima, alcance, fechaFabricacion, enExpedicion);
-        this.numHelices = numHelices;
-    }
+    
+    
 
 @Override
     public Integer getAtributIdentificador() {

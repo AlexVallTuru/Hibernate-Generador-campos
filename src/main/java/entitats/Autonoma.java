@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 @Entity
 @Table(name = "Autonoma")
-public abstract class Autonoma extends AeronauTest {
+public abstract class Autonoma extends Aeronau {
 
     @Column(name = "tempsMaximDeVol")
     int tempsMaximDeVol;
@@ -26,10 +26,12 @@ public abstract class Autonoma extends AeronauTest {
         super();
     }
 
-    public Autonoma(int tempsMaximDeVol, float pes, int sensors, int idAeronave, String modelo, float velocidadMaxima, int alcance, Date fechaFabricacion, Boolean enExpedicion) {
-        super(idAeronave, modelo, velocidadMaxima, alcance, fechaFabricacion, enExpedicion);
+    public Autonoma(int tempsMaximDeVol, float pes, int sensors, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
+        super(aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.tempsMaximDeVol = tempsMaximDeVol;
         this.pes = pes;
         this.sensors = sensors;
-    }        
+    }
+
+         
 }

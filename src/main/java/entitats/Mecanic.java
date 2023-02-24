@@ -29,13 +29,15 @@ public class Mecanic extends Soldat implements TesteableEntity,Serializable {
         super();
     }
 
-    
-
-    public Mecanic(int vehiculosDestruidos, PilotadaTest pilotada, int idUsuario, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, List<String> mejorasCampo, Boolean enExpedicion, Date nacimiento) {
+    public Mecanic(int vehiculosDestruidos, Pilotada pilotada, int idUsuario, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, List<String> mejorasCampo, Boolean enExpedicion, Date nacimiento) {
         super(idUsuario, vida, proteccion, numeroDerrotas, numeroVictorias, armaPrincipal, armaSegundaria, prestigio, armaCQC, mejorasCampo, enExpedicion, nacimiento);
         this.vehiculosDestruidos = vehiculosDestruidos;
         this.pilotada = pilotada;
     }
+
+    
+
+   
     
     
 

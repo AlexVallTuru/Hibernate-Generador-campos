@@ -25,11 +25,13 @@ public class DronTest extends Autonoma implements TesteableEntity, Serializable 
         super();
     }
 
-    public DronTest(String hola, int capacidadCarga, int idAeronave, String modelo, float velocidadMaxima, int alcance, Date fechaFabricacion, Boolean enExpedicion) {
-        super(capacidadCarga, idAeronave, modelo, velocidadMaxima, alcance, fechaFabricacion, enExpedicion);
+    public DronTest(String hola, int tempsMaximDeVol, float pes, int sensors, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
+        super(tempsMaximDeVol, pes, sensors, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.hola = hola;
     }
+
     
+   
     
 
     @Override
