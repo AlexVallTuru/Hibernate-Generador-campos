@@ -19,8 +19,6 @@ public class App {
     public static void main(String[] args) {
         ClassFactory cf = new ClassFactory();
         
-        
-        
         logger.info("\nInicio de sesion...");
 
 

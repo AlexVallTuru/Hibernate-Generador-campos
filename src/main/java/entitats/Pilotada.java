@@ -20,9 +20,6 @@ import java.util.List;
 @Table(name = "Pilotada")
 public abstract class Pilotada extends Aeronau implements TesteableEntity, Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     //Atributs
     @Column(name = "Pilot")

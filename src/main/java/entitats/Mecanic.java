@@ -19,17 +19,13 @@ import java.util.List;
 @Table(name = "Mecanic")
 public class Mecanic extends Soldat implements TesteableEntity, Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(name = "VEHICULOS_DESTRUIDOS")
     private int vehiculosDestruidos;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pilotada")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mecanic")
-    private List<Aeronau> aeronaus = new ArrayList<>();
+    @JoinColumn(name = "pilotada")    
+    @OneToMany(mappedBy = "mecanic", cascade = CascadeType.ALL)
 
     private Pilotada pilotada;
 
