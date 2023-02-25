@@ -14,25 +14,33 @@ import java.util.List;
  * @author Alex
  */
 @Entity
-@Table(name="Missio")
-public class Missio implements TesteableEntity{
+@Table(name = "Missio")
+public class Missio implements TesteableEntity {
+
     @Id
-    @Column(name="codiMissio", nullable = false)
+    @Column(name = "codiMissio", nullable = false)
     int codiMissio;
-    @Column(name="nom")
+    @Column(name = "nom")
     String nom;
-    @Column(name="durada")
+    @Column(name = "durada")
     Float durada;
-    @Column(name="dateInici")
+    @Column(name = "dateInici")
     Date dateInici;
-    @Column(name="completada")
+    @Column(name = "completada")
     Boolean completada;
-    @Column(name="ubicacio")
+    @Column(name = "ubicacio")
     String ubicacio;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "Aeronau")
     private List<Aeronau> aeronau;
-    
+
+    @ManyToMany
+    @JoinTable(
+            name = "missio_aeronau",
+            joinColumns = @JoinColumn(name = "missio_id"),
+            inverseJoinColumns = @JoinColumn(name = "aeronau_id"))
+    private List<Aeronau> aeronaus;
+
     @Override
     public Integer getAtributIdentificador() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -77,5 +85,5 @@ public class Missio implements TesteableEntity{
     public void setAtributBoolean(Boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }
