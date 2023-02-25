@@ -6,12 +6,7 @@
 package entitats;
 
 import Interficies.TesteableEntity;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +20,10 @@ import java.util.List;
 @Table(name = "Pilotada")
 public abstract class Pilotada extends Aeronau implements TesteableEntity, Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     //Atributs
     @Column(name = "Pilot")
     private Integer aeronauPilot;
@@ -36,6 +35,13 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
     private Pilot pilot;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Mecanic> mecanic;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "pilotada_aeronau",
+            joinColumns = {
+                @JoinColumn(name = "pilotada_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "aeronau_id")})
+    private List<Aeronau> aeronaus = new ArrayList<>();
 
     public Pilotada() {
         super();

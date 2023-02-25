@@ -49,6 +49,8 @@ public abstract class Aeronau implements TesteableEntity, Serializable {
     //Relacio
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronau")
     private List<Missio> missio = new ArrayList<>();
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronaus")
+    private List<Pilotada> pilotades = new ArrayList<>();
 
     public Aeronau() {
         super();

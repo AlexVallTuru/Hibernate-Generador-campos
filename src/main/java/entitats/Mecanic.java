@@ -8,6 +8,7 @@ import Interficies.TesteableEntity;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,16 +17,23 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Mecanic")
-public class Mecanic extends Soldat implements TesteableEntity,Serializable {
+public class Mecanic extends Soldat implements TesteableEntity, Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "VEHICULOS_DESTRUIDOS")
     private int vehiculosDestruidos;
-    
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="pilotada")
+    @JoinColumn(name = "pilotada")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mecanic")
+    private List<Aeronau> aeronaus = new ArrayList<>();
+
     private Pilotada pilotada;
 
-    public  Mecanic() {
+    public Mecanic() {
         super();
     }
 
@@ -35,12 +43,6 @@ public class Mecanic extends Soldat implements TesteableEntity,Serializable {
         this.pilotada = pilotada;
     }
 
-    
-
-   
-    
-    
-
     @Override
     public Integer getAtributIdentificador() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -48,7 +50,7 @@ public class Mecanic extends Soldat implements TesteableEntity,Serializable {
 
     @Override
     public String getAtributString() {
-        
+
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -86,6 +88,5 @@ public class Mecanic extends Soldat implements TesteableEntity,Serializable {
     public void setAtributBoolean(Boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 
 }
