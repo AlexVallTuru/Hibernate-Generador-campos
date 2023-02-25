@@ -28,7 +28,7 @@ public class MissioTest implements TesteableEntity {
     private String localizacion;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "Aeronau")
-    private List<AeronauTest> aeronau;
+    private List<Aeronau> aeronau;
 
     @Override
     public Integer getAtributIdentificador() {

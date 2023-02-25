@@ -8,7 +8,6 @@ import Interficies.TesteableEntity;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,28 +16,30 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Mecanic")
-public class Mecanic extends Soldat implements TesteableEntity, Serializable {
+public class Mecanic extends Soldat implements TesteableEntity,Serializable {
 
     @Column(name = "VEHICULOS_DESTRUIDOS")
     private int vehiculosDestruidos;
-
+    
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pilotada")
-    private PilotadaTest pilotada;
+    @JoinColumn(name="pilotada")
+    private Pilotada pilotada;
 
-    //RF05
-    @OneToMany(mappedBy = "mecanic")
-    private List<Aeronau> aeronaus = new ArrayList<>();
-
-    public Mecanic() {
+    public  Mecanic() {
         super();
     }
 
-    public Mecanic(int vehiculosDestruidos, PilotadaTest pilotada, int idUsuario, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, List<String> mejorasCampo, Boolean enExpedicion, Date nacimiento) {
+    public Mecanic(int vehiculosDestruidos, Pilotada pilotada, int idUsuario, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, List<String> mejorasCampo, Boolean enExpedicion, Date nacimiento) {
         super(idUsuario, vida, proteccion, numeroDerrotas, numeroVictorias, armaPrincipal, armaSegundaria, prestigio, armaCQC, mejorasCampo, enExpedicion, nacimiento);
         this.vehiculosDestruidos = vehiculosDestruidos;
         this.pilotada = pilotada;
     }
+
+    
+
+   
+    
+    
 
     @Override
     public Integer getAtributIdentificador() {
@@ -47,7 +48,7 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
 
     @Override
     public String getAtributString() {
-
+        
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -85,5 +86,6 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
     public void setAtributBoolean(Boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 
 }

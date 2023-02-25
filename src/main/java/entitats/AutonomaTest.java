@@ -5,7 +5,10 @@
 package entitats;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
+
+
 
 /**
  *
@@ -13,7 +16,7 @@ import java.sql.Date;
  */
 @Entity
 @Table(name="Autonoma")
-abstract class AutonomaTest extends AeronauTest {
+abstract class AutonomaTest extends AeronauTest implements Serializable {
     @Column(name="capacidad")
     private int capacidadCarga;
     

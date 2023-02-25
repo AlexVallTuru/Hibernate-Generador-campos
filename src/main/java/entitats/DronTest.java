@@ -6,6 +6,7 @@ package entitats;
 
 import Interficies.TesteableEntity;
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -15,15 +16,23 @@ import java.sql.Date;
 
 @Entity
 @Table(name="Dron")
-public class DronTest extends AutonomaTest implements TesteableEntity {
+public class DronTest extends Autonoma implements TesteableEntity, Serializable {
     @Column(name="test")
     private String hola;
     
     
     public DronTest(){
         super();
-        
     }
+
+    public DronTest(String hola, int tempsMaximDeVol, float pes, int sensors, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
+        super(tempsMaximDeVol, pes, sensors, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
+        this.hola = hola;
+    }
+
+    
+   
+    
 
     @Override
     public Integer getAtributIdentificador() {
