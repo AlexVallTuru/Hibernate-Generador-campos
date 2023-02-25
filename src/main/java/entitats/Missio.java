@@ -7,6 +7,7 @@ package entitats;
 import Interficies.TesteableEntity;
 import jakarta.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 /**
  *
@@ -15,7 +16,8 @@ import java.sql.Date;
 @Entity
 @Table(name="Missio")
 public class Missio implements TesteableEntity{
-    @Column(name="codiMissio")
+    @Id
+    @Column(name="codiMissio", nullable = false)
     int codiMissio;
     @Column(name="nom")
     String nom;
@@ -27,6 +29,9 @@ public class Missio implements TesteableEntity{
     Boolean completada;
     @Column(name="ubicacio")
     String ubicacio;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Aeronau")
+    private List<Aeronau> aeronau;
     
     @Override
     public Integer getAtributIdentificador() {
