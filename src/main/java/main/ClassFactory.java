@@ -2,10 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entitats;
+package main;
 
 import Interficies.TesteableFactory;
 import com.github.javafaker.Faker;
+import entitats.Aeronau;
+import entitats.Combat;
+import entitats.Dron;
+import entitats.DronTest;
+import entitats.Mecanic;
+import entitats.Missio;
+import entitats.MissioTest;
+import entitats.Pilot;
+import entitats.Pilotada;
+import entitats.Soldat;
+import entitats.Transport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +34,12 @@ public class ClassFactory implements TesteableFactory {
     }
 
     @Override
-    public Aeronau addMissionsToAeronau(List<MissioTest> lm, Aeronau a) throws Exception {
+    public Aeronau addMissionsToAeronau(List<Missio> lm, Aeronau a) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public MissioTest addAeronausToMissio(List<Aeronau> la, MissioTest m) throws Exception {
+    public Missio addAeronausToMissio(List<Aeronau> la, Missio m) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -41,7 +52,6 @@ public class ClassFactory implements TesteableFactory {
     @Override
     public Aeronau aeronauFactory(Class<?> tipus) {
         Aeronau aeronau = null;
-        Autonoma autonoma = new DronTest();
         if (tipus == Transport.class) {
             aeronau = new Transport();
         } else if (tipus == Combat.class) {
@@ -64,15 +74,15 @@ public class ClassFactory implements TesteableFactory {
     }
 
     @Override
-    public MissioTest missioFactory() {
-        return new MissioTest();
+    public Missio missioFactory() {
+        return new Missio();
     }
 
     @Override
-    public List<MissioTest> missionsFactory(int elements) {
-        List<MissioTest> missions = new ArrayList<MissioTest>();
+    public List<Missio> missionsFactory(int elements) {
+        List<Missio> missions = new ArrayList<Missio>();
         for (int i = 0; i < elements; i++) {
-            missions.add(new MissioTest());
+            missions.add(new Missio());
         }
         return missions;
     }

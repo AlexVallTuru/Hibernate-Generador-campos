@@ -21,7 +21,7 @@ public abstract class Soldat implements Serializable {
 
     @Id
     @Column(name = "ID_USUARIO", nullable = false)
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
     @Column(name = "VIDA", nullable = false)
     private float vida;

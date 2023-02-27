@@ -1,6 +1,5 @@
 package main;
 
-import entitats.ClassFactory;
 import entitats.Pilot;
 import java.sql.Date;
 import java.util.Arrays;

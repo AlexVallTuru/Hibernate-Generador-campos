@@ -6,6 +6,7 @@ package entitats;
 
 import Interficies.TesteableEntity;
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="Missio")
-public class Missio implements TesteableEntity{
+public class Missio implements TesteableEntity, Serializable{
     @Id
     @Column(name="codiMissio", nullable = false)
     int codiMissio;
@@ -32,6 +33,10 @@ public class Missio implements TesteableEntity{
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "Aeronau")
     private List<Aeronau> aeronau;
+    
+    public Missio(){
+        super();
+    }
     
     @Override
     public Integer getAtributIdentificador() {
