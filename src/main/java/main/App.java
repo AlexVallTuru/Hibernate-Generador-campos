@@ -4,6 +4,7 @@ import entitats.ClassFactory;
 import entitats.Pilot;
 import java.sql.Date;
 import java.util.Arrays;
+import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -18,39 +19,103 @@ public class App {
 
     public static void main(String[] args) {
         ClassFactory cf = new ClassFactory();
-        
+
+        //Inici de sessio
         logger.info("\nInicio de sesion...");
-
-
         SingleSession singl = SingleSession.getInstance();
         Session a = singl.getSessio();
-        
 
-        a.getTransaction().begin();
-        Pilot q = new Pilot("root",
-        null,
-        5, 100,
-        50,
-        2,
-        2,
-        "AK47",
-        "Galil",
-        "Sargento",
-        "chuchillo",
-        Arrays.asList("ataque aereo"),
-        Boolean.FALSE,
-        convertDate("1993-02-01"));
-        
-        
+        //Menu principal
+        Boolean exit = false;
+        do {
+            logger.info("\nMostrando menu principal");
+            drawMenu();
+            //Comprobar que l'opció introduida per l'usuari es correcte
+            Integer finalOption = checkOption();
 
-        
+            //Crida a funcions
+            switch (finalOption) {
+                //Insercio d'elements de prova
+                case 1:
+                    a.getTransaction().begin();
+                    Pilot q = new Pilot("root",
+                            null,
+                            5, 100,
+                            50,
+                            2,
+                            2,
+                            "AK47",
+                            "Galil",
+                            "Sargento",
+                            "chuchillo",
+                            Arrays.asList("ataque aereo"),
+                            Boolean.FALSE,
+                            convertDate("1993-02-01"));
+                    a.persist(q);
+                    a.getTransaction().commit();
+                    System.out.println("Elements insertats correctament.");
+                    break;
 
+                case 2:
+                    System.out.println("Not implemented.");
+                    break;
 
-        a.persist(q);
-        
-        a.getTransaction().commit();
-        singl.closeConnection();
+                case 3:
+                    System.out.println("Not implemented.");
+                    break;
 
+                case 4:
+                    System.out.println("Not implemented.");
+                    break;
+                //Sortida del programa
+                case 5:
+                    System.out.println("Fins aviat!");
+                    singl.closeConnection();
+                    exit = true;
+            }
+        } while (!exit);
+    }
+
+    /**
+     * Mostra una "interficie" per les opcions disponibles
+     *
+     * @author Aitor
+     */
+    private static void drawMenu() {
+        //ASCII art per el menu
+        System.out.println("\n\n\n\n\n\n\n\n\n");
+        System.out.println("_ __ ___   ___ _ __  _   _ \r\n| '_ ` _ \\ / _ \\ '_ \\| | | |\r\n| | | | | |  __/ | | | |_| |\r\n|_| |_| |_|\\___|_| |_|\\__,_|\r\n");
+        System.out.println("1. <Insertar elements de prova>");
+        System.out.println("2. <Afegir elements a una classe>");
+        System.out.println("3. <Eliminar elements d'una classe>");
+        System.out.println("4. <Llistar elements d'una classe>");
+        System.out.println("5. <Sortir>");
+        System.out.println("\n Introdueix un numero per escogir una opció");
+    }
+
+    /**
+     * Comprova que l'opcio introduïda per l'usuari es valida i la retorna al
+     * programa.
+     *
+     * @return finalOption
+     */
+    public static Integer checkOption() {
+        Scanner in = new Scanner(System.in);
+        Boolean valid = false;
+        Integer finalOption = null;
+        while (!valid) {
+            try {
+                String inOption = in.next();
+                finalOption = Integer.parseInt(inOption);
+                if (finalOption < 1 || finalOption > 5) {
+                    throw new NumberFormatException();
+                }
+                valid = true;
+            } catch (NumberFormatException e) {
+                System.out.println("L'opcio introduida no es valida o no es un nombre, introdueix-ho de nou.");
+            }
+        }
+        return finalOption;
     }
 
     public static Date convertDate(String dat) {
