@@ -22,8 +22,20 @@ public class App {
 
         //Inici de sessio
         logger.info("\nInicio de sesion...");
-        SingleSession singl = SingleSession.getInstance();
-        Session a = singl.getSessio();
+        SingleSession singl = null;
+        Session a = null;
+        Boolean valid = false; //Boolean per verificar inici de sessio
+        while (!valid) {
+            try {
+                singl = SingleSession.getInstance();
+                a = singl.getSessio();
+                valid = true;
+                logger.info("\nCredenciales correctas");
+            } catch (Exception e) {
+                logger.error("\nCredenciales incorrectas");
+                System.out.println("Credenciales incorrectas, por favor introducelas de nuevo");
+            }
+        }
 
         //Menu principal
         Boolean exit = false;
@@ -83,8 +95,7 @@ public class App {
      */
     private static void drawMenu() {
         //ASCII art per el menu
-        System.out.println("\n\n\n\n\n\n\n\n\n");
-        System.out.println("_ __ ___   ___ _ __  _   _ \r\n| '_ ` _ \\ / _ \\ '_ \\| | | |\r\n| | | | | |  __/ | | | |_| |\r\n|_| |_| |_|\\___|_| |_|\\__,_|\r\n");
+        System.out.println("\n_ __ ___   ___ _ __  _   _ \r\n| '_ ` _ \\ / _ \\ '_ \\| | | |\r\n| | | | | |  __/ | | | |_| |\r\n|_| |_| |_|\\___|_| |_|\\__,_|\r\n");
         System.out.println("1. <Insertar elements de prova>");
         System.out.println("2. <Afegir elements a una classe>");
         System.out.println("3. <Eliminar elements d'una classe>");

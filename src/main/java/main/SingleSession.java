@@ -45,9 +45,9 @@ public class SingleSession {
 
         sessionFactory = config.buildSessionFactory();
         ses = sessionFactory.openSession();
-    }
+}
 
-    public static SingleSession getInstance() {
+public static SingleSession getInstance() {
         if (session == null) {
             session = new SingleSession();
             System.out.println("Conexion establecida");
