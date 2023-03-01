@@ -28,33 +28,30 @@ import java.util.List;
 @Entity
 @Table(name = "Aeronau")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Aeronau implements TesteableEntity, Serializable {
+public abstract class Aeronau implements  Serializable {
 
+    private static final long serialVersionUID = 1L;
     //Atributs
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id", nullable = false)
-    private Integer aeronauMatricula;
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id", nullable = false,unique = true)
+    protected Integer aeronauMatricula;
     @Column(name = "Nom")
-    private String aeronauNom;
+    protected String aeronauNom;
     @Column(name = "RitmePujada", nullable = false)
-    private Float aeronauRitmePujada;
+    protected float aeronauRitmePujada;
     @Column(name = "VelocitatMaxima", nullable = false)
-    private Integer aeronauVelocitatMaxima;
+    protected Integer aeronauVelocitatMaxima;
     @Column(name = "EsPilotada", nullable = false)
-    private boolean aeronauAutopilotada;
+    protected boolean aeronauAutopilotada;
     @Column(name = "DataFabricacio", nullable = false)
-    private Date aeronauDataFabricacio;
+    protected Date aeronauDataFabricacio;
 
     //Relacio
-    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronau")
-    private List<Missio> missio = new ArrayList<>();
-
+    @ManyToMany(cascade = {CascadeType.ALL})
+    protected List<Missio> missio = new ArrayList<>();
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronaus")
     private List<Pilotada> pilotades = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "aeronaus")
-    private List<Missio> missions;
 
     public Aeronau() {
         super();

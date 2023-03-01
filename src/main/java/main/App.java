@@ -1,7 +1,8 @@
 package main;
 
-import entitats.ClassFactory;
+import entitats.Combat;
 import entitats.Pilot;
+import entitats.Transport;
 import java.sql.Date;
 import java.util.Arrays;
 import org.apache.logging.log4j.LogManager;
@@ -12,7 +13,7 @@ import org.hibernate.Session;
  *
  * @author Aitor
  */
-public class App {
+/*public class App {
 
     private static final Logger logger = LogManager.getLogger(App.class);
 
@@ -25,7 +26,7 @@ public class App {
         SingleSession singl = SingleSession.getInstance();
         Session a = singl.getSessio();
         
-
+/*
         a.getTransaction().begin();
         Pilot q = new Pilot("root",
         null,
@@ -41,12 +42,14 @@ public class App {
         Boolean.FALSE,
         convertDate("1993-02-01"));
         
+        Transport l = (Transport) cf.aeronauFactory(Transport.class);
+        //Combat x = (Combat) cf.aeronauFactory(Combat.class);
         
 
         
 
-
-        a.persist(q);
+    
+        a.persist(l);
         
         a.getTransaction().commit();
         singl.closeConnection();
@@ -58,4 +61,4 @@ public class App {
 
     }
 
-}
+}*/

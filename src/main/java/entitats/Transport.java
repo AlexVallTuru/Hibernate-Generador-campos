@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import Utils.Utils;
 
 /**
  *
@@ -32,8 +33,8 @@ public class Transport extends Pilotada implements TesteableEntity, Serializable
         super();
     }
 
-    public Transport(Integer aeronauTransportMaxTripulants, Integer aeronauTransportMaxPes, Integer aeronauPilot, ArrayList<Integer> aeronauMecanics, Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
-        super(aeronauPilot, aeronauMecanics, pilot, mecanic, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
+    public Transport(Integer aeronauTransportMaxTripulants, Integer aeronauTransportMaxPes, Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, float  aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
+        super(pilot, mecanic, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.aeronauTransportMaxTripulants = aeronauTransportMaxTripulants;
         this.aeronauTransportMaxPes = aeronauTransportMaxPes;
     }
@@ -68,27 +69,28 @@ public class Transport extends Pilotada implements TesteableEntity, Serializable
 
     @Override
     public Integer getAtributIdentificador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return super.aeronauMatricula;
     }
 
     @Override
     public String getAtributString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return super.aeronauNom;
     }
 
     @Override
     public Float getAtributFloat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.aeronauRitmePujada;
+                
     }
 
     @Override
     public Date getAtributDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Utils.localDateToSQLDate(this.aeronauDataFabricacio);
     }
 
     @Override
     public Boolean getAtributBoolean() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.aeronauAutopilotada;
     }
 
     @Override

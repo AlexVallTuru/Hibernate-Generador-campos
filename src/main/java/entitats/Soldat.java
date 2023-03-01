@@ -21,30 +21,30 @@ public abstract class Soldat implements Serializable {
 
     @Id
     @Column(name = "ID_USUARIO", nullable = false)
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuario;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected int idUsuario;
     @Column(name = "VIDA", nullable = false)
-    private float vida;
+    protected float vida;
     @Column(name = "PROTECCION")
-    private int proteccion;
+    protected int proteccion;
     @Column(name = "DERROTAS", nullable = false)
-    private int numeroDerrotas;
+    protected int numeroDerrotas;
     @Column(name = "VICTORIAS", nullable = false)
-    private int numeroVictorias;
+    protected int numeroVictorias;
     @Column(name = "ARMA_PRINCIPAL", nullable = false)
-    private String armaPrincipal;
+    protected String armaPrincipal;
     @Column(name = "ARMA_SEGUNDARIA", nullable = false)
-    private String armaSegundaria;
+    protected String armaSegundaria;
     @Column(name = "PRESTIGIO", nullable = false)
-    private String prestigio;
+    protected String prestigio;
     @Column(name = "ARMA_CQC")
-    private String armaCQC;
+    protected String armaCQC;
     @Column(name = "MEJORAS")
-    private List<String> mejorasCampo;
+    protected List<String> mejorasCampo;
     @Column(name = "EXPEDICION", nullable = false)
-    private Boolean enExpedicion;
+    protected Boolean enExpedicion;
     @Column(name = "NACIMIENTO", nullable = false)
-    private Date nacimiento;
+    protected Date nacimiento;
 
     public Soldat() {
     }

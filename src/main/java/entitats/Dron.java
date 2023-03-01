@@ -7,6 +7,8 @@ package entitats;
 import jakarta.persistence.*;
 import java.sql.Date;
 import Interficies.TesteableEntity;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -14,7 +16,7 @@ import Interficies.TesteableEntity;
  */
 @Entity
 @Table(name = "Dron")
-public class Dron extends Autonoma implements TesteableEntity{
+public class Dron extends Autonoma implements TesteableEntity,Serializable{
 
     @Column(name = "numHelices")
     int numHelices;
@@ -76,4 +78,13 @@ public class Dron extends Autonoma implements TesteableEntity{
     public void setAtributBoolean(Boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    public List<Missio> getMissions() {
+        return super.missio;
+    }
+
+    
+    
+    
+
 }

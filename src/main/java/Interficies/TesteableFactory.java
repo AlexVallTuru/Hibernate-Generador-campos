@@ -6,6 +6,7 @@
 package Interficies;
 
 import entitats.Aeronau;
+import entitats.Missio;
 import entitats.MissioTest;
 import entitats.Pilot;
 import entitats.Pilotada;
@@ -36,7 +37,7 @@ public interface TesteableFactory {
      * @return
      * @throws java.lang.Exception
      */
-    Aeronau addMissionsToAeronau(List<MissioTest> lm, Aeronau a) throws Exception;
+    Aeronau addMissionsToAeronau(List<Missio> lm, Aeronau a) throws Exception;
     
     
     /***
@@ -46,7 +47,7 @@ public interface TesteableFactory {
      * @return 
      * @throws java.lang.Exception 
      */
-    MissioTest addAeronausToMissio(List<Aeronau> la, MissioTest m) throws Exception;
+    Missio addAeronausToMissio(List<Aeronau> la, Missio m) throws Exception;
 
     /**
      * Afegeix pilot a aeronau pilotada
@@ -76,14 +77,14 @@ public interface TesteableFactory {
      * Retorna una instancia de missio amb dades ficticies
      * @return
      */
-    MissioTest missioFactory();
+    Missio missioFactory();
 
     /**
      * Retorna una llista de missions amb dades ficticies
      * @param elements quantitat d'elements a retornar
      * @return
      */
-    List<MissioTest> missionsFactory(int elements);
+    List<Missio> missionsFactory(int elements);
 
     /**
      * Retorna una llista de pilots amb dades ficticies
