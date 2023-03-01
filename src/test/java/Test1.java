@@ -1,11 +1,10 @@
-package test;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.util.ArrayList;
 import java.util.List;
 import main.ClassFactory;
@@ -28,15 +27,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-/**
- *
- * @author manel
- * 
- * versió 22_23 1.1
- */
+
 public class Test1 {
-    
-   static Session session;
+
+  static Session session;
    static ClassFactory factory;
    private TestInfo testInfo;
    
@@ -200,8 +194,8 @@ public class Test1 {
        System.out.println("TEST: " + testInfo.getDisplayName());
        
        //dos objectes "random" han de tenir atributs diferents
-       Pilot o1 = (Pilot) factory.soldatFactory(Combat.class);
-       Pilot o2 = (Pilot) factory.soldatFactory(Combat.class);
+       Pilot o1 = (Pilot) factory.soldatFactory(Pilot.class);
+       Pilot o2 = (Pilot) factory.soldatFactory(Pilot.class);
        assertTrue(! o1.getAtributString().equals(o2.getAtributString()));
        assertTrue(! o1.getAtributFloat().equals(o2.getAtributFloat()));
        assertTrue(! o1.getAtributDate().equals(o2.getAtributDate()));

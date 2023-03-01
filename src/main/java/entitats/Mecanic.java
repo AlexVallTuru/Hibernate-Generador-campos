@@ -41,13 +41,13 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
 
     @Override
     public Integer getAtributIdentificador() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.idUsuario;
     }
 
     @Override
     public String getAtributString() {
 
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.armaPrincipal;
     }
 
     @Override

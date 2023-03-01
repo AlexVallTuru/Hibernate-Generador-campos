@@ -12,24 +12,25 @@ import entitats.Dron;
 import entitats.DronTest;
 import entitats.Mecanic;
 import entitats.Missio;
-import entitats.MissioTest;
 import entitats.Pilot;
 import entitats.Pilotada;
 import entitats.Soldat;
 import entitats.Transport;
 import java.util.ArrayList;
 import java.util.List;
+import Utils.Utils;
 
 /**
  *
  * @author carlo
  */
 public class ClassFactory implements TesteableFactory {
-    
+
     private Faker fake = new Faker();
 
     @Override
     public Aeronau addMecanicsToPilotada(List<Soldat> lo, Pilotada p) throws Exception {
+
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -45,20 +46,52 @@ public class ClassFactory implements TesteableFactory {
 
     @Override
     public Aeronau addPilotToAeronauPilotada(Pilot p, Pilotada a) throws Exception {
+        a.setPilot(p);
+        return a;
         
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Aeronau aeronauFactory(Class<?> tipus) {
         Aeronau aeronau = null;
-        if (tipus == Transport.class) {
-            aeronau = new Transport();
-        } else if (tipus == Combat.class) {
-            aeronau = new Combat();
 
-        } else if (tipus == DronTest.class) {
-            aeronau = new Dron();
+        Pilot p = (Pilot) this.soldatFactory(Pilot.class);
+        List<Mecanic> m = (List<Mecanic>) (List<?>) this.mecanicsFactory(4);
+        if (tipus == Transport.class) {
+            //aeronau = new Transport(Integer.MAX_VALUE, Integer.MIN_VALUE, pilot, mecanic, Integer.MIN_VALUE, aeronauNom, Float.MIN_NORMAL, Integer.MIN_VALUE, true, aeronauDataFabricacio)
+            aeronau = new Transport(
+                    fake.number().randomDigitNotZero(),
+                    fake.number().randomDigitNotZero(),
+                    null,
+                    null,
+                    fake.number().randomDigitNotZero(),
+                    fake.aviation().airport(),
+                    fake.number().randomNumber(),
+                    fake.number().randomDigit(),
+                    fake.bool().bool(), Utils.localDateToSQLDate(fake.date().birthday())
+            );
+        } else if (tipus == Combat.class) {
+            aeronau = new Combat(Integer.MAX_VALUE,
+                    Integer.MIN_VALUE,
+                    null, null,
+                    fake.number().randomDigit(),
+                    fake.aviation().aircraft(),
+                    (float)fake.number().numberBetween(2, 100),
+                    fake.number().numberBetween(2, 400),
+                    fake.bool().bool(),
+                    Utils.localDateToSQLDate(fake.date().birthday()));
+
+        } else if (tipus == Dron.class) {
+            aeronau = new Dron(0, 
+                    0, 
+                    0, 
+                    0, 
+                    Integer.MIN_VALUE, 
+                    fake.aviation().aircraft(), 
+                    Float.MIN_NORMAL, 
+                    Integer.MIN_VALUE, 
+                    true,
+                    Utils.localDateToSQLDate(fake.date().birthday()));
         }
         return aeronau;
 
@@ -102,19 +135,17 @@ public class ClassFactory implements TesteableFactory {
 
         if (tipus == Mecanic.class) {
             soldat = new Mecanic();
-            
-            
-                    
+
         } else if (tipus == Pilot.class) {
             soldat = new Pilot();
         }
         return soldat;
     }
-    
-    public Pilotada pilotadaFactory(){
+
+    public Pilotada pilotadaFactory() {
         Pilotada pilotada = null;
         return null;
-        
+
     }
 
 }

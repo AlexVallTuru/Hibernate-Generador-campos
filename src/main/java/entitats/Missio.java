@@ -30,7 +30,7 @@ public class Missio implements TesteableEntity, Serializable{
     Boolean completada;
     @Column(name="ubicacio")
     String ubicacio;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Aeronau")
     private List<Aeronau> aeronau;
     
@@ -82,5 +82,15 @@ public class Missio implements TesteableEntity, Serializable{
     public void setAtributBoolean(Boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    public void setAeronaus(List<Aeronau> escuadrilla1) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public List<Aeronau> getAeronaus() {
+        return aeronau;
+    }
+
+    
     
 }

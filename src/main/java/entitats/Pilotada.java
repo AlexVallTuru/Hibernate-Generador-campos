@@ -20,16 +20,11 @@ import java.util.List;
 @Table(name = "Pilotada")
 public abstract class Pilotada extends Aeronau implements TesteableEntity, Serializable {
 
-
-    //Atributs
-    @Column(name = "Pilot")
-    private Integer aeronauPilot;
-    @Column(name = "Mecanics")
-    private ArrayList<Integer> aeronauMecanics;
-
+    private static final long serialVersionUID = 1L;
     //Relacions
     @OneToOne(cascade = CascadeType.ALL)
     private Pilot pilot;
+    @Column(name="Mecanic")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Mecanic> mecanic;
     @ManyToMany(cascade = CascadeType.ALL)
@@ -44,11 +39,24 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
         super();
     }
 
-    public Pilotada(Integer aeronauPilot, ArrayList<Integer> aeronauMecanics, Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
+    public Pilotada(Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
         super(aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
-        this.aeronauPilot = aeronauPilot;
-        this.aeronauMecanics = aeronauMecanics;
         this.pilot = pilot;
         this.mecanic = mecanic;
     }
+
+
+    public Pilot getPilotAeronau() {
+        return pilot;
+    }
+
+    public List<Mecanic> getMecanics() {
+       return mecanic; 
+    }
+    
+    public void setPilot(Pilot p){
+        this.pilot = p;
+        
+    }
+
 }

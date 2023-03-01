@@ -40,7 +40,7 @@ public class Pilot extends Soldat implements TesteableEntity {
 
     @Override
     public Integer getAtributIdentificador() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.idUsuario;
     }
 
     @Override

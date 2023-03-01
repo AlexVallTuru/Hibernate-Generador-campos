@@ -6,9 +6,9 @@
         For connecting any hibernate application with the database, it is required to provide the configuration of SQL dialect. -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.password"></property>
-        <property name="hibernate.connection.url"></property>
-        <property name="hibernate.connection.username"></property>
+        <property name="hibernate.connection.password">1234</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cc?createDatabaseIfNotExist=true</property>
+        <property name="hibernate.connection.username">root</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.connection.characterEncoding">utf8</property>
         <mapping class="entitats.Aeronau"></mapping>
