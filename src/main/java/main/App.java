@@ -52,12 +52,6 @@ import org.hibernate.Session;
         a.persist(l);
         
         a.getTransaction().commit();
-
-        // recuperem tots els pilots
-        List<Pilot> llista = a.createQuery("from Pilot", Pilot.class).list();
-        System.out.println("EL PILOTO TIENE UNA HUMILDE INFORMACION DE" + llista.toString());
-        singl.closeConnection();
-
         singl.closeConnection();
 
     }

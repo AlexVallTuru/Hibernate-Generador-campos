@@ -5,7 +5,6 @@
 package main;
 
 import Interficies.TesteableFactory;
-import Utils.Armas;
 import com.github.javafaker.Faker;
 import entitats.Aeronau;
 import entitats.Combat;
@@ -135,33 +134,11 @@ public class ClassFactory implements TesteableFactory {
         Soldat soldat = null;
 
         if (tipus == Mecanic.class) {
-            soldat = new Mecanic(
-                    fake.number().randomDigit(),
-                    null,
-                    (float)fake.number().randomDouble(2, 0, 100),
-                    fake.number().numberBetween(0, 150),
-                    fake.number().randomDigit(),
-                    fake.number().randomDigit(),
-                    Armas.generadorArmasPrincipales(fake.number().numberBetween(0, 99)),
-                    Armas.generadorArmasSecundarias(fake.number().numberBetween(0, 99)),
-                    Armas.generadorPrestigios(fake.number().numberBetween(0, 9)),
-                    Armas.generadorArmaCQC(fake.number().numberBetween(0, 99)),
-                    fake.bool().bool(),
-                    Utils.localDateToSQLDate(fake.date().birthday()));
+            soldat = new Mecanic();
 
         } else if (tipus == Pilot.class) {
-            soldat = new Pilot(fake.aviation().aircraft(),
-                    null,
-                    (float)fake.number().randomDouble(2, 0, 100),
-                    fake.number().numberBetween(0, 150),
-                    fake.number().randomDigit(),
-                    fake.number().randomDigit(),
-                    Armas.generadorArmasPrincipales(fake.number().numberBetween(0, 99)),
-                    Armas.generadorArmasSecundarias(fake.number().numberBetween(0, 99)),
-                    Armas.generadorPrestigios(fake.number().numberBetween(0, 9)),
-                    Armas.generadorArmaCQC(fake.number().numberBetween(0, 99)),
-                    fake.bool().bool(),
-                    Utils.localDateToSQLDate(fake.date().birthday()));        }
+            soldat = new Pilot();
+        }
         return soldat;
     }
 
