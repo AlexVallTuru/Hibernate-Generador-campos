@@ -27,17 +27,14 @@ public class Pilot extends Soldat implements TesteableEntity {
     public Pilot(){
         super();
     
-    };
+    };  
 
-    public Pilot(String vehiculo, Pilotada pilotada, int idUsuario, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, List<String> mejorasCampo, Boolean enExpedicion, Date nacimiento) {
-        super(idUsuario, vida, proteccion, numeroDerrotas, numeroVictorias, armaPrincipal, armaSegundaria, prestigio, armaCQC, mejorasCampo, enExpedicion, nacimiento);
+    public Pilot(String vehiculo, Pilotada pilotada, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, Boolean enExpedicion, Date nacimiento) {
+        super(vida, proteccion, numeroDerrotas, numeroVictorias, armaPrincipal, armaSegundaria, prestigio, armaCQC, enExpedicion, nacimiento);
         this.vehiculo = vehiculo;
         this.pilotada = pilotada;
     }
-
     
-    
-
     @Override
     public Integer getAtributIdentificador() {
         return super.idUsuario;
