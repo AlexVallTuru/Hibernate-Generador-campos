@@ -5,6 +5,7 @@
 package entitats;
 
 import Interficies.TesteableEntity;
+import Utils.Utils;
 import jakarta.persistence.*;
 import java.sql.Date;
 import java.util.List;
@@ -50,22 +51,22 @@ public class Pilot extends Soldat implements TesteableEntity {
 
     @Override
     public String getAtributString() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.armaCQC;
     }
 
     @Override
     public Float getAtributFloat() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.vida;
     }
 
     @Override
     public Date getAtributDate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return Utils.localDateToSQLDate(super.nacimiento);
     }
 
     @Override
     public Boolean getAtributBoolean() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.enExpedicion;
     }
 
     @Override

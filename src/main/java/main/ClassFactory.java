@@ -31,8 +31,13 @@ public class ClassFactory implements TesteableFactory {
 
     @Override
     public Aeronau addMecanicsToPilotada(List<Soldat> lo, Pilotada p) throws Exception {
+        for (Object obj : lo) {
+            if (obj instanceof Mecanic mecanic) {
+                p.setMecanic(mecanic);
+            }
+        }
 
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return p;
     }
 
     @Override
@@ -56,15 +61,15 @@ public class ClassFactory implements TesteableFactory {
     public Aeronau aeronauFactory(Class<?> tipus) {
         Aeronau aeronau = null;
 
-        Pilot p = (Pilot) this.soldatFactory(Pilot.class);
-        List<Mecanic> m = (List<Mecanic>) (List<?>) this.mecanicsFactory(4);
+        //Pilot p = (Pilot) this.soldatFactory(Pilot.class);
+        //List<Mecanic> m = (List<Mecanic>) (List<?>) this.mecanicsFactory(4);
         if (tipus == Transport.class) {
             //aeronau = new Transport(Integer.MAX_VALUE, Integer.MIN_VALUE, pilot, mecanic, Integer.MIN_VALUE, aeronauNom, Float.MIN_NORMAL, Integer.MIN_VALUE, true, aeronauDataFabricacio)
             aeronau = new Transport(
                     fake.number().randomDigitNotZero(),
                     fake.number().randomDigitNotZero(),
                     null,
-                    null,
+                    new ArrayList<>(),
                     fake.number().randomDigitNotZero(),
                     fake.aviation().airport(),
                     fake.number().randomNumber(),
@@ -77,7 +82,7 @@ public class ClassFactory implements TesteableFactory {
                     fake.number().randomDigit(),
                     fake.number().randomDigit(),
                     null,
-                    null,
+                    new ArrayList<>(),
                     fake.number().randomDigit(),
                     fake.aviation().aircraft(),
                     fake.number().randomNumber(),
@@ -107,7 +112,7 @@ public class ClassFactory implements TesteableFactory {
     ) {
         List<Soldat> soldats = new ArrayList<Soldat>();
         for (int i = 0; i < elements; i++) {
-            soldats.add(new Mecanic());
+            soldats.add(soldatFactory(Mecanic.class));
         }
         return soldats;
     }
@@ -122,7 +127,7 @@ public class ClassFactory implements TesteableFactory {
     ) {
         List<Missio> missions = new ArrayList<Missio>();
         for (int i = 0; i < elements; i++) {
-            missions.add(new Missio());
+            missions.add(missioFactory());
         }
         return missions;
     }
@@ -132,7 +137,7 @@ public class ClassFactory implements TesteableFactory {
     ) {
         List<Soldat> soldats = new ArrayList<Soldat>();
         for (int i = 0; i < elements; i++) {
-            soldats.add(new Mecanic());
+            soldats.add(soldatFactory(Pilot.class));
         }
         return soldats;
     }
@@ -148,11 +153,11 @@ public class ClassFactory implements TesteableFactory {
                     fake.number().randomNumber(),
                     fake.number().randomDigit(),
                     fake.number().randomDigit(),
-                    fake.number().randomDigit(), 
+                    fake.number().randomDigit(),
                     fake.name().bloodGroup(),
-                    fake.name().firstName(), 
                     fake.name().firstName(),
-                    fake.name().firstName(), 
+                    fake.name().firstName(),
+                    fake.name().firstName(),
                     fake.bool().bool(),
                     Utils.localDateToSQLDate(fake.date().birthday()));
 
@@ -166,19 +171,13 @@ public class ClassFactory implements TesteableFactory {
                     fake.number().randomDigit(),
                     fake.number().randomDigit(),
                     fake.name().bloodGroup(),
-                    fake.name().firstName(), 
                     fake.name().firstName(),
-                    fake.name().firstName(), 
+                    fake.name().firstName(),
+                    fake.name().firstName(),
                     fake.bool().bool(),
                     Utils.localDateToSQLDate(fake.date().birthday()));
         }
         return soldat;
-    }
-
-    public Pilotada pilotadaFactory() {
-        Pilotada pilotada = null;
-        return null;
-
     }
 
 }

@@ -16,6 +16,8 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,10 +47,11 @@ public abstract class Aeronau implements Serializable {
     @Column(name = "EsPilotada", nullable = false)
     protected boolean aeronauAutopilotada;
     @Column(name = "DataFabricacio", nullable = false)
+    @Temporal(TemporalType.DATE)
     protected Date aeronauDataFabricacio;
 
     //Relacio
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL},mappedBy = "aeronau")
     protected List<Missio> missio = new ArrayList<>();
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronaus")
     private List<Pilotada> pilotades = new ArrayList<>();

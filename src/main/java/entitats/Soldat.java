@@ -42,6 +42,7 @@ public abstract class Soldat implements Serializable {
     @Column(name = "EXPEDICION", nullable = false)
     protected Boolean enExpedicion;
     @Column(name = "NACIMIENTO", nullable = false)
+    @Temporal(TemporalType.DATE)
     protected Date nacimiento;
 
     public Soldat() {
