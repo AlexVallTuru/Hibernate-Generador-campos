@@ -28,13 +28,13 @@ import java.util.List;
 @Entity
 @Table(name = "Aeronau")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Aeronau implements  Serializable {
+public abstract class Aeronau implements Serializable {
 
     private static final long serialVersionUID = 1L;
     //Atributs
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id", nullable = false,unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id", nullable = false, unique = true)
     protected Integer aeronauMatricula;
     @Column(name = "Nom")
     protected String aeronauNom;
@@ -57,12 +57,13 @@ public abstract class Aeronau implements  Serializable {
         super();
     }
 
-    public Aeronau(Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
-        this.aeronauMatricula = aeronauMatricula;
+    public Aeronau( String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
+        
         this.aeronauNom = aeronauNom;
         this.aeronauRitmePujada = aeronauRitmePujada;
         this.aeronauVelocitatMaxima = aeronauVelocitatMaxima;
         this.aeronauAutopilotada = aeronauAutopilotada;
         this.aeronauDataFabricacio = aeronauDataFabricacio;
     }
+    
 }

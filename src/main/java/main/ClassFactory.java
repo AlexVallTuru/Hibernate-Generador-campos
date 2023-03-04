@@ -19,6 +19,7 @@ import entitats.Transport;
 import java.util.ArrayList;
 import java.util.List;
 import Utils.Utils;
+import java.util.Arrays;
 
 /**
  *
@@ -48,7 +49,7 @@ public class ClassFactory implements TesteableFactory {
     public Aeronau addPilotToAeronauPilotada(Pilot p, Pilotada a) throws Exception {
         a.setPilot(p);
         return a;
-        
+
     }
 
     @Override
@@ -71,34 +72,39 @@ public class ClassFactory implements TesteableFactory {
                     fake.bool().bool(), Utils.localDateToSQLDate(fake.date().birthday())
             );
         } else if (tipus == Combat.class) {
-            aeronau = new Combat(Integer.MAX_VALUE,
-                    Integer.MIN_VALUE,
-                    null, null,
+
+            aeronau = new Combat(
+                    fake.number().randomDigit(),
+                    fake.number().randomDigit(),
+                    null,
+                    null,
                     fake.number().randomDigit(),
                     fake.aviation().aircraft(),
-                    (float)fake.number().numberBetween(2, 100),
-                    fake.number().numberBetween(2, 400),
+                    fake.number().randomNumber(),
+                    fake.number().randomDigit(),
                     fake.bool().bool(),
                     Utils.localDateToSQLDate(fake.date().birthday()));
 
         } else if (tipus == Dron.class) {
-            aeronau = new Dron(0, 
-                    0, 
-                    0, 
-                    0, 
-                    Integer.MIN_VALUE, 
-                    fake.aviation().aircraft(), 
-                    Float.MIN_NORMAL, 
-                    Integer.MIN_VALUE, 
-                    true,
+            aeronau = new Dron(
+                    fake.number().randomDigit(),
+                    fake.number().randomDigit(),
+                    fake.number().randomDigit(),
+                    0,
+                    fake.number().randomDigit(),
+                    fake.aviation().aircraft(),
+                    fake.number().randomNumber(),
+                    fake.number().randomDigit(),
+                    fake.bool().bool(),
                     Utils.localDateToSQLDate(fake.date().birthday()));
+
         }
         return aeronau;
-
     }
 
     @Override
-    public List<Soldat> mecanicsFactory(int elements) {
+    public List<Soldat> mecanicsFactory(int elements
+    ) {
         List<Soldat> soldats = new ArrayList<Soldat>();
         for (int i = 0; i < elements; i++) {
             soldats.add(new Mecanic());
@@ -108,11 +114,12 @@ public class ClassFactory implements TesteableFactory {
 
     @Override
     public Missio missioFactory() {
-        return new Missio();
+        return new Missio(fake.name().username(), fake.number().randomNumber(), Utils.localDateToSQLDate(fake.date().birthday()), fake.bool().bool(), fake.address().city(), null);
     }
 
     @Override
-    public List<Missio> missionsFactory(int elements) {
+    public List<Missio> missionsFactory(int elements
+    ) {
         List<Missio> missions = new ArrayList<Missio>();
         for (int i = 0; i < elements; i++) {
             missions.add(new Missio());
@@ -121,7 +128,8 @@ public class ClassFactory implements TesteableFactory {
     }
 
     @Override
-    public List<Soldat> pilotsFactory(int elements) {
+    public List<Soldat> pilotsFactory(int elements
+    ) {
         List<Soldat> soldats = new ArrayList<Soldat>();
         for (int i = 0; i < elements; i++) {
             soldats.add(new Mecanic());
@@ -130,14 +138,39 @@ public class ClassFactory implements TesteableFactory {
     }
 
     @Override
-    public Soldat soldatFactory(Class<?> tipus) {
+    public Soldat soldatFactory(Class<?> tipus
+    ) {
         Soldat soldat = null;
 
         if (tipus == Mecanic.class) {
-            soldat = new Mecanic();
+            soldat = new Mecanic(fake.number().randomDigit(),
+                    null,
+                    fake.number().randomNumber(),
+                    fake.number().randomDigit(),
+                    fake.number().randomDigit(),
+                    fake.number().randomDigit(), 
+                    fake.name().bloodGroup(),
+                    fake.name().firstName(), 
+                    fake.name().firstName(),
+                    fake.name().firstName(), 
+                    fake.bool().bool(),
+                    Utils.localDateToSQLDate(fake.date().birthday()));
 
         } else if (tipus == Pilot.class) {
-            soldat = new Pilot();
+
+            soldat = new Pilot(
+                    fake.space().planet(),
+                    null,
+                    fake.number().randomNumber(),
+                    fake.number().randomDigit(),
+                    fake.number().randomDigit(),
+                    fake.number().randomDigit(),
+                    fake.name().bloodGroup(),
+                    fake.name().firstName(), 
+                    fake.name().firstName(),
+                    fake.name().firstName(), 
+                    fake.bool().bool(),
+                    Utils.localDateToSQLDate(fake.date().birthday()));
         }
         return soldat;
     }

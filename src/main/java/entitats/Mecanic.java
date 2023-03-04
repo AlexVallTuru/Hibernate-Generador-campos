@@ -26,19 +26,21 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pilotada")    
     @OneToMany(mappedBy = "mecanic", cascade = CascadeType.ALL)
-
     private Pilotada pilotada;
 
     public Mecanic() {
         super();
     }
 
-    public Mecanic(int vehiculosDestruidos, Pilotada pilotada, int idUsuario, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, List<String> mejorasCampo, Boolean enExpedicion, Date nacimiento) {
-        super(idUsuario, vida, proteccion, numeroDerrotas, numeroVictorias, armaPrincipal, armaSegundaria, prestigio, armaCQC, mejorasCampo, enExpedicion, nacimiento);
+    public Mecanic(int vehiculosDestruidos, Pilotada pilotada, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, Boolean enExpedicion, Date nacimiento) {
+        super(vida, proteccion, numeroDerrotas, numeroVictorias, armaPrincipal, armaSegundaria, prestigio, armaCQC, enExpedicion, nacimiento);
         this.vehiculosDestruidos = vehiculosDestruidos;
         this.pilotada = pilotada;
     }
 
+
+
+    
     @Override
     public Integer getAtributIdentificador() {
         return super.idUsuario;
@@ -52,17 +54,17 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
 
     @Override
     public Float getAtributFloat() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.vida;
     }
 
     @Override
     public Date getAtributDate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.nacimiento;
     }
 
     @Override
     public Boolean getAtributBoolean() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.enExpedicion;
     }
 
     @Override

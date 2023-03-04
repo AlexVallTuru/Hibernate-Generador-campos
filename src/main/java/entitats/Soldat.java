@@ -39,8 +39,6 @@ public abstract class Soldat implements Serializable {
     protected String prestigio;
     @Column(name = "ARMA_CQC")
     protected String armaCQC;
-    @Column(name = "MEJORAS")
-    protected List<String> mejorasCampo;
     @Column(name = "EXPEDICION", nullable = false)
     protected Boolean enExpedicion;
     @Column(name = "NACIMIENTO", nullable = false)
@@ -49,8 +47,7 @@ public abstract class Soldat implements Serializable {
     public Soldat() {
     }
 
-    public Soldat(int idUsuario, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, List<String> mejorasCampo, Boolean enExpedicion, Date nacimiento) {
-        this.idUsuario = idUsuario;
+    public Soldat(float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, Boolean enExpedicion, Date nacimiento) {
         this.vida = vida;
         this.proteccion = proteccion;
         this.numeroDerrotas = numeroDerrotas;
@@ -59,14 +56,16 @@ public abstract class Soldat implements Serializable {
         this.armaSegundaria = armaSegundaria;
         this.prestigio = prestigio;
         this.armaCQC = armaCQC;
-        this.mejorasCampo = mejorasCampo;
         this.enExpedicion = enExpedicion;
         this.nacimiento = nacimiento;
     }
 
+    
+
+
     @Override
     public String toString() {
-        return "Soldat{" + "idUsuario=" + idUsuario + ", vida=" + vida + ", proteccion=" + proteccion + ", numeroDerrotas=" + numeroDerrotas + ", numeroVictorias=" + numeroVictorias + ", armaPrincipal=" + armaPrincipal + ", armaSegundaria=" + armaSegundaria + ", prestigio=" + prestigio + ", armaCQC=" + armaCQC + ", mejorasCampo=" + mejorasCampo + ", enExpedicion=" + enExpedicion + ", nacimiento=" + nacimiento + '}';
+        return "Soldat{" + "idUsuario=" + idUsuario + ", vida=" + vida + ", proteccion=" + proteccion + ", numeroDerrotas=" + numeroDerrotas + ", numeroVictorias=" + numeroVictorias + ", armaPrincipal=" + armaPrincipal + ", armaSegundaria=" + armaSegundaria + ", prestigio=" + prestigio + ", armaCQC=" + armaCQC + ", mejorasCampo=" + ", enExpedicion=" + enExpedicion + ", nacimiento=" + nacimiento + '}';
     }
 
 }

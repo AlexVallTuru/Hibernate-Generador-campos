@@ -28,7 +28,7 @@ public abstract class Autonoma extends Aeronau implements Serializable {
     }
 
     public Autonoma(int tempsMaximDeVol, float pes, int sensors, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
-        super(aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
+        super(aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.tempsMaximDeVol = tempsMaximDeVol;
         this.pes = pes;
         this.sensors = sensors;
