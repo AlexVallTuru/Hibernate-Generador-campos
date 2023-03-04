@@ -22,6 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -68,5 +69,73 @@ public abstract class Aeronau implements Serializable {
         this.aeronauAutopilotada = aeronauAutopilotada;
         this.aeronauDataFabricacio = aeronauDataFabricacio;
     }
-    
+
+    public Integer getAeronauMatricula() {
+        return aeronauMatricula;
+    }
+
+    public void setAeronauMatricula(Integer aeronauMatricula) {
+        this.aeronauMatricula = aeronauMatricula;
+    }
+
+    public String getAeronauNom() {
+        return aeronauNom;
+    }
+
+    public void setAeronauNom(String aeronauNom) {
+        this.aeronauNom = aeronauNom;
+    }
+
+    public float getAeronauRitmePujada() {
+        return aeronauRitmePujada;
+    }
+
+    public void setAeronauRitmePujada(float aeronauRitmePujada) {
+        this.aeronauRitmePujada = aeronauRitmePujada;
+    }
+
+    public Integer getAeronauVelocitatMaxima() {
+        return aeronauVelocitatMaxima;
+    }
+
+    public void setAeronauVelocitatMaxima(Integer aeronauVelocitatMaxima) {
+        this.aeronauVelocitatMaxima = aeronauVelocitatMaxima;
+    }
+
+    public boolean isAeronauAutopilotada() {
+        return aeronauAutopilotada;
+    }
+
+    public void setAeronauAutopilotada(boolean aeronauAutopilotada) {
+        this.aeronauAutopilotada = aeronauAutopilotada;
+    }
+
+    public Date getAeronauDataFabricacio() {
+        return aeronauDataFabricacio;
+    }
+
+    public void setAeronauDataFabricacio(Date aeronauDataFabricacio) {
+        this.aeronauDataFabricacio = aeronauDataFabricacio;
+    }
+
+    public List<Missio> getMissio() {
+        return missio;
+    }
+
+    public void setMissio(List<Missio> missio) {
+        this.missio = missio;
+    }
+
+    public List<Pilotada> getPilotades() {
+        return pilotades;
+    }
+
+    public void setPilotades(List<Pilotada> pilotades) {
+        this.pilotades = pilotades;
+    }
+
+    @Override
+    public String toString() {
+        return "Aeronau{" + "aeronauMatricula=" + aeronauMatricula + ", aeronauNom=" + aeronauNom + ", aeronauRitmePujada=" + aeronauRitmePujada + ", aeronauVelocitatMaxima=" + aeronauVelocitatMaxima + ", aeronauAutopilotada=" + aeronauAutopilotada + ", aeronauDataFabricacio=" + aeronauDataFabricacio + ", missio=" + getMissio().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + ", pilotades=" + getPilotades().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + '}';
+    }
 }

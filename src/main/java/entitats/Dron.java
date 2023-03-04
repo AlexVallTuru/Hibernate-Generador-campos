@@ -32,11 +32,6 @@ public class Dron extends Autonoma implements TesteableEntity,Serializable{
         this.numHelices = numHelices;
     }
 
-    
-
-    
-    
-
 @Override
     public Integer getAtributIdentificador() {
         return super.aeronauMatricula;
@@ -86,8 +81,8 @@ public class Dron extends Autonoma implements TesteableEntity,Serializable{
         return super.missio;
     }
 
-    
-    
-    
-
+    @Override
+    public String toString() {
+        return "Dron{" + "numHelices=" + numHelices + "Autonoma=" +super.toString()+ '}';
+    }
 }

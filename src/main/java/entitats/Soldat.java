@@ -61,12 +61,97 @@ public abstract class Soldat implements Serializable {
         this.nacimiento = nacimiento;
     }
 
-    
+    public int getIdUsuario() {
+        return idUsuario;
+    }
 
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public float getVida() {
+        return vida;
+    }
+
+    public void setVida(float vida) {
+        this.vida = vida;
+    }
+
+    public int getProteccion() {
+        return proteccion;
+    }
+
+    public void setProteccion(int proteccion) {
+        this.proteccion = proteccion;
+    }
+
+    public int getNumeroDerrotas() {
+        return numeroDerrotas;
+    }
+
+    public void setNumeroDerrotas(int numeroDerrotas) {
+        this.numeroDerrotas = numeroDerrotas;
+    }
+
+    public int getNumeroVictorias() {
+        return numeroVictorias;
+    }
+
+    public void setNumeroVictorias(int numeroVictorias) {
+        this.numeroVictorias = numeroVictorias;
+    }
+
+    public String getArmaPrincipal() {
+        return armaPrincipal;
+    }
+
+    public void setArmaPrincipal(String armaPrincipal) {
+        this.armaPrincipal = armaPrincipal;
+    }
+
+    public String getArmaSegundaria() {
+        return armaSegundaria;
+    }
+
+    public void setArmaSegundaria(String armaSegundaria) {
+        this.armaSegundaria = armaSegundaria;
+    }
+
+    public String getPrestigio() {
+        return prestigio;
+    }
+
+    public void setPrestigio(String prestigio) {
+        this.prestigio = prestigio;
+    }
+
+    public String getArmaCQC() {
+        return armaCQC;
+    }
+
+    public void setArmaCQC(String armaCQC) {
+        this.armaCQC = armaCQC;
+    }
+
+    public Boolean getEnExpedicion() {
+        return enExpedicion;
+    }
+
+    public void setEnExpedicion(Boolean enExpedicion) {
+        this.enExpedicion = enExpedicion;
+    }
+
+    public Date getNacimiento() {
+        return nacimiento;
+    }
+
+    public void setNacimiento(Date nacimiento) {
+        this.nacimiento = nacimiento;
+    }
 
     @Override
     public String toString() {
-        return "Soldat{" + "idUsuario=" + idUsuario + ", vida=" + vida + ", proteccion=" + proteccion + ", numeroDerrotas=" + numeroDerrotas + ", numeroVictorias=" + numeroVictorias + ", armaPrincipal=" + armaPrincipal + ", armaSegundaria=" + armaSegundaria + ", prestigio=" + prestigio + ", armaCQC=" + armaCQC + ", mejorasCampo=" + ", enExpedicion=" + enExpedicion + ", nacimiento=" + nacimiento + '}';
+        return "Soldat{" + "idUsuario=" + idUsuario + ", vida=" + vida + ", proteccion=" + proteccion + ", numeroDerrotas=" + numeroDerrotas + ", numeroVictorias=" + numeroVictorias + ", armaPrincipal=" + armaPrincipal + ", armaSegundaria=" + armaSegundaria + ", prestigio=" + prestigio + ", armaCQC=" + armaCQC + ", enExpedicion=" + enExpedicion + ", nacimiento=" + nacimiento + '}';
     }
 
 }

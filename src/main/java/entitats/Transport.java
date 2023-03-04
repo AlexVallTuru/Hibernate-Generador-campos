@@ -112,4 +112,68 @@ public class Transport extends Pilotada implements TesteableEntity, Serializable
     public void setAtributBoolean(Boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public Integer getAeronauMatricula() {
+        return aeronauMatricula;
+    }
+
+    public void setAeronauMatricula(Integer aeronauMatricula) {
+        this.aeronauMatricula = aeronauMatricula;
+    }
+
+    public String getAeronauNom() {
+        return aeronauNom;
+    }
+
+    public void setAeronauNom(String aeronauNom) {
+        this.aeronauNom = aeronauNom;
+    }
+
+    public float getAeronauRitmePujada() {
+        return aeronauRitmePujada;
+    }
+
+    public void setAeronauRitmePujada(float aeronauRitmePujada) {
+        this.aeronauRitmePujada = aeronauRitmePujada;
+    }
+
+    public Integer getAeronauVelocitatMaxima() {
+        return aeronauVelocitatMaxima;
+    }
+
+    public void setAeronauVelocitatMaxima(Integer aeronauVelocitatMaxima) {
+        this.aeronauVelocitatMaxima = aeronauVelocitatMaxima;
+    }
+
+    public boolean isAeronauAutopilotada() {
+        return aeronauAutopilotada;
+    }
+
+    public void setAeronauAutopilotada(boolean aeronauAutopilotada) {
+        this.aeronauAutopilotada = aeronauAutopilotada;
+    }
+
+    public java.util.Date getAeronauDataFabricacio() {
+        return aeronauDataFabricacio;
+    }
+
+    public void setAeronauDataFabricacio(java.util.Date aeronauDataFabricacio) {
+        this.aeronauDataFabricacio = aeronauDataFabricacio;
+    }
+
+    public List<Missio> getMissio() {
+        return missio;
+    }
+
+    public void setMissio(List<Missio> missio) {
+        this.missio = missio;
+    }
+
+    @Override
+    public String toString() {
+        return "Transport{" + "aeronauTransportMaxTripulants=" + aeronauTransportMaxTripulants + ", aeronauTransportMaxPes=" + aeronauTransportMaxPes + "Pilotada="+super.toString()+'}';
+    }
+    
+    
+    
 }

@@ -34,5 +34,32 @@ public abstract class Autonoma extends Aeronau implements Serializable {
         this.sensors = sensors;
     }
 
-         
+    public int getTempsMaximDeVol() {
+        return tempsMaximDeVol;
+    }
+
+    public void setTempsMaximDeVol(int tempsMaximDeVol) {
+        this.tempsMaximDeVol = tempsMaximDeVol;
+    }
+
+    public float getPes() {
+        return pes;
+    }
+
+    public void setPes(float pes) {
+        this.pes = pes;
+    }
+
+    public int getSensors() {
+        return sensors;
+    }
+
+    public void setSensors(int sensors) {
+        this.sensors = sensors;
+    }
+
+    @Override
+    public String toString() {
+        return "Autonoma{" + "tempsMaximDeVol=" + tempsMaximDeVol + ", pes=" + pes + ", sensors=" + sensors + "aeronau=" +super.toString()+'}';
+    }  
 }

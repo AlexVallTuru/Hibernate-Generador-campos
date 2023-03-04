@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -62,4 +63,25 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
         this.mecanic.add(mecanic);
     }
 
+    public List<Mecanic> getMecanic() {
+        return mecanic;
+    }
+
+    public void setMecanic(List<Mecanic> mecanic) {
+        this.mecanic = mecanic;
+    }
+
+    public List<Aeronau> getAeronaus() {
+        return aeronaus;
+    }
+
+    public void setAeronaus(List<Aeronau> aeronaus) {
+        this.aeronaus = aeronaus;
+    }
+
+    @Override
+    public String toString() {
+        return "Pilotada{" + "pilot=" + pilot + ", mecanic=" + getMecanic().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + ", aeronaus=" + getAeronaus().stream().map(a -> a.toString()).collect(Collectors.joining(", "))+ "Aeronau=" +super.toString()+'}';
+    }
+        
 }
