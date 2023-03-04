@@ -9,7 +9,6 @@ import com.github.javafaker.Faker;
 import entitats.Aeronau;
 import entitats.Combat;
 import entitats.Dron;
-import entitats.DronTest;
 import entitats.Mecanic;
 import entitats.Missio;
 import entitats.Pilot;
@@ -19,7 +18,6 @@ import entitats.Transport;
 import java.util.ArrayList;
 import java.util.List;
 import Utils.Utils;
-import java.util.Arrays;
 
 /**
  *
