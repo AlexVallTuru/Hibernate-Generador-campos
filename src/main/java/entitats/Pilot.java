@@ -14,35 +14,27 @@ import java.util.List;
  *
  * @author carlo
  */
-
-
 @Entity
-@Table(name="Pilot")
+@Table(name = "Pilot")
 public class Pilot extends Soldat implements TesteableEntity {
-    
-    @Column(name="VEHICULO")
+
+    @Column(name = "VEHICULO")
     private String vehiculo;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private Pilotada pilotada;
-    
-    public Pilot(){
+
+    public Pilot() {
         super();
-    
-    };
+
+    }
+
+    ;
 
     public Pilot(String vehiculo, Pilotada pilotada, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, Boolean enExpedicion, Date nacimiento) {
         super(vida, proteccion, numeroDerrotas, numeroVictorias, armaPrincipal, armaSegundaria, prestigio, armaCQC, enExpedicion, nacimiento);
         this.vehiculo = vehiculo;
         this.pilotada = pilotada;
     }
-
-
-
-
-    
-
-    
-    
 
     @Override
     public Integer getAtributIdentificador() {
@@ -88,5 +80,5 @@ public class Pilot extends Soldat implements TesteableEntity {
     public void setAtributBoolean(Boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

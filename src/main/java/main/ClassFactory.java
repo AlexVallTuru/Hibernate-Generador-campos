@@ -29,8 +29,12 @@ public class ClassFactory implements TesteableFactory {
 
     @Override
     public Aeronau addMecanicsToPilotada(List<Soldat> lo, Pilotada p) throws Exception {
+        if(lo.size()>2){
+            throw new Exception();
+        }
         for (Object obj : lo) {
             if (obj instanceof Mecanic mecanic) {
+                
                 p.setMecanic(mecanic);
             }
         }

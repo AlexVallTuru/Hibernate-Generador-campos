@@ -313,11 +313,11 @@ public class Test1 {
             v = factory.addMecanicsToPilotada(factory.mecanicsFactory(4),(Pilotada)factory.aeronauFactory(Transport.class));
             session.persist(v);
             
-            
+            fail();
            
             
         } catch (Exception ex) {
-            fail();
+            
             //ok
         }finally
         {
