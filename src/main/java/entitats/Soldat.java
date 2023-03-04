@@ -21,7 +21,7 @@ public abstract class Soldat implements Serializable {
 
     @Id
     @Column(name = "ID_USUARIO", nullable = false)
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int idUsuario;
     @Column(name = "VIDA", nullable = false)
     protected float vida;
@@ -39,9 +39,10 @@ public abstract class Soldat implements Serializable {
     protected String prestigio;
     @Column(name = "ARMA_CQC")
     protected String armaCQC;
-    @Column(name = "MEJORAS")
+    @Column(name = "EXPEDICION", nullable = false)
     protected Boolean enExpedicion;
     @Column(name = "NACIMIENTO", nullable = false)
+    @Temporal(TemporalType.DATE)
     protected Date nacimiento;
 
     public Soldat() {
@@ -60,10 +61,12 @@ public abstract class Soldat implements Serializable {
         this.nacimiento = nacimiento;
     }
 
+    
+
+
     @Override
     public String toString() {
-        return "Soldat{" + "idUsuario=" + idUsuario + ", vida=" + vida + ", proteccion=" + proteccion + ", numeroDerrotas=" + numeroDerrotas + ", numeroVictorias=" + numeroVictorias + ", armaPrincipal=" + armaPrincipal + ", armaSegundaria=" + armaSegundaria + ", prestigio=" + prestigio + ", armaCQC=" + armaCQC + ", enExpedicion=" + enExpedicion + ", nacimiento=" + nacimiento + '}';
+        return "Soldat{" + "idUsuario=" + idUsuario + ", vida=" + vida + ", proteccion=" + proteccion + ", numeroDerrotas=" + numeroDerrotas + ", numeroVictorias=" + numeroVictorias + ", armaPrincipal=" + armaPrincipal + ", armaSegundaria=" + armaSegundaria + ", prestigio=" + prestigio + ", armaCQC=" + armaCQC + ", mejorasCampo=" + ", enExpedicion=" + enExpedicion + ", nacimiento=" + nacimiento + '}';
     }
-
 
 }

@@ -33,11 +33,13 @@ public class Combat extends Pilotada implements TesteableEntity, Serializable {
         super();
     }
 
-    public Combat(Integer aeronauCombatMaxMissils, Integer aeronauCombatMaxMunicioCano, Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
+    public Combat(Integer aeronauCombatMaxMissils, Integer aeronauCombatMaxMunicioCano, Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
         super(pilot, mecanic, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.aeronauCombatMaxMissils = aeronauCombatMaxMissils;
         this.aeronauCombatMaxMunicioCano = aeronauCombatMaxMunicioCano;
     }
+
+   
 
 
 

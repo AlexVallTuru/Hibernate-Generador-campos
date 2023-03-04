@@ -18,49 +18,62 @@ import java.util.List;
 @Table(name="Missio")
 public class Missio implements TesteableEntity, Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="codiMissio", nullable = false)
     int codiMissio;
     @Column(name="nom")
     String nom;
     @Column(name="durada")
-    Float durada;
+    float durada;
     @Column(name="dateInici")
     Date dateInici;
     @Column(name="completada")
     Boolean completada;
     @Column(name="ubicacio")
     String ubicacio;
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "Aeronau")
     private List<Aeronau> aeronau;
     
     public Missio(){
         super();
     }
+
+    public Missio(String nom, float durada, Date dateInici, Boolean completada, String ubicacio, List<Aeronau> aeronau) {
+        this.nom = nom;
+        this.durada = durada;
+        this.dateInici = dateInici;
+        this.completada = completada;
+        this.ubicacio = ubicacio;
+        this.aeronau = aeronau;
+    }
+    
+    
     
     @Override
     public Integer getAtributIdentificador() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return codiMissio;
     }
 
     @Override
     public String getAtributString() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return nom;
+        
     }
 
     @Override
     public Float getAtributFloat() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return durada;
     }
 
     @Override
     public Date getAtributDate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return dateInici;
     }
 
     @Override
     public Boolean getAtributBoolean() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return completada;
     }
 
     @Override
@@ -84,7 +97,7 @@ public class Missio implements TesteableEntity, Serializable{
     }
 
     public void setAeronaus(List<Aeronau> escuadrilla1) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        aeronau=escuadrilla1;
     }
 
     public List<Aeronau> getAeronaus() {

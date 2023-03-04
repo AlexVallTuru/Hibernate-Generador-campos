@@ -7,7 +7,6 @@ package Interficies;
 
 import entitats.Aeronau;
 import entitats.Missio;
-import entitats.MissioTest;
 import entitats.Pilot;
 import entitats.Pilotada;
 import entitats.Soldat;

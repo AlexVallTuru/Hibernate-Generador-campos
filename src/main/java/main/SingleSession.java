@@ -57,7 +57,15 @@ public class SingleSession {
     }
 
     public Session getSessio() {
+
+        if (ses.isOpen()) {
+            ses.close();
+            ses = sessionFactory.openSession();
+
+        }
+
         return ses;
+
     }
 
     public void closeConnection() {

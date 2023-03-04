@@ -26,7 +26,6 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pilotada")    
     @OneToMany(mappedBy = "mecanic", cascade = CascadeType.ALL)
-
     private Pilotada pilotada;
 
     public Mecanic() {
@@ -39,6 +38,9 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
         this.pilotada = pilotada;
     }
 
+
+
+    
     @Override
     public Integer getAtributIdentificador() {
         return super.idUsuario;
@@ -52,17 +54,17 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
 
     @Override
     public Float getAtributFloat() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.vida;
     }
 
     @Override
     public Date getAtributDate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.nacimiento;
     }
 
     @Override
     public Boolean getAtributBoolean() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.enExpedicion;
     }
 
     @Override
