@@ -63,10 +63,8 @@ public class ClassFactory implements TesteableFactory {
     public Aeronau aeronauFactory(Class<?> tipus) {
         Aeronau aeronau = null;
 
-        //Pilot p = (Pilot) this.soldatFactory(Pilot.class);
-        //List<Mecanic> m = (List<Mecanic>) (List<?>) this.mecanicsFactory(4);
         if (tipus == Transport.class) {
-            //aeronau = new Transport(Integer.MAX_VALUE, Integer.MIN_VALUE, pilot, mecanic, Integer.MIN_VALUE, aeronauNom, Float.MIN_NORMAL, Integer.MIN_VALUE, true, aeronauDataFabricacio)
+            
             aeronau = new Transport(
                     fake.number().randomDigitNotZero(),
                     fake.number().randomDigitNotZero(),

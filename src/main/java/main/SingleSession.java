@@ -35,9 +35,9 @@ public class SingleSession {
         properties.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/" + database + "?createDatabaseIfNotExist=true");
         sessionFactory = config.buildSessionFactory();
         ses = sessionFactory.openSession();
-    }
+}
 
-    public static SingleSession getInstance() {
+public static SingleSession getInstance() {
         if (session == null) {
             session = new SingleSession();
             System.out.println("Conexion establecida");

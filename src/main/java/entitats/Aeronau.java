@@ -51,22 +51,24 @@ public abstract class Aeronau implements Serializable {
     protected Date aeronauDataFabricacio;
 
     //Relacio
-    @ManyToMany(cascade = {CascadeType.ALL},mappedBy = "aeronau")
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronau")
     protected List<Missio> missio = new ArrayList<>();
+
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronaus")
     private List<Pilotada> pilotades = new ArrayList<>();
+
 
     public Aeronau() {
         super();
     }
 
-    public Aeronau( String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
-        
+    public Aeronau(String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
+
         this.aeronauNom = aeronauNom;
         this.aeronauRitmePujada = aeronauRitmePujada;
         this.aeronauVelocitatMaxima = aeronauVelocitatMaxima;
         this.aeronauAutopilotada = aeronauAutopilotada;
         this.aeronauDataFabricacio = aeronauDataFabricacio;
     }
-    
+
 }

@@ -15,27 +15,28 @@ import java.util.List;
  * @author Alex
  */
 @Entity
-@Table(name="Missio")
-public class Missio implements TesteableEntity, Serializable{
+@Table(name = "Missio")
+public class Missio implements TesteableEntity, Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="codiMissio", nullable = false)
+    @Column(name = "codiMissio", nullable = false)
     int codiMissio;
-    @Column(name="nom")
+    @Column(name = "nom")
     String nom;
-    @Column(name="durada")
+    @Column(name = "durada")
     float durada;
-    @Column(name="dateInici")
+    @Column(name = "dateInici")
     Date dateInici;
-    @Column(name="completada")
+    @Column(name = "completada")
     Boolean completada;
-    @Column(name="ubicacio")
+    @Column(name = "ubicacio")
     String ubicacio;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "Aeronau")
     private List<Aeronau> aeronau;
-    
-    public Missio(){
+
+    public Missio() {
         super();
     }
 
@@ -47,9 +48,7 @@ public class Missio implements TesteableEntity, Serializable{
         this.ubicacio = ubicacio;
         this.aeronau = aeronau;
     }
-    
-    
-    
+
     @Override
     public Integer getAtributIdentificador() {
         return codiMissio;
@@ -58,12 +57,12 @@ public class Missio implements TesteableEntity, Serializable{
     @Override
     public String getAtributString() {
         return nom;
-        
+
     }
 
     @Override
     public Float getAtributFloat() {
-       return durada;
+        return durada;
     }
 
     @Override
@@ -97,13 +96,11 @@ public class Missio implements TesteableEntity, Serializable{
     }
 
     public void setAeronaus(List<Aeronau> escuadrilla1) {
-        aeronau=escuadrilla1;
+        aeronau = escuadrilla1;
     }
 
     public List<Aeronau> getAeronaus() {
         return aeronau;
     }
 
-    
-    
 }

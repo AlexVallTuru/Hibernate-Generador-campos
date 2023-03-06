@@ -24,6 +24,7 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
     //Relacions
     @OneToOne(cascade = CascadeType.ALL)
     private Pilot pilot;
+    
     @OneToMany(cascade = CascadeType.ALL)
     private List<Mecanic> mecanic = new ArrayList<>();
     @ManyToMany(cascade = CascadeType.ALL)
@@ -33,7 +34,7 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
             inverseJoinColumns = {
                 @JoinColumn(name = "aeronau_id")})
     private List<Aeronau> aeronaus = new ArrayList<>();
-
+    
     public Pilotada() {
         super();
     }
