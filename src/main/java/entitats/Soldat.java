@@ -38,14 +38,17 @@ public abstract class Soldat implements Serializable {
     @Column(name = "ARMA_CQC")
     protected String armaCQC;
     @Column(name = "EXPEDICION", nullable = false)
+    @Convert(converter=org.hibernate.type.YesNoConverter.class)
     protected Boolean enExpedicion;
     @Column(name = "NACIMIENTO", nullable = false)
     @Temporal(TemporalType.DATE)
     protected Date nacimiento;
 
+    //Constructor
     public Soldat() {
     }
-
+    
+    //Constructor
     public Soldat(float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, Boolean enExpedicion, Date nacimiento) {
         this.vida = vida;
         this.proteccion = proteccion;

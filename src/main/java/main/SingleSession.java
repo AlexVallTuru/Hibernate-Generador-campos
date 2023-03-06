@@ -61,9 +61,8 @@ public static SingleSession getInstance() {
     public Session getSessio() {
 
         if (ses.isOpen()) {
-            logger.info("Generant una nova sessió");
+            logger.info("Reiniciant sessio");
             ses.close();
-            logger.info("Sessió tancada");
             ses = sessionFactory.openSession();
             logger.info("Nova sessió generada");
 
