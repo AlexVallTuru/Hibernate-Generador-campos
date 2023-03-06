@@ -16,6 +16,8 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,44 +30,46 @@ import java.util.List;
 @Entity
 @Table(name = "Aeronau")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Aeronau implements TesteableEntity, Serializable {
+public abstract class Aeronau implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     //Atributs
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id", nullable = false)
-    private Integer aeronauMatricula;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id", nullable = false, unique = true)
+    protected Integer aeronauMatricula;
     @Column(name = "Nom")
-    private String aeronauNom;
+    protected String aeronauNom;
     @Column(name = "RitmePujada", nullable = false)
-    private Float aeronauRitmePujada;
+    protected float aeronauRitmePujada;
     @Column(name = "VelocitatMaxima", nullable = false)
-    private Integer aeronauVelocitatMaxima;
+    protected Integer aeronauVelocitatMaxima;
     @Column(name = "EsPilotada", nullable = false)
-    private boolean aeronauAutopilotada;
+    protected boolean aeronauAutopilotada;
     @Column(name = "DataFabricacio", nullable = false)
-    private Date aeronauDataFabricacio;
+    @Temporal(TemporalType.DATE)
+    protected Date aeronauDataFabricacio;
 
     //Relacio
-    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronau")
-    private List<Missio> missio = new ArrayList<>();
-
+    @ManyToMany(cascade = {CascadeType.ALL},mappedBy = "aeronau")
+    protected List<Missio> missio = new ArrayList<>();
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronaus")
     private List<Pilotada> pilotades = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "aeronaus")
+    @ManyToMany(mappedBy = "aeronau")
     private List<Missio> missions;
 
     public Aeronau() {
         super();
     }
 
-    public Aeronau(Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
-        this.aeronauMatricula = aeronauMatricula;
+    public Aeronau( String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
+        
         this.aeronauNom = aeronauNom;
         this.aeronauRitmePujada = aeronauRitmePujada;
         this.aeronauVelocitatMaxima = aeronauVelocitatMaxima;
         this.aeronauAutopilotada = aeronauAutopilotada;
         this.aeronauDataFabricacio = aeronauDataFabricacio;
     }
+    
 }

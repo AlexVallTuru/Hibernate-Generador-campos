@@ -5,6 +5,7 @@
 package entitats;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.sql.Date;
  */
 @Entity
 @Table(name = "Autonoma")
-public abstract class Autonoma extends Aeronau {
+public abstract class Autonoma extends Aeronau implements Serializable {
 
     @Column(name = "tempsMaximDeVol")
     int tempsMaximDeVol;
@@ -27,7 +28,7 @@ public abstract class Autonoma extends Aeronau {
     }
 
     public Autonoma(int tempsMaximDeVol, float pes, int sensors, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
-        super(aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
+        super(aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.tempsMaximDeVol = tempsMaximDeVol;
         this.pes = pes;
         this.sensors = sensors;

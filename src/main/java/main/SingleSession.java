@@ -24,14 +24,14 @@ public class SingleSession {
 
     private SingleSession() {
         Configuration config = new Configuration().configure("hibernateConfig/hibernate.cfg.xml");
-        Scanner in = new Scanner(System.in);
+        /*Scanner in = new Scanner(System.in);
         System.out.println("Usuario: ");
         String user = in.next();
         System.out.println("Password: ");
         String password = in.next();
         System.out.println("Base de Datos: ");
         String database = in.next();
-
+        
         Properties properties = config.getProperties();
 
         properties.setProperty("hibernate.connection.username", user);
@@ -41,7 +41,7 @@ public class SingleSession {
         System.out.println(properties.get("hibernate.connection.url"));
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                .applySettings(config.getProperties()).build();
+                .applySettings(config.getProperties()).build();*/
 
         sessionFactory = config.buildSessionFactory();
         ses = sessionFactory.openSession();
@@ -57,7 +57,15 @@ public static SingleSession getInstance() {
     }
 
     public Session getSessio() {
+
+        if (ses.isOpen()) {
+            ses.close();
+            ses = sessionFactory.openSession();
+
+        }
+
         return ses;
+
     }
 
     public void closeConnection() {
