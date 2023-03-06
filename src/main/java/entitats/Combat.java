@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.sql.Date;
+import Utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import java.util.List;
 @Entity
 @Table(name = "Combat")
 public class Combat extends Pilotada implements TesteableEntity, Serializable {
-    
+    private static final long serialVersionUID = 1L;
     //Atributs
     @Column(name = "MaxMissils")
     private Integer aeronauCombatMaxMissils;
@@ -32,11 +33,15 @@ public class Combat extends Pilotada implements TesteableEntity, Serializable {
         super();
     }
 
-    public Combat(Integer aeronauCombatMaxMissils, Integer aeronauCombatMaxMunicioCano, Integer aeronauPilot, ArrayList<Integer> aeronauMecanics, Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
-        super(aeronauPilot, aeronauMecanics, pilot, mecanic, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
+    public Combat(Integer aeronauCombatMaxMissils, Integer aeronauCombatMaxMunicioCano, Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
+        super(pilot, mecanic, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.aeronauCombatMaxMissils = aeronauCombatMaxMissils;
         this.aeronauCombatMaxMunicioCano = aeronauCombatMaxMunicioCano;
     }
+
+   
+
+
 
     /**
      * @return the aeronauCombatMaxMissils
@@ -68,27 +73,27 @@ public class Combat extends Pilotada implements TesteableEntity, Serializable {
 
     @Override
     public Integer getAtributIdentificador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return super.aeronauMatricula;
     }
 
     @Override
     public String getAtributString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return super.aeronauNom;
     }
 
     @Override
     public Float getAtributFloat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return super.aeronauRitmePujada;
     }
 
     @Override
     public Date getAtributDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Utils.localDateToSQLDate(this.aeronauDataFabricacio);
     }
 
     @Override
     public Boolean getAtributBoolean() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return super.aeronauAutopilotada;
     }
 
     @Override

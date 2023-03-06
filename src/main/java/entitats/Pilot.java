@@ -5,6 +5,7 @@
 package entitats;
 
 import Interficies.TesteableEntity;
+import Utils.Utils;
 import jakarta.persistence.*;
 import java.sql.Date;
 import java.util.List;
@@ -13,54 +14,51 @@ import java.util.List;
  *
  * @author carlo
  */
-
-
 @Entity
-@Table(name="Pilot")
+@Table(name = "Pilot")
 public class Pilot extends Soldat implements TesteableEntity {
-    
-    @Column(name="VEHICULO")
-    private String vehiculo;
-    @OneToOne(cascade=CascadeType.ALL)
-    private Pilotada pilotada;
-    
-    public Pilot(){
-        super();
-    
-    };
 
-    public Pilot(String vehiculo, Pilotada pilotada, int idUsuario, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, List<String> mejorasCampo, Boolean enExpedicion, Date nacimiento) {
-        super(idUsuario, vida, proteccion, numeroDerrotas, numeroVictorias, armaPrincipal, armaSegundaria, prestigio, armaCQC, mejorasCampo, enExpedicion, nacimiento);
+    @Column(name = "VEHICULO")
+    private String vehiculo;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Pilotada pilotada;
+
+    public Pilot() {
+        super();
+
+    }
+
+    ;
+
+    public Pilot(String vehiculo, Pilotada pilotada, float vida, int proteccion, int numeroDerrotas, int numeroVictorias, String armaPrincipal, String armaSegundaria, String prestigio, String armaCQC, Boolean enExpedicion, Date nacimiento) {
+        super(vida, proteccion, numeroDerrotas, numeroVictorias, armaPrincipal, armaSegundaria, prestigio, armaCQC, enExpedicion, nacimiento);
         this.vehiculo = vehiculo;
         this.pilotada = pilotada;
     }
 
-    
-    
-
     @Override
     public Integer getAtributIdentificador() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.idUsuario;
     }
 
     @Override
     public String getAtributString() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.armaCQC;
     }
 
     @Override
     public Float getAtributFloat() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.vida;
     }
 
     @Override
     public Date getAtributDate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return Utils.localDateToSQLDate(super.nacimiento);
     }
 
     @Override
     public Boolean getAtributBoolean() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return super.enExpedicion;
     }
 
     @Override
@@ -82,5 +80,5 @@ public class Pilot extends Soldat implements TesteableEntity {
     public void setAtributBoolean(Boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

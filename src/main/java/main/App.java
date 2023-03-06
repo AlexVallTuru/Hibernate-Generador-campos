@@ -1,9 +1,6 @@
 package main;
 
-import entitats.ClassFactory;
-import entitats.Pilot;
 import java.sql.Date;
-import java.util.Arrays;
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,23 +46,7 @@ public class App {
             switch (finalOption) {
                 //Insercio d'elements de prova
                 case 1:
-                    a.getTransaction().begin();
-                    Pilot q = new Pilot("root",
-                            null,
-                            5, 100,
-                            50,
-                            2,
-                            2,
-                            "AK47",
-                            "Galil",
-                            "Sargento",
-                            "chuchillo",
-                            Arrays.asList("ataque aereo"),
-                            Boolean.FALSE,
-                            convertDate("1993-02-01"));
-                    a.persist(q);
-                    a.getTransaction().commit();
-                    System.out.println("Elements insertats correctament.");
+                    System.out.println("Not implemented.");
                     break;
 
                 case 2:
@@ -79,11 +60,11 @@ public class App {
                 case 4:
                     System.out.println("Not implemented.");
                     break;
-                    
+
                 case 5:
                     System.out.println("Not implemented.");
                     break;
-                    
+
                 //Sortida del programa
                 case 6:
                     System.out.println("Fins aviat!");
