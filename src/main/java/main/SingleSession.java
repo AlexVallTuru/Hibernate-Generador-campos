@@ -19,30 +19,23 @@ import org.hibernate.service.ServiceRegistry;
 public class SingleSession {
 
     private static SingleSession session;
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
     private Session ses;
 
     private SingleSession() {
         Configuration config = new Configuration().configure("hibernateConfig/hibernate.cfg.xml");
-        /*Scanner in = new Scanner(System.in);
-        System.out.println("Usuario: ");
-        String user = in.next();
-        System.out.println("Password: ");
-        String password = in.next();
-        System.out.println("Base de Datos: ");
-        String database = in.next();
-        
+        sessionFactory = config.buildSessionFactory();
+        ses = sessionFactory.openSession();
+    }
+
+    private SingleSession(String user, String password, String database) {
+        Configuration config = new Configuration().configure("hibernateConfig/hibernate.cfg.xml");
+
         Properties properties = config.getProperties();
 
         properties.setProperty("hibernate.connection.username", user);
         properties.setProperty("hibernate.connection.password", password);
         properties.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/" + database + "?createDatabaseIfNotExist=true");
-
-        System.out.println(properties.get("hibernate.connection.url"));
-
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                .applySettings(config.getProperties()).build();*/
-
         sessionFactory = config.buildSessionFactory();
         ses = sessionFactory.openSession();
     }
@@ -50,6 +43,15 @@ public class SingleSession {
     public static SingleSession getInstance() {
         if (session == null) {
             session = new SingleSession();
+            System.out.println("Conexion establecida");
+
+        }
+        return session;
+    }
+
+    public static SingleSession getInstance(String user, String password, String database) {
+        if (session == null) {
+            session = new SingleSession(user, password, database);
             System.out.println("Conexion establecida");
 
         }

@@ -385,7 +385,7 @@ public class Test1 {
         //desem
         escuadrillaBad.stream().forEach(x -> session.persist(x));
         
-         //creem aeronaus 
+        //creem aeronaus 
         List<Aeronau> escuadrillaGood = new ArrayList<>();
         for (int i = 1; i<=8; i++)
             escuadrillaGood.add(factory.aeronauFactory(Dron.class));
