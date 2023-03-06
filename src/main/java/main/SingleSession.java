@@ -5,6 +5,8 @@
 package main;
 
 import java.util.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -14,7 +16,7 @@ import org.hibernate.cfg.Configuration;
  * @author carlo
  */
 public class SingleSession {
-
+    private static final Logger logger = LogManager.getLogger(SingleSession.class);
     private static SingleSession session;
     private final SessionFactory sessionFactory;
     private Session ses;
@@ -26,6 +28,7 @@ public class SingleSession {
     }
 
     private SingleSession(String user, String password, String database) {
+        logger.info("Connectant com a usuari: "+user);
         Configuration config = new Configuration().configure("hibernateConfig/hibernate.cfg.xml");
 
         Properties properties = config.getProperties();
@@ -40,7 +43,7 @@ public class SingleSession {
 public static SingleSession getInstance() {
         if (session == null) {
             session = new SingleSession();
-            System.out.println("Conexion establecida");
+            logger.info("Conexió establerta");
 
         }
         return session;
@@ -49,7 +52,7 @@ public static SingleSession getInstance() {
     public static SingleSession getInstance(String user, String password, String database) {
         if (session == null) {
             session = new SingleSession(user, password, database);
-            System.out.println("Conexion establecida");
+            logger.info("Conexio establerta com a "+user+" a la base de dades: "+database);
 
         }
         return session;
@@ -58,8 +61,11 @@ public static SingleSession getInstance() {
     public Session getSessio() {
 
         if (ses.isOpen()) {
+            logger.info("Generant una nova sessió");
             ses.close();
+            logger.info("Sessió tancada");
             ses = sessionFactory.openSession();
+            logger.info("Nova sessió generada");
 
         }
 
@@ -70,6 +76,7 @@ public static SingleSession getInstance() {
     public void closeConnection() {
         sessionFactory.close();
         ses.close();
+        logger.info("Sessio finalitzada");
     }
 
 }

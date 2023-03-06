@@ -8,7 +8,6 @@ import Interficies.TesteableEntity;
 import Utils.Utils;
 import jakarta.persistence.*;
 import java.sql.Date;
-import java.util.List;
 
 /**
  *

@@ -14,18 +14,18 @@
        -->
     
     <!-- Per defecte --> 
-    <Root level="TRACE">
+    <Root level="INFO">
       <AppenderRef ref="Console" />     
     </Root>
     
     <!-- Hibernate -->
-    <Logger name="org.hibernate" level="TRACE" additivity="false">
+    <Logger name="org.hibernate" level="INFO" additivity="false">
       <AppenderRef ref="Console" />
       <AppenderRef ref="File1" />     
     </Logger>
 
     <!-- Sentencies SQL -->
-    <Logger name="org.hibernate.SQL" level="TRACE" additivity="false">
+    <Logger name="org.hibernate.SQL" level="INFO" additivity="false">
       <AppenderRef ref="Console" />     
     </Logger>
  
