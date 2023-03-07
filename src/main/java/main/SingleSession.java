@@ -24,7 +24,7 @@ public class SingleSession {
 
     private SingleSession() {
         Configuration config = new Configuration().configure("hibernateConfig/hibernate.cfg.xml");
-        /*Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
         System.out.println("Usuario: ");
         String user = in.next();
         System.out.println("Password: ");
@@ -41,7 +41,7 @@ public class SingleSession {
         System.out.println(properties.get("hibernate.connection.url"));
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                .applySettings(config.getProperties()).build();*/
+                .applySettings(config.getProperties()).build();
 
         sessionFactory = config.buildSessionFactory();
         ses = sessionFactory.openSession();
