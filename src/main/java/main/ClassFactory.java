@@ -88,7 +88,7 @@ public class ClassFactory implements TesteableFactory {
             aeronau = new Transport(
                     fake.number().randomDigitNotZero(),
                     fake.number().randomDigitNotZero(),
-                    new Pilot(),
+                    null,
                     new ArrayList<>(),
                     fake.number().randomDigitNotZero(),
                     fake.aviation().airport(),
@@ -101,11 +101,11 @@ public class ClassFactory implements TesteableFactory {
             aeronau = new Combat(
                     fake.number().randomDigit(),
                     fake.number().randomDigit(),
-                    new Pilot(),
+                    null,
                     new ArrayList<>(),
                     fake.number().randomDigit(),
                     fake.aviation().aircraft(),
-                    fake.number().randomNumber(),
+                    (float)fake.number().randomDouble(2, 0, 90),
                     fake.number().randomDigit(),
                     fake.bool().bool(),
                     Utils.localDateToSQLDate(fake.date().birthday()));
