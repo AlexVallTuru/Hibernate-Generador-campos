@@ -5,6 +5,8 @@
  */
 package entitats;
 
+import entitats.Missio;
+import entitats.Pilotada;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
