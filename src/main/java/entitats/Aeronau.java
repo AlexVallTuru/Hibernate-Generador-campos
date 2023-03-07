@@ -5,7 +5,6 @@
  */
 package entitats;
 
-import Interficies.TesteableEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -57,12 +56,15 @@ public abstract class Aeronau implements Serializable {
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronaus")
     private List<Pilotada> pilotades = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "aeronau")
+    private List<Missio> missions;
+
     public Aeronau() {
         super();
     }
 
-    public Aeronau( String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
-        
+    public Aeronau(String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
+
         this.aeronauNom = aeronauNom;
         this.aeronauRitmePujada = aeronauRitmePujada;
         this.aeronauVelocitatMaxima = aeronauVelocitatMaxima;

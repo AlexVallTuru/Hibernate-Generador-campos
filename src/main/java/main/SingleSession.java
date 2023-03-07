@@ -5,52 +5,54 @@
 package main;
 
 import java.util.Properties;
-import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 /**
  *
  * @author carlo
  */
 public class SingleSession {
-
+    private static final Logger logger = LogManager.getLogger(SingleSession.class);
     private static SingleSession session;
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
     private Session ses;
 
     private SingleSession() {
         Configuration config = new Configuration().configure("hibernateConfig/hibernate.cfg.xml");
-        /*Scanner in = new Scanner(System.in);
-        System.out.println("Usuario: ");
-        String user = in.next();
-        System.out.println("Password: ");
-        String password = in.next();
-        System.out.println("Base de Datos: ");
-        String database = in.next();
-        
+        sessionFactory = config.buildSessionFactory();
+        ses = sessionFactory.openSession();
+    }
+
+    private SingleSession(String user, String password, String database) {
+        logger.info("Connectant com a usuari: "+user);
+        Configuration config = new Configuration().configure("hibernateConfig/hibernate.cfg.xml");
+
         Properties properties = config.getProperties();
 
         properties.setProperty("hibernate.connection.username", user);
         properties.setProperty("hibernate.connection.password", password);
         properties.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/" + database + "?createDatabaseIfNotExist=true");
-
-        System.out.println(properties.get("hibernate.connection.url"));
-
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                .applySettings(config.getProperties()).build();*/
-
         sessionFactory = config.buildSessionFactory();
         ses = sessionFactory.openSession();
-    }
+}
 
-    public static SingleSession getInstance() {
+public static SingleSession getInstance() {
         if (session == null) {
             session = new SingleSession();
-            System.out.println("Conexion establecida");
+            logger.info("Conexió establerta");
+
+        }
+        return session;
+    }
+
+    public static SingleSession getInstance(String user, String password, String database) {
+        if (session == null) {
+            session = new SingleSession(user, password, database);
+            logger.info("Conexio establerta com a "+user+" a la base de dades: "+database);
 
         }
         return session;
@@ -59,8 +61,10 @@ public class SingleSession {
     public Session getSessio() {
 
         if (ses.isOpen()) {
+            logger.info("Reiniciant sessio");
             ses.close();
             ses = sessionFactory.openSession();
+            logger.info("Nova sessió generada");
 
         }
 
@@ -71,6 +75,8 @@ public class SingleSession {
     public void closeConnection() {
         sessionFactory.close();
         ses.close();
+        logger.info("Sessio finalitzada");
     }
 
 }
+

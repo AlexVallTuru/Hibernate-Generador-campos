@@ -34,8 +34,13 @@ public class Missio implements TesteableEntity, Serializable{
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "Aeronau")
     private List<Aeronau> aeronau;
+<<<<<<< HEAD
     
     public Missio(){
+=======
+
+    public Missio() {
+>>>>>>> develop
         super();
     }
 
@@ -48,8 +53,11 @@ public class Missio implements TesteableEntity, Serializable{
         this.aeronau = aeronau;
     }
     
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> develop
     @Override
     public Integer getAtributIdentificador() {
         return codiMissio;
@@ -58,12 +66,12 @@ public class Missio implements TesteableEntity, Serializable{
     @Override
     public String getAtributString() {
         return nom;
-        
+
     }
 
     @Override
     public Float getAtributFloat() {
-       return durada;
+        return durada;
     }
 
     @Override
@@ -97,13 +105,11 @@ public class Missio implements TesteableEntity, Serializable{
     }
 
     public void setAeronaus(List<Aeronau> escuadrilla1) {
-        aeronau=escuadrilla1;
+        aeronau = escuadrilla1;
     }
 
     public List<Aeronau> getAeronaus() {
         return aeronau;
     }
-
-    
     
 }

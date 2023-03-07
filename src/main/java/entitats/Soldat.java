@@ -7,8 +7,6 @@ package entitats;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
-import org.hibernate.annotations.Type;
 
 /**
  *
