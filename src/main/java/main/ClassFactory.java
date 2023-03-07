@@ -33,9 +33,9 @@ public class ClassFactory implements TesteableFactory {
             throw new Exception();
         }
         for (Object obj : lo) {
-            if (obj instanceof Mecanic mecanic) {
+            if (obj instanceof Mecanic) {
                 
-                p.setMecanic(mecanic);
+                p.setMecanic((Mecanic) obj);
             }
         }
 

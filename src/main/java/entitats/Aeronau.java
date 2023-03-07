@@ -50,12 +50,13 @@ public abstract class Aeronau implements Serializable {
     protected Date aeronauDataFabricacio;
 
     //Relacio
-    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronau")
+    @ManyToMany(cascade = {CascadeType.ALL},mappedBy = "aeronau")
     protected List<Missio> missio = new ArrayList<>();
-
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronaus")
     private List<Pilotada> pilotades = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "aeronau")
+    private List<Missio> missions;
 
     public Aeronau() {
         super();

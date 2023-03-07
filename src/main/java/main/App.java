@@ -44,7 +44,6 @@ public class App {
 
             //Crida a funcions
             switch (finalOption) {
-                //Insercio d'elements de prova
                 case 1:
                     System.out.println("Not implemented.");
                     break;
@@ -56,17 +55,13 @@ public class App {
                 case 3:
                     System.out.println("Not implemented.");
                     break;
-
+                    
                 case 4:
                     System.out.println("Not implemented.");
                     break;
 
-                case 5:
-                    System.out.println("Not implemented.");
-                    break;
-
                 //Sortida del programa
-                case 6:
+                case 5:
                     System.out.println("Fins aviat!");
                     singl.closeConnection();
                     exit = true;
@@ -82,12 +77,11 @@ public class App {
     private static void drawMenu() {
         //ASCII art per el menu
         System.out.println("\n_ __ ___   ___ _ __  _   _ \r\n| '_ ` _ \\ / _ \\ '_ \\| | | |\r\n| | | | | |  __/ | | | |_| |\r\n|_| |_| |_|\\___|_| |_|\\__,_|\r\n");
-        System.out.println("1. <Insertar elements de prova>");
-        System.out.println("2. <Afegir elements a una classe>");
-        System.out.println("3. <Eliminar elements d'una classe>");
-        System.out.println("4. <Modificar elements d'una classe>");
-        System.out.println("5. <Llistar elements d'una classe>");
-        System.out.println("6. <Sortir>");
+        System.out.println("1. <Afegir elements a una classe>");
+        System.out.println("2. <Eliminar elements d'una classe>");
+        System.out.println("3. <Modificar elements d'una classe>");
+        System.out.println("4. <Llistar elements d'una classe>");
+        System.out.println("5. <Sortir>");
         System.out.println("\n Introdueix un numero per escogir una opció");
     }
 
@@ -105,7 +99,7 @@ public class App {
             try {
                 String inOption = in.next();
                 finalOption = Integer.parseInt(inOption);
-                if (finalOption < 1 || finalOption > 6) {
+                if (finalOption < 1 || finalOption > 5) {
                     throw new NumberFormatException();
                 }
                 valid = true;
