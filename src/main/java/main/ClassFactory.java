@@ -29,12 +29,12 @@ public class ClassFactory implements TesteableFactory {
 
     @Override
     public Aeronau addMecanicsToPilotada(List<Soldat> lo, Pilotada p) throws Exception {
-        if(lo.size()>2){
+        if (lo.size() > 2) {
             throw new Exception();
         }
         for (Object obj : lo) {
             if (obj instanceof Mecanic mecanic) {
-                
+
                 p.setMecanic(mecanic);
             }
         }
@@ -44,12 +44,32 @@ public class ClassFactory implements TesteableFactory {
 
     @Override
     public Aeronau addMissionsToAeronau(List<Missio> lm, Aeronau a) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (lm.size() > 2) {
+            throw new Exception();
+        }
+        for (Object obj : lm) {
+            if (obj instanceof Missio missio) {
+
+                a.setMissio(missio);
+            }
+        }
+
+        return a;
     }
 
     @Override
     public Missio addAeronausToMissio(List<Aeronau> la, Missio m) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (la.size() > 2) {
+            throw new Exception();
+        }
+        for (Object obj : la) {
+            if (obj instanceof Aeronau aeronau) {
+
+                m.setAeronau(aeronau);
+            }
+        }
+
+        return m;
     }
 
     @Override
@@ -64,11 +84,11 @@ public class ClassFactory implements TesteableFactory {
         Aeronau aeronau = null;
 
         if (tipus == Transport.class) {
-            
+
             aeronau = new Transport(
                     fake.number().randomDigitNotZero(),
                     fake.number().randomDigitNotZero(),
-                    null,
+                    new Pilot(),
                     new ArrayList<>(),
                     fake.number().randomDigitNotZero(),
                     fake.aviation().airport(),
@@ -81,7 +101,7 @@ public class ClassFactory implements TesteableFactory {
             aeronau = new Combat(
                     fake.number().randomDigit(),
                     fake.number().randomDigit(),
-                    null,
+                    new Pilot(),
                     new ArrayList<>(),
                     fake.number().randomDigit(),
                     fake.aviation().aircraft(),
@@ -146,18 +166,22 @@ public class ClassFactory implements TesteableFactory {
     public Soldat soldatFactory(Class<?> tipus
     ) {
         Soldat soldat = null;
+        int principals = Utils.armesPrincipals.length;
+        int secundaries = Utils.armasSecundarias.length;
+        int armesCQC = Utils.armesCQC.length;
+        int prestigis = Utils.prestigis.length;
 
         if (tipus == Mecanic.class) {
             soldat = new Mecanic(fake.number().randomDigit(),
                     null,
-                    fake.number().randomNumber(),
+                    fake.number().numberBetween(0,100),
+                    fake.number().numberBetween(0,100),
                     fake.number().randomDigit(),
                     fake.number().randomDigit(),
-                    fake.number().randomDigit(),
-                    Utils.armesPrincipals[fake.number().numberBetween(0, 29)],
-                    Utils.armesPrincipals[fake.number().numberBetween(0, 19)],
-                    fake.name().firstName(),
-                    fake.name().firstName(),
+                    Utils.armesPrincipals[fake.number().numberBetween(0, principals)],
+                    Utils.armasSecundarias[fake.number().numberBetween(0, secundaries)],
+                    Utils.prestigis[fake.number().numberBetween(0, prestigis)],
+                    Utils.armesCQC[fake.number().numberBetween(0, armesCQC)],
                     fake.bool().bool(),
                     Utils.localDateToSQLDate(fake.date().birthday()));
 
@@ -166,14 +190,14 @@ public class ClassFactory implements TesteableFactory {
             soldat = new Pilot(
                     fake.space().planet(),
                     null,
-                    fake.number().randomNumber(),
+                    fake.number().numberBetween(0,100),
+                    fake.number().numberBetween(0,100),
                     fake.number().randomDigit(),
                     fake.number().randomDigit(),
-                    fake.number().randomDigit(),
-                    Utils.armesPrincipals[fake.number().numberBetween(0, 29)],
-                    Utils.armesPrincipals[fake.number().numberBetween(0, 19)],
-                    fake.name().firstName(),
-                    fake.name().firstName(),
+                    Utils.armesPrincipals[fake.number().numberBetween(0, principals)],
+                    Utils.armasSecundarias[fake.number().numberBetween(0, secundaries)],
+                    Utils.prestigis[fake.number().numberBetween(0, prestigis)],
+                    Utils.armesCQC[fake.number().numberBetween(0, armesCQC)],
                     fake.bool().bool(),
                     Utils.localDateToSQLDate(fake.date().birthday()));
         }

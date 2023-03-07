@@ -103,4 +103,10 @@ public class Missio implements TesteableEntity, Serializable {
         return aeronau;
     }
 
+    public void setAeronau(Aeronau aeronau) {
+        this.aeronau.add(aeronau);
+    }
+
+
+
 }

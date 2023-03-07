@@ -69,19 +69,31 @@ public class Utils {
         ".44 Magnum",
         "Desert Eagle"
     };
-    
+
     public static final String[] armesCQC = {
-    "Ganivet de combat",
-    "Ganivet de supervivència",
-    "Baioneta de ganivet",
-    "Pala plegable",
-    "Destral tàctica",
-    "Pic de muntanya",
-    "Martell de demolició",
-    "Bat de beisbol",
-    "Garrot",
-    "Ganivet de fulla ampla"
-};
+        "Ganivet de combat",
+        "Ganivet de supervivència",
+        "Baioneta de ganivet",
+        "Pala plegable",
+        "Destral tàctica",
+        "Pic de muntanya",
+        "Martell de demolició",
+        "Bat de beisbol",
+        "Garrot",
+        "Ganivet de fulla ampla"
+    };
+
+    public static final String[] prestigis = {
+        "Medalla al valor",
+        "Medalla al servei meritori",
+        "Medalla per ferides rebudes en combat",
+        "Medalla per servei en combat",
+        "Medalla de la campanya", 
+        "Creu de la Victòria",
+        "Ordre del mèrit militar",
+        "Medalla per lideratge destacat",
+        "Medalla per servei distingit",
+        "Medalla per servei a l'estranger"};
 
     private static final Logger logger = LogManager.getLogger(App.class);
 

@@ -7,7 +7,6 @@ package entitats;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,8 +21,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.hibernate.annotations.Type;
-
 
 /**
  *
@@ -46,9 +43,7 @@ public abstract class Aeronau implements Serializable {
     protected float aeronauRitmePujada;
     @Column(name = "VelocitatMaxima", nullable = false)
     protected Integer aeronauVelocitatMaxima;
-    
     @Column(name = "EsPilotada", nullable = false)
-    @Convert(converter=org.hibernate.type.YesNoConverter.class)
     protected boolean aeronauAutopilotada;
     @Column(name = "DataFabricacio", nullable = false)
     @Temporal(TemporalType.DATE)
@@ -73,6 +68,10 @@ public abstract class Aeronau implements Serializable {
         this.aeronauVelocitatMaxima = aeronauVelocitatMaxima;
         this.aeronauAutopilotada = aeronauAutopilotada;
         this.aeronauDataFabricacio = aeronauDataFabricacio;
+    }
+
+    public void setMissio(Missio missio) {
+        this.missio.add(missio);
     }
 
 }
