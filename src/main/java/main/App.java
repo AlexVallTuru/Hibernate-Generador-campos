@@ -1,6 +1,10 @@
 package main;
 
+import entitats.Combat;
+import entitats.Pilot;
+import entitats.Transport;
 import java.sql.Date;
+import java.util.Arrays;
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -55,9 +59,54 @@ public class App {
                 case 3:
                     System.out.println("Not implemented.");
                     break;
-                    
+
                 case 4:
-                    System.out.println("Not implemented.");
+                    System.out.println("Introdueix la classe que vol llistar:\n4");
+                    drawMenuShowClass();
+                    Integer finalOptionShowClass = null;
+                    Boolean validOption = false;
+                    while (!validOption) {
+                        finalOptionShowClass = checkOptionShowClass();
+                        if (finalOptionShowClass < 1 || finalOptionShowClass > 10) {
+                            System.out.println("L'opcio introduida no es valida, introdueix-ho de nou.");
+                            drawMenuShowClass();
+                        } else {
+                            validOption = true;
+                        }
+                    }
+                    switch (finalOptionShowClass) {
+                        case 1:
+                            
+                            //Opció per mostrar la classe Aeronau
+                            break;
+                        case 2:
+                            //Opció per mostrar la classe Autonoma
+                            break;
+                        case 3:
+                            //Opció per mostrar la classe Dron
+                            break;
+                        case 4:
+                            //Opció per mostrar la classe Pilotada
+                            break;
+                        case 5:
+                            //Opció per mostrar la classe Combat
+                            break;
+                        case 6:
+                            //Opció per mostrar la classe Transport
+                            break;
+                        case 7:
+                            //Opció per mostrar la classe Soldat
+                            break;
+                        case 8:
+                            //Opció per mostrar la classe Mecanic
+                            break;
+                        case 9:
+                            //Opció per mostrar la classe Pilot
+                            break;
+                        case 10:
+                            //Opció per mostrar la classe Missio
+                            break;
+                    }
                     break;
 
                 //Sortida del programa
@@ -112,7 +161,37 @@ public class App {
 
     public static Date convertDate(String dat) {
         return Date.valueOf(dat);
-
     }
 
+    private static void drawMenuShowClass() {
+        System.out.println("1. <Aeronau>");
+        System.out.println("2. <Autonoma>");
+        System.out.println("3. <Dron>");
+        System.out.println("4. <Pilotada>");
+        System.out.println("5. <Combat>");
+        System.out.println("6. <Transport>");
+        System.out.println("7. <Soldat>");
+        System.out.println("8. <Mecanic>");
+        System.out.println("9. <Pilot>");
+        System.out.println("10. <Missio>");
+    }
+
+    public static Integer checkOptionShowClass() {
+        Scanner in = new Scanner(System.in);
+        Boolean valid = false;
+        Integer finalOption = null;
+        while (!valid) {
+            try {
+                String inOption = in.next();
+                finalOption = Integer.parseInt(inOption);
+                if (finalOption < 1 || finalOption > 10) {
+                    throw new NumberFormatException();
+                }
+                valid = true;
+            } catch (NumberFormatException e) {
+                System.out.println("L'opcio introduida no es valida o no es un nombre, introdueix-ho de nou.");
+            }
+        }
+        return finalOption;
+    }
 }
