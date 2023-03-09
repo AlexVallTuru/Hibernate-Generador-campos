@@ -1,7 +1,9 @@
 package main;
 
 import entitats.Aeronau;
+import entitats.Autonoma;
 import entitats.Combat;
+import entitats.Dron;
 import entitats.Pilot;
 import entitats.Pilotada;
 import entitats.Transport;
@@ -86,31 +88,116 @@ public class App {
                             validOption = true;
                         }
                     }
+                    // Define el rango de IDs que deseas buscar
+                    int idInicio = 1;
+                    int idFin = 130;
+                    int limiteRegistros = 200;
+                    int count = 0;
                     switch (finalOptionShowClass) {
                         case 1:
                             //Opció per mostrar la classe Aeronau
+                            List<Aeronau> aeronaus = new ArrayList<>();
+                            for (int i = 1; i <= limiteRegistros; i++) {
+                                Aeronau aeronau = a.get(Aeronau.class, i);
+                                if (aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
+                                    aeronaus.add(aeronau);
+                                }
+                            }
+                            for (Aeronau aeronau : aeronaus) {
+                                System.out.println("\n#-----------------------AERONAU-nº" + count + "-------------------------#\n");
+                                if (aeronau instanceof Autonoma) {
+                                    System.out.println(((Autonoma) aeronau).toString());
+                                } else if (aeronau instanceof Dron) {
+                                    System.out.println(((Dron) aeronau).toString());
+                                } else if (aeronau instanceof Pilotada) {
+                                    if (aeronau instanceof Transport) {
+                                        System.out.println(((Transport) aeronau).toString());
+                                    } else if (aeronau instanceof Combat) {
+                                        System.out.println(((Combat) aeronau).toString());
+                                    }
+                                }
+                            }
+                            System.out.println("\n#-------------------------------------------------------------------------#\n");
                             break;
+
                         case 2:
                             //Opció per mostrar la classe Autonoma
+                            // Crea un ArrayList para almacenar los objetos de Autonoma
+                            List<Autonoma> autonomas = new ArrayList<>();
+                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Autonoma
+                            for (int i = 1; i <= limiteRegistros; i++) {
+                                Aeronau aeronau = a.get(Aeronau.class, i);
+                                if (aeronau instanceof Autonoma && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
+                                    autonomas.add((Autonoma) aeronau);
+                                }
+                            }
+                            // Utiliza los objetos de Autonoma que se encuentran dentro del rango especificado
+                            for (Autonoma autonoma : autonomas) {
+                                count++;
+                                System.out.println("\n#-----------------------AUTONOMA-nº" + count + "-------------------------#\n"
+                                        + autonoma.toString());
+                            }
+                            System.out.println("\n#-------------------------------------------------------------------------#\n");
                             break;
                         case 3:
-                            //Opció per mostrar la classe Dron
+                            //Opción para mostrar la clase Dron
+                            List<Dron> drones = new ArrayList<>();
+                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Dron
+                            for (int i = 1; i <= limiteRegistros; i++) {
+                                Aeronau aeronau = a.get(Aeronau.class, i);
+                                if (aeronau instanceof Dron && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
+                                    drones.add((Dron) aeronau);
+                                }
+                            }
+                            // Utiliza los objetos de Dron que se encuentran dentro del rango especificado
+                            for (Dron dron : drones) {
+                                count++;
+                                System.out.println("\n#-----------------------DRON-nº" + count + "-------------------------#\n"
+                                        + dron.toString());
+                            }
+                            System.out.println("\n#-------------------------------------------------------------------------#\n");
                             break;
                         case 4:
-                            //Opció per mostrar la classe Pilotada
+                            //Opción para mostrar la clase Pilotada
+                            List<Pilotada> pilotadas = new ArrayList<>();
+                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Pilotada
+                            for (int i = 1; i <= limiteRegistros; i++) {
+                                Aeronau aeronau = a.get(Aeronau.class, i);
+                                if (aeronau instanceof Pilotada && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
+                                    pilotadas.add((Pilotada) aeronau);
+                                }
+                            }
+                            for (Pilotada pilotada : pilotadas) {
+                                count++;
+                                System.out.println("\n#-----------------------PILOTADA-nº" + count + "-------------------------#\n");
+                                if (pilotada instanceof Transport) {
+                                    System.out.println(((Transport) pilotada).toString());
+                                } else if (pilotada instanceof Combat) {
+                                    System.out.println(((Combat) pilotada).toString());
+                                }
+                            }
+                            System.out.println("\n#-------------------------------------------------------------------------#\n");
                             break;
                         case 5:
                             //Opció per mostrar la classe Combat
+                            List<Combat> Combats = new ArrayList<>();
+                            for (int i = 1; i <= limiteRegistros; i++) {
+                                Aeronau aeronau = a.get(Aeronau.class, i);
+                                if (aeronau instanceof Combat && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
+                                    Combats.add((Combat) aeronau);
+                                }
+                            }
+                            for (Combat Combat : Combats) {
+                                count++;
+                                System.out.println("\n#-----------------------COMBAT-nº" + count + "-------------------------#\n"
+                                        + Combat.toString());
+                            }
+                            System.out.println("\n#-------------------------------------------------------------------------#\n");
                             break;
                         case 6:
                             //Opció per mostrar la classe Transport
                             // Crea un ArrayList para almacenar los objetos de Transport
                             List<Transport> transportes = new ArrayList<>();
-
-                            // Define el rango de IDs que deseas buscar
-                            int idInicio = 1;
-                            int idFin = 130;
-                            int limiteRegistros = 200;
                             // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Transport
                             for (int i = 1; i <= limiteRegistros; i++) {
                                 Aeronau aeronau = a.get(Aeronau.class, i);
@@ -119,7 +206,6 @@ public class App {
                                 }
                             }
                             // Utiliza los objetos de Transport que se encuentran dentro del rango especificado
-                            int count = 0;
                             for (Transport transporte : transportes) {
                                 count++;
                                 System.out.println("\n#-----------------------TRANSPORT-nº" + count + "-------------------------#\n"
@@ -154,6 +240,17 @@ public class App {
                     exit = true;
             }
         } while (!exit);
+    }
+
+    private static <T extends Aeronau> List<T> getAeronauByTypeAndRange(Class<T> clazz, int idInicio, int idFin, int limiteRegistros, Session a) {
+        List<T> aeronaus = new ArrayList<>();
+        for (int i = 1; i <= limiteRegistros; i++) {
+            Aeronau aeronau = a.get(Aeronau.class, i);
+            if (clazz.isInstance(aeronau) && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
+                aeronaus.add(clazz.cast(aeronau));
+            }
+        }
+        return aeronaus;
     }
 
     /**
