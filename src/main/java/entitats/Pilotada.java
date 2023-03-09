@@ -81,7 +81,15 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
 
     @Override
     public String toString() {
-        return "Pilotada{" + "pilot=" + pilot + ", mecanic=" + getMecanic().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + ", aeronaus=" + getAeronaus().stream().map(a -> a.toString()).collect(Collectors.joining(", "))+ "Aeronau=" +super.toString()+'}';
+        return "La classe Pilotada conte la següent informació:\n"
+                + "Conte --> Pilot: " + "No està disponible actualment\n"
+                + "Conte -->  Mecanic: " + "No està disponible actualment\n"
+                + "Conte --> s Pilotada: " + "No està disponible actualment\n"
+                + super.toString();
     }
+
+
+
+
         
 }

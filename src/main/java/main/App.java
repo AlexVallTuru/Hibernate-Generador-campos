@@ -1,10 +1,18 @@
 package main;
 
+import entitats.Aeronau;
 import entitats.Combat;
 import entitats.Pilot;
+import entitats.Pilotada;
 import entitats.Transport;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Root;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,8 +26,12 @@ public class App {
 
     private static final Logger logger = LogManager.getLogger(App.class);
 
+    private static Session session;
+
     public static void main(String[] args) {
         ClassFactory cf = new ClassFactory();
+
+        session = SingleSession.getInstance().getSessio();
 
         //Inici de sessio
         logger.info("\nInicio de sesion...");
@@ -76,7 +88,6 @@ public class App {
                     }
                     switch (finalOptionShowClass) {
                         case 1:
-                            
                             //Opció per mostrar la classe Aeronau
                             break;
                         case 2:
@@ -93,6 +104,33 @@ public class App {
                             break;
                         case 6:
                             //Opció per mostrar la classe Transport
+                            // Crea un ArrayList para almacenar los objetos de Transport
+                            List<Transport> transportes = new ArrayList<>();
+
+                            // Define el rango de IDs que deseas buscar
+                            int idInicio = 1;
+                            int idFin = 130;
+                            int limiteRegistros = 200;
+                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Transport
+                            for (int i = 1; i <= limiteRegistros; i++) {
+                                Aeronau aeronau = a.get(Aeronau.class, i);
+                                if (aeronau instanceof Transport && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
+                                    transportes.add((Transport) aeronau);
+                                }
+                            }
+                            // Utiliza los objetos de Transport que se encuentran dentro del rango especificado
+                            int count = 0;
+                            for (Transport transporte : transportes) {
+                                count++;
+                                System.out.println("\n#-----------------------TRANSPORT-nº" + count + "-------------------------#\n"
+                                        + transporte.toString());
+                            }
+                            System.out.println("\n#-------------------------------------------------------------------------#\n");
+                            /**
+                             * Aeronau aeronau = null; aeronau =
+                             * a.get(Transport.class, 1);
+                             * System.out.println(aeronau.toString());*
+                             */
                             break;
                         case 7:
                             //Opció per mostrar la classe Soldat

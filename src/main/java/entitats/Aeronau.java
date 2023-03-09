@@ -136,6 +136,18 @@ public abstract class Aeronau implements Serializable {
 
     @Override
     public String toString() {
-        return "Aeronau{" + "aeronauMatricula=" + aeronauMatricula + ", aeronauNom=" + aeronauNom + ", aeronauRitmePujada=" + aeronauRitmePujada + ", aeronauVelocitatMaxima=" + aeronauVelocitatMaxima + ", aeronauAutopilotada=" + aeronauAutopilotada + ", aeronauDataFabricacio=" + aeronauDataFabricacio + ", missio=" + getMissio().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + ", pilotades=" + getPilotades().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + '}';
+        return "La classe Aeronau conte la següent informació:\n"
+                + "Matricula aeronau (Id):" + aeronauMatricula
+                + "\nNom:" + aeronauNom 
+                + "\nRitme de Pujada: " + aeronauRitmePujada
+                + "\nVelocitat Maxima: " + aeronauVelocitatMaxima
+                + "\nEs Autopilotada: " + aeronauAutopilotada
+                + "\nData de fabricacio: " + aeronauDataFabricacio;
     }
+
+    /**@Override
+    public String toString() {
+        return "Aeronau{" + "aeronauMatricula=" + aeronauMatricula + ", aeronauNom=" + aeronauNom + ", aeronauRitmePujada=" + aeronauRitmePujada + ", aeronauVelocitatMaxima=" + aeronauVelocitatMaxima + ", aeronauAutopilotada=" + aeronauAutopilotada + ", aeronauDataFabricacio=" + aeronauDataFabricacio + ", missio=" + getMissio().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + ", pilotades=" + getPilotades().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + '}';
+    }**/
+    
 }
