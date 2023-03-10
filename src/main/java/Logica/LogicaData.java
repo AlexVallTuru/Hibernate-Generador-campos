@@ -98,7 +98,7 @@ public class LogicaData implements InterfaceLogica {
             
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
