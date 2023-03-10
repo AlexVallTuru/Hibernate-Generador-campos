@@ -18,13 +18,17 @@ import entitats.Transport;
 import java.util.ArrayList;
 import java.util.List;
 import Utils.Utils;
+import entitats.Autonoma;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.hibernate.Session;
 
 /**
  *
  * @author carlo
  */
 public class ClassFactory implements TesteableFactory {
-
+    private static final Logger logger = LogManager.getLogger(ClassFactory.class);
     private Faker fake = new Faker();
 
     @Override
@@ -105,7 +109,7 @@ public class ClassFactory implements TesteableFactory {
                     new ArrayList<>(),
                     fake.number().randomDigit(),
                     fake.aviation().aircraft(),
-                    (float)fake.number().randomDouble(2, 0, 90),
+                    (float) fake.number().randomDouble(2, 0, 90),
                     fake.number().randomDigit(),
                     fake.bool().bool(),
                     Utils.localDateToSQLDate(fake.date().birthday()));
@@ -174,8 +178,8 @@ public class ClassFactory implements TesteableFactory {
         if (tipus == Mecanic.class) {
             soldat = new Mecanic(fake.number().randomDigit(),
                     null,
-                    fake.number().numberBetween(0,100),
-                    fake.number().numberBetween(0,100),
+                    fake.number().numberBetween(0, 100),
+                    fake.number().numberBetween(0, 100),
                     fake.number().randomDigit(),
                     fake.number().randomDigit(),
                     Utils.armesPrincipals[fake.number().numberBetween(0, principals)],
@@ -189,9 +193,9 @@ public class ClassFactory implements TesteableFactory {
 
             soldat = new Pilot(
                     fake.space().planet(),
-                    null,
-                    fake.number().numberBetween(0,100),
-                    fake.number().numberBetween(0,100),
+                    (Pilotada)new Object(),
+                    fake.number().numberBetween(0, 100),
+                    fake.number().numberBetween(0, 100),
                     fake.number().randomDigit(),
                     fake.number().randomDigit(),
                     Utils.armesPrincipals[fake.number().numberBetween(0, principals)],
@@ -202,6 +206,52 @@ public class ClassFactory implements TesteableFactory {
                     Utils.localDateToSQLDate(fake.date().birthday()));
         }
         return soldat;
+    }
+
+    /**
+     * Funcio per generar nous registres
+     * @param tipusClase
+     * @param elements 
+     */
+    public void generadorRegistres(Class<?> tipusClase, int elements) {
+        
+        //Obtenir la sessio
+        Session sessio = SingleSession.getInstance().getSessio();
+        
+        //Obtenir la clase pare
+        Class<?> parent = tipusClase.getSuperclass();
+        logger.info("La super clase de "+tipusClase+" es "+parent);
+        logger.info("Iniciant trasaccio");
+        //Començar la transaccio
+        sessio.beginTransaction();
+        
+        logger.info("Generant entitats");
+        for (int i = 0; i < elements; i++) {
+            //Generar Soldats
+            if (parent == Soldat.class) {
+                sessio.persist(this.soldatFactory(tipusClase));
+                logger.info("S'ha generat soldat nº : "+i);
+
+            }
+
+            //Generar Aeronaus
+            if (parent == Pilotada.class || parent == Autonoma.class) {
+                sessio.persist(this.aeronauFactory(tipusClase));
+                logger.info("S'ha generat aeronau nº : "+i);
+
+            }
+            
+            //Generar Missions
+            if(tipusClase == Missio.class){
+                sessio.persist(this.missioFactory());
+                logger.info("S'ha generat missio nº : "+i);
+            }
+            
+           
+        }
+        sessio.getTransaction().commit();
+        logger.info("S'han guardat els registres");
+       
     }
 
 }

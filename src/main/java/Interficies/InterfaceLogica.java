@@ -9,8 +9,14 @@ package Interficies;
  * @author Carlos
  */
 public interface InterfaceLogica {
-    
-     
-    
-    
+
+    //Generar entitats
+    void generaClasse();
+
+    //Llistar entitats
+    String llistar();
+
+    //Esborra entitats
+    void esborra();
+
 }

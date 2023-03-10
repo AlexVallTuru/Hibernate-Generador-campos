@@ -1,5 +1,6 @@
 package main;
 
+import Logica.LogicaData;
 import java.sql.Date;
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
@@ -12,24 +13,23 @@ import org.hibernate.Session;
  */
 public class App {
 
+    private static SingleSession singleSession = null;
+    private static Session sessio = null;
     private static final Logger logger = LogManager.getLogger(App.class);
+    private static final LogicaData logic = new LogicaData();
 
     public static void main(String[] args) {
-        ClassFactory cf = new ClassFactory();
 
         //Inici de sessio
-        logger.info("\nInicio de sesion...");
-        SingleSession singl = null;
-        Session a = null;
+        logger.info("Inicio de sesion...");
         Boolean valid = false; //Boolean per verificar inici de sessio
         while (!valid) {
             try {
-                singl = SingleSession.getInstance();
-                a = singl.getSessio();
+                login();
                 valid = true;
-                logger.info("\nCredenciales correctas");
+                logger.info("Credenciales correctas");
             } catch (Exception e) {
-                logger.error("\nCredenciales incorrectas");
+                logger.error("Credenciales incorrectas");
                 System.out.println("Credenciales incorrectas, por favor introducelas de nuevo");
             }
         }
@@ -37,7 +37,7 @@ public class App {
         //Menu principal
         Boolean exit = false;
         do {
-            logger.info("\nMostrando menu principal");
+            logger.info("Mostrando menu principal");
             drawMenu();
             //Comprobar que l'opció introduida per l'usuari es correcte
             Integer finalOption = checkOption();
@@ -50,7 +50,7 @@ public class App {
                     break;
 
                 case 2:
-                    System.out.println("Not implemented.");
+                    logic.generaClasse();
                     break;
 
                 case 3:
@@ -68,7 +68,7 @@ public class App {
                 //Sortida del programa
                 case 6:
                     System.out.println("Fins aviat!");
-                    singl.closeConnection();
+                    singleSession.closeConnection();
                     exit = true;
             }
         } while (!exit);
@@ -82,13 +82,45 @@ public class App {
     private static void drawMenu() {
         //ASCII art per el menu
         System.out.println("\n_ __ ___   ___ _ __  _   _ \r\n| '_ ` _ \\ / _ \\ '_ \\| | | |\r\n| | | | | |  __/ | | | |_| |\r\n|_| |_| |_|\\___|_| |_|\\__,_|\r\n");
-        System.out.println("1. <Insertar elements de prova>");
-        System.out.println("2. <Afegir elements a una classe>");
-        System.out.println("3. <Eliminar elements d'una classe>");
-        System.out.println("4. <Modificar elements d'una classe>");
-        System.out.println("5. <Llistar elements d'una classe>");
-        System.out.println("6. <Sortir>");
-        System.out.println("\n Introdueix un numero per escogir una opció");
+        System.out.println("""
+                   1. <Insertar elementos de prueba>
+                   2. <Insertar elementos de prueba>
+                   3. <Agregar elementos a una clase>
+                   4. <Eliminar elementos de una clase>
+                   5. <Modificar elementos de una clase>
+                   6. <Listar elementos de una clase>
+                   7. <Salir>
+                   
+                   Introduce un número para elegir una opción.""");
+
+    }
+
+    /**
+     * Login i seleccio de base de dades
+     *
+     * @author Carlos
+     */
+    public static void login() {
+        Scanner in = new Scanner(System.in);
+
+        //Nom usuari DB
+        System.out.print("Usuari: ");
+        String usuari = in.nextLine();
+
+        //Password DB
+        System.out.print("Password: ");
+        String password = in.nextLine();
+
+        //Nom base de dades
+        System.out.print("Nom de la DDBB: ");
+        String dbName = in.nextLine();
+
+        //Inici de sessio
+        logger.info("Iniciant sessio amb usuari: " + usuari + " a la base de dades " + dbName);
+        singleSession = SingleSession.getInstance(usuari, password, dbName);
+        
+        
+
     }
 
     /**
@@ -110,15 +142,11 @@ public class App {
                 }
                 valid = true;
             } catch (NumberFormatException e) {
-                System.out.println("L'opcio introduida no es valida o no es un nombre, introdueix-ho de nou.");
+                logger.error("L'opcio introduida no es valida o no es un nombre, introdueix-ho de nou.");
+                drawMenu();
             }
         }
         return finalOption;
-    }
-
-    public static Date convertDate(String dat) {
-        return Date.valueOf(dat);
-
     }
 
 }
