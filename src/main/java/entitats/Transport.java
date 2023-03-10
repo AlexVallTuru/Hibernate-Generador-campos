@@ -14,6 +14,7 @@ import java.sql.Date;
 import java.util.List;
 import Utils.Utils;
 import Utils.Utils;
+import Utils.Utils;
 
 /**
  *
@@ -29,10 +30,12 @@ public class Transport extends Pilotada implements TesteableEntity, Serializable
     @Column(name = "MaxPes")
     private Integer aeronauTransportMaxPes;
 
+    //Constructor
     public Transport() {
         super();
     }
 
+    //Constructor
     public Transport(Integer aeronauTransportMaxTripulants, Integer aeronauTransportMaxPes, Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, float  aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
         super(pilot, mecanic, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.aeronauTransportMaxTripulants = aeronauTransportMaxTripulants;

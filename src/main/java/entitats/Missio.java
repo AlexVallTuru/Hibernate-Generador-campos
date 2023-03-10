@@ -94,12 +94,16 @@ public class Missio implements TesteableEntity, Serializable{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void setAeronaus(List<Aeronau> escuadrilla1) {
-        aeronau = escuadrilla1;
+    public void setAeronaus(List<Aeronau> aeronau) {
+        this.aeronau = aeronau;
     }
 
     public List<Aeronau> getAeronaus() {
         return aeronau;
     }
-    
+
+    public void setAeronau(Aeronau aeronau) {
+        this.aeronau.add(aeronau);
+    }
+
 }
