@@ -38,9 +38,9 @@ public class ClassFactory implements TesteableFactory {
         }
         for (Object obj : lo) {
 
-            if (obj instanceof Mecanic mecanic) {
+            if (obj instanceof Mecanic) {
 
-                p.setMecanic(mecanic);
+                p.setMecanic((Mecanic)obj);
             }
         }
 
@@ -53,9 +53,9 @@ public class ClassFactory implements TesteableFactory {
             throw new Exception();
         }
         for (Object obj : lm) {
-            if (obj instanceof Missio missio) {
+            if (obj instanceof Missio) {
 
-                a.setMissio(missio);
+                a.setMissio((Missio) obj);
             }
         }
 
@@ -68,9 +68,9 @@ public class ClassFactory implements TesteableFactory {
             throw new Exception();
         }
         for (Object obj : la) {
-            if (obj instanceof Aeronau aeronau) {
+            if (obj instanceof Aeronau) {
 
-                m.setAeronau(aeronau);
+                m.setAeronau((Aeronau) obj);
             }
         }
 
