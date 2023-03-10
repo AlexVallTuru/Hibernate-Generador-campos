@@ -5,6 +5,7 @@
 package Utils;
 
 import java.util.Date;
+import java.util.Scanner;
 import main.App;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -110,4 +111,4 @@ public class Utils {
         return sd;
     }
 
-}
+                }

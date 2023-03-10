@@ -20,23 +20,23 @@ public class App {
     public static void main(String[] args) {
 
         //Inici de sessio
-        logger.info("Inicio de sesion...");
+        logger.info("Inici de sessió...");
         Boolean valid = false; //Boolean per verificar inici de sessio
         while (!valid) {
             try {
                 login();
                 valid = true;
-                logger.info("Credenciales correctas");
+                logger.info("Credencials correctes");
             } catch (Exception e) {
-                logger.error("Credenciales incorrectas");
-                System.out.println("Credenciales incorrectas, por favor introducelas de nuevo");
+                logger.error("Credencials incorrectes");
+                System.out.println("Credencials incorrectes. Si us plau, introdueix-les de nou.");
             }
         }
 
         //Menu principal
         Boolean exit = false;
         do {
-            logger.info("Mostrando menu principal");
+            logger.info("Mostrant el menu principal");
             drawMenu();
             //Comprobar que l'opció introduida per l'usuari es correcte
             Integer finalOption = checkOption();
@@ -44,15 +44,15 @@ public class App {
             //Crida a funcions
             switch (finalOption) {
                 case 1:
-                    System.out.println("Not implemented.");
-                    break;
-
-                case 2:
                     logic.generaClasse();
                     break;
 
-                case 3:
+                case 2:
                     System.out.println("Not implemented.");
+                    break;
+
+                case 3:
+                    logic.esborra();
                     break;
                     
                 case 4:
@@ -77,14 +77,12 @@ public class App {
         //ASCII art per el menu
         System.out.println("\n_ __ ___   ___ _ __  _   _ \r\n| '_ ` _ \\ / _ \\ '_ \\| | | |\r\n| | | | | |  __/ | | | |_| |\r\n|_| |_| |_|\\___|_| |_|\\__,_|\r\n");
         System.out.println("""
-                   1. <Insertar elementos de prueba>
-                   2. <Insertar elementos de prueba>
-                   3. <Agregar elementos a una clase>
-                   4. <Eliminar elementos de una clase>
-                   5. <Modificar elementos de una clase>
-                   6. <Listar elementos de una clase>
-                   7. <Salir>
-                   
+                   1. <Agregar elementos a una clase>
+                   2. <Eliminar elementos de una clase>
+                   3. <Modificar elementos de una clase>
+                   4. <Listar elementos de una clase>
+                   5. <Salir>
+
                    Introduce un número para elegir una opción.""");
 
     }
@@ -102,7 +100,7 @@ public class App {
         String usuari = in.nextLine();
 
         //Password DB
-        System.out.print("Password: ");
+        System.out.print("Contrassenya: ");
         String password = in.nextLine();
 
         //Nom base de dades
@@ -110,7 +108,7 @@ public class App {
         String dbName = in.nextLine();
 
         //Inici de sessio
-        logger.info("Iniciant sessio amb usuari: " + usuari + " a la base de dades " + dbName);
+        logger.info("Iniciant sessió amb usuari: " + usuari + " a la base de dades " + dbName);
         singleSession = SingleSession.getInstance(usuari, password, dbName);
         
         
@@ -135,7 +133,8 @@ public class App {
                 }
                 valid = true;
             } catch (NumberFormatException e) {
-                logger.error("L'opcio introduida no es valida o no es un nombre, introdueix-ho de nou.");
+                logger.error("Opció no valida");
+                System.out.println("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
                 drawMenu();
             }
         }

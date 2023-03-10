@@ -15,10 +15,12 @@ import java.util.List;
 import java.util.Scanner;
 import main.App;
 import main.ClassFactory;
+import main.SingleSession;
 import menus.Menus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  * Clase Logica
@@ -112,10 +114,101 @@ public class LogicaData implements InterfaceLogica {
     }
     /**
      * Esborrar elements
+     * 
+     * @author Aitor
      */
     @Override
     public void esborra() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Boolean exit = false;
+        do {
+            logger.info("Mostrando menu de borrado de entidades...");
+            drawMenu();
+            //Comprobar que l'opció introduida per l'usuari es correcte
+            Integer finalOption = checkOption();
+            Scanner in = new Scanner(System.in);
+            //Crida a funcions
+            switch (finalOption) {
+                //Elimina aeronau
+                case 1:
+                    //Recoleccio de parametres
+                    System.out.println("Indica el rang d'eliminació.");
+                    System.out.print("Inici del rang: ");
+                    Integer first = in.nextInt();
+                    System.out.print("Final del rang: ");
+                    Integer last = in.nextInt();
+                    
+                    Session sessio = SingleSession.getInstance().getSessio();
+                    Transaction transaccio = sessio.beginTransaction();
+                    try {
+                        for (int i = first; i <= last; i++) {
+                            Aeronau aeronau = sessio.get(Aeronau.class, i);
+                            if (aeronau != null) {
+                                sessio.delete(aeronau);
+                            }
+                        }
+                        transaccio.commit();
+                    } catch (Exception e) {
+                        if (transaccio != null) {
+                            transaccio.rollback();
+                        }
+                        logger.error(e);
+                    } 
+                    
+                    System.out.println("\nObjectes eliminats correctament.");
+                    break;
+                    
+                //Elimina soldat
+                case 2:
+                    System.out.println("Not implemented.");
+                    break;
+                //Elimina missio
+                case 3:
+                    System.out.println("Not implemented.");
+                    break;
+
+                //Sortida del menu
+                case 4:
+                    exit = true;
+                    break;
+            }
+        } while (!exit);
     }
 
+    /**
+     * Mostra una "interficie" per les opcions disponibles
+     *
+     * @author Aitor
+     */
+    private static void drawMenu() {
+        System.out.println("1. <Eliminar aeronau>\n" + "2. <Eliminar soldat>\n" + "3. <Eliminar missio>\n" + "4. <Tornar al menú principal>\n" + "\n" + "Introdueix un n\u00famero per seleccionar una opci\u00f3.");
+
+    }
+    
+    /**
+     * Comprova que l'opcio introduïda per l'usuari es valida i la retorna al
+     * programa.
+     *
+     * @return finalOption
+     * @author Aitor
+     */
+    public static Integer checkOption() {
+        Scanner in = new Scanner(System.in);
+        Boolean valid = false;
+        Integer finalOption = null;
+        while (!valid) {
+            try {
+                String inOption = in.next();
+                finalOption = Integer.parseInt(inOption);
+                if (finalOption < 1 || finalOption > 4) {
+                    throw new NumberFormatException();
+                }
+                valid = true;
+            } catch (NumberFormatException e) {
+                logger.error("Opció no valida");
+                System.out.println("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
+                drawMenu();
+            }
+        }
+        return finalOption;
+    }
 }
