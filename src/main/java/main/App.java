@@ -8,7 +8,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author Aitor
+ * @author Aitor, Carlos
  */
 public class App {
 
@@ -48,19 +48,15 @@ public class App {
                     break;
 
                 case 2:
-                    System.out.println("Not implemented.");
+                    logic.esborra();
                     break;
 
                 case 3:
-                    logic.esborra();
-                    break;
-                    
-                case 4:
                     System.out.println("Not implemented.");
                     break;
 
                 //Sortida del programa
-                case 5:
+                case 4:
                     System.out.println("Fins aviat!");
                     singleSession.closeConnection();
                     exit = true;
@@ -77,13 +73,13 @@ public class App {
         //ASCII art per el menu
         System.out.println("\n_ __ ___   ___ _ __  _   _ \r\n| '_ ` _ \\ / _ \\ '_ \\| | | |\r\n| | | | | |  __/ | | | |_| |\r\n|_| |_| |_|\\___|_| |_|\\__,_|\r\n");
         System.out.println("""
-                   1. <Agregar elementos a una clase>
-                   2. <Eliminar elementos de una clase>
-                   3. <Modificar elementos de una clase>
-                   4. <Listar elementos de una clase>
-                   5. <Salir>
+                   1. <Crear entitats>
+                   2. <Eliminar entitats>
+                   3. <Listar entitats>
+                   4. <Sortir>
 
-                   Introduce un número para elegir una opción.""");
+                   Introdueix un nombre per seleccionar una de les opcions.""");
+        
 
     }
 
@@ -119,6 +115,7 @@ public class App {
      * programa.
      *
      * @return finalOption
+     * @author Aitor
      */
     public static Integer checkOption() {
         Scanner in = new Scanner(System.in);
