@@ -43,20 +43,20 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
         super(aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.pilot = pilot;
         this.mecanic = mecanic;
+        this.pilot = null;
     }
-
 
     public Pilot getPilotAeronau() {
         return pilot;
     }
 
     public List<Mecanic> getMecanics() {
-       return mecanic; 
+        return mecanic;
     }
-    
-    public void setPilot(Pilot p){
+
+    public void setPilot(Pilot p) {
         this.pilot = p;
-        
+
     }
 
     public void setMecanic(Mecanic mecanic) {
@@ -81,15 +81,18 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
 
     @Override
     public String toString() {
+        String pilotString = "";
+        if (getPilotAeronau().toString() == null) {
+            pilotString = "No conte cap pilot";
+        }
+        else {
+            pilotString = getPilotAeronau().toString();
+        }
         return "La classe Pilotada conte la següent informació:\n"
-                + "Conte --> Pilot: " + "No està disponible actualment\n"
+                + "Conte --> Pilot: " + pilotString  
                 + "Conte -->  Mecanic: " + "No està disponible actualment\n"
                 + "Conte --> s Pilotada: " + "No està disponible actualment\n"
                 + super.toString();
     }
 
-
-
-
-        
 }

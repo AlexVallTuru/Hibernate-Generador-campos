@@ -101,5 +101,10 @@ public class Missio implements TesteableEntity, Serializable{
     public List<Aeronau> getAeronaus() {
         return aeronau;
     }
+
+    @Override
+    public String toString() {
+        return "Missio{" + "codiMissio=" + codiMissio + ", nom=" + nom + ", durada=" + durada + ", dateInici=" + dateInici + ", completada=" + completada + ", ubicacio=" + ubicacio + ", aeronau=" + "aeronau" + '}';
+    }
     
 }

@@ -59,7 +59,7 @@ public abstract class Autonoma extends Aeronau implements Serializable {
 
     @Override
     public String toString() {
-        return "La classe Autonoma conte la següent informació:"
+        return "\nLa classe Autonoma conte la següent informació:"
                 + "\nTemps màxim de vol :" + tempsMaximDeVol 
                 +"\nPes :" + pes
                 + "\nSensors" + sensors

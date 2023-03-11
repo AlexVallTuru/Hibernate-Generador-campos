@@ -136,7 +136,7 @@ public abstract class Aeronau implements Serializable {
 
     @Override
     public String toString() {
-        return "La classe Aeronau conte la següent informació:\n"
+        return "\nLa classe Aeronau conte la següent informació:\n"
                 + "Matricula aeronau (Id):" + aeronauMatricula
                 + "\nNom:" + aeronauNom 
                 + "\nRitme de Pujada: " + aeronauRitmePujada

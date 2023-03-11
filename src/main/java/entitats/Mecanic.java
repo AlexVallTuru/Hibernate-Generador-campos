@@ -87,6 +87,9 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
 
     @Override
     public String toString() {
-        return "Mecanic{" + "vehiculosDestruidos=" + vehiculosDestruidos + ", pilotada=" + pilotada.toString() + "Soldat"+super.toString()+'}';
+        return "\nLa classe Mecanic conte la següent informació: "
+                + "\nvehiculosDestruidos: " + vehiculosDestruidos
+                + "\nPilotada: " + "Work in progress"
+                +super.toString();
     }        
 }

@@ -4,16 +4,15 @@ import entitats.Aeronau;
 import entitats.Autonoma;
 import entitats.Combat;
 import entitats.Dron;
+import entitats.Mecanic;
+import entitats.Missio;
 import entitats.Pilot;
 import entitats.Pilotada;
+import entitats.Soldat;
 import entitats.Transport;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.TypedQuery;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
@@ -90,36 +89,30 @@ public class App {
                     }
                     // Define el rango de IDs que deseas buscar
                     int idInicio = 1;
-                    int idFin = 130;
-                    int limiteRegistros = 200;
+                    int idFin = 205;
+                    int limiteRegistros = 1000;
                     int count = 0;
                     switch (finalOptionShowClass) {
                         case 1:
                             //Opció per mostrar la classe Aeronau
-                            List<Aeronau> aeronaus = new ArrayList<>();
+                            // Crea un ArrayList para almacenar los objetos de Autonoma
+                            List<Aeronau> aeronauss = new ArrayList<>();
+                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Autonoma
                             for (int i = 1; i <= limiteRegistros; i++) {
                                 Aeronau aeronau = a.get(Aeronau.class, i);
-                                if (aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
-                                    aeronaus.add(aeronau);
+                                if ((aeronau instanceof Pilotada || aeronau instanceof Autonoma) && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
+                                    aeronauss.add(aeronau);
+
                                 }
                             }
-                            for (Aeronau aeronau : aeronaus) {
-                                System.out.println("\n#-----------------------AERONAU-nº" + count + "-------------------------#\n");
-                                if (aeronau instanceof Autonoma) {
-                                    System.out.println(((Autonoma) aeronau).toString());
-                                } else if (aeronau instanceof Dron) {
-                                    System.out.println(((Dron) aeronau).toString());
-                                } else if (aeronau instanceof Pilotada) {
-                                    if (aeronau instanceof Transport) {
-                                        System.out.println(((Transport) aeronau).toString());
-                                    } else if (aeronau instanceof Combat) {
-                                        System.out.println(((Combat) aeronau).toString());
-                                    }
-                                }
+                            // Utiliza los objetos de Autonoma que se encuentran dentro del rango especificado
+                            for (Aeronau aeronaus : aeronauss) {
+                                count++;
+                                System.out.println("\n#-----------------------AERONAU-nº" + count + "-------------------------#\n"
+                                        + aeronaus.toString());
                             }
                             System.out.println("\n#-------------------------------------------------------------------------#\n");
                             break;
-
                         case 2:
                             //Opció per mostrar la classe Autonoma
                             // Crea un ArrayList para almacenar los objetos de Autonoma
@@ -223,16 +216,51 @@ public class App {
                             break;
                         case 8:
                             //Opció per mostrar la classe Mecanic
+                            List<Mecanic> mecanics = new ArrayList<>();
+                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Transport
+                            for (int i = 1; i <= limiteRegistros; i++) {
+                                Soldat soldat = a.get(Soldat.class, i);
+                                if (soldat instanceof Mecanic && soldat.getIdUsuario() >= idInicio && soldat.getIdUsuario() <= idFin) {
+                                    mecanics.add((Mecanic) soldat);
+                                }
+                            }
+                            // Utiliza los objetos de Transport que se encuentran dentro del rango especificado
+                            for (Mecanic mecanicss : mecanics) {
+                                count++;
+                                System.out.println("\n#-----------------------MECANIC-nº" + count + "-------------------------#\n"
+                                        + mecanicss.toString());
+                            }
+                            System.out.println("\n#-------------------------------------------------------------------------#\n");
                             break;
                         case 9:
                             //Opció per mostrar la classe Pilot
+                            List<Pilot> pilots = new ArrayList<>();
+                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Transport
+                            for (int i = 1; i <= limiteRegistros; i++) {
+                                Soldat soldat = a.get(Soldat.class, i);
+                                if (soldat instanceof Pilot && soldat.getIdUsuario() >= idInicio && soldat.getIdUsuario() <= idFin) {
+                                    pilots.add((Pilot) soldat);
+                                }
+                            }
+                            // Utiliza los objetos de Transport que se encuentran dentro del rango especificado
+                            for (Pilot pilotss : pilots) {
+                                count++;
+                                System.out.println("\n#-----------------------MECANIC-nº" + count + "-------------------------#\n"
+                                        + pilotss.toString());
+                            }
+                            System.out.println("\n#-------------------------------------------------------------------------#\n");
                             break;
                         case 10:
                             //Opció per mostrar la classe Missio
+                            a = singl.getSessio();
+                            TypedQuery<Missio> hqlQuery1 = a.createQuery("FROM Missio", Missio.class);
+                            List<Missio> missions = hqlQuery1.getResultList();
+                            for (Missio m : missions) {
+                                System.err.println(m.toString());
+                                break;
+                            }
                             break;
                     }
-                    break;
-
                 //Sortida del programa
                 case 5:
                     System.out.println("Fins aviat!");
