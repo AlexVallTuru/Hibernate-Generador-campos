@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import static main.ConsultasHql.ConsultasHql;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -250,15 +251,17 @@ public class App {
                             }
                             System.out.println("\n#-------------------------------------------------------------------------#\n");
                             break;
-                        case 10:
+                        case 10:/**
                             //Opció per mostrar la classe Missio
                             a = singl.getSessio();
-                            TypedQuery<Missio> hqlQuery1 = a.createQuery("FROM Missio", Missio.class);
+                            TypedQuery<Missio> hqlQuery1 = a.createQuery("SELECT m FROM Missio");
                             List<Missio> missions = hqlQuery1.getResultList();
                             for (Missio m : missions) {
                                 System.err.println(m.toString());
                                 break;
                             }
+                            **/
+                            ConsultasHql(a);
                             break;
                     }
                 //Sortida del programa

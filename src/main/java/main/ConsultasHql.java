@@ -19,15 +19,12 @@ public class ConsultasHql {
     private static Session session;
     private SingleSession singl;
 
-    public ConsultasHql() {
-        SingleSession singl = SingleSession.getInstance("root", "123456", "Aeroport");
-        Session a = singl.getSessio();
-        TypedQuery<Missio> hqlQuery1 = a.createQuery("FROM Missio", Missio.class);
+    public static void ConsultasHql(Session a) {
+        TypedQuery<Missio> hqlQuery1 = a.createQuery("SELECT m FROM Missio m JOIN FETCH m.aeronau", Missio.class);
         List<Missio> missions = hqlQuery1.getResultList();
-        for(Missio m:missions){
-            System.err.println(m.toString());
+        for (Missio m : missions) {
+            System.out.println(m.toString());
         }
     }
-
 
 }
