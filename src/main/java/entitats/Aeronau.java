@@ -53,10 +53,11 @@ public abstract class Aeronau implements Serializable {
     protected Date aeronauDataFabricacio;
 
     //Relacio
-    @ManyToMany(cascade = {CascadeType.ALL},mappedBy = "aeronau")
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronau")
     protected List<Missio> missio = new ArrayList<>();
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronaus")
     private List<Pilotada> pilotades = new ArrayList<>();
+
     public Aeronau() {
         super();
     }
@@ -136,18 +137,14 @@ public abstract class Aeronau implements Serializable {
 
     @Override
     public String toString() {
-        return "\nLa classe Aeronau conte la següent informació:\n"
-                + "Matricula aeronau (Id):" + aeronauMatricula
-                + "\nNom:" + aeronauNom 
+        String missionsString = missio == null ? "Sense missions assignades" : missio.toString();
+        return "\nLa classe Aeronau conte la següent informació:"
+                + "\nMatricula aeronau: " + aeronauMatricula
+                + "\nNom:" + aeronauNom
                 + "\nRitme de Pujada: " + aeronauRitmePujada
                 + "\nVelocitat Maxima: " + aeronauVelocitatMaxima
                 + "\nEs Autopilotada: " + aeronauAutopilotada
-                + "\nData de fabricacio: " + aeronauDataFabricacio;
+                + "\nData de fabricacio: " + aeronauDataFabricacio
+                + "\nMissions: " + missionsString;
     }
-
-    /**@Override
-    public String toString() {
-        return "Aeronau{" + "aeronauMatricula=" + aeronauMatricula + ", aeronauNom=" + aeronauNom + ", aeronauRitmePujada=" + aeronauRitmePujada + ", aeronauVelocitatMaxima=" + aeronauVelocitatMaxima + ", aeronauAutopilotada=" + aeronauAutopilotada + ", aeronauDataFabricacio=" + aeronauDataFabricacio + ", missio=" + getMissio().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + ", pilotades=" + getPilotades().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + '}';
-    }**/
-    
 }

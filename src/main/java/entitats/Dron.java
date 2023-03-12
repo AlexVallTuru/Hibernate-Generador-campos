@@ -85,7 +85,7 @@ public class Dron extends Autonoma implements TesteableEntity,Serializable{
     @Override
     public String toString() {
         return "La classe Dron conte la següent informació:"
-                + "\nNumero d'helices :" + numHelices
+                +"\nNumero d'helices : " + numHelices
                 +super.toString();
     }
 }

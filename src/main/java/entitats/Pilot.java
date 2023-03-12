@@ -80,10 +80,15 @@ public class Pilot extends Soldat implements TesteableEntity {
 
     @Override
     public String toString() {
-        return "\nLa classe Pilot conte la següent informació:"
+        String pilotadaString;
+        if (pilotada == null) {
+            pilotadaString = "\nSense pilotada assignada";
+        } else {
+            pilotadaString = pilotada.toString();
+        }
+        return "La classe Pilot conte la següent informació:"
                 + "\nNombre vehicule: " + vehiculo
-                + "\nPilotada: " + "pilotada.toString()"
-                +  super.toString() ;
+                + "\n" + pilotadaString
+                + super.toString();
     }
-    
 }

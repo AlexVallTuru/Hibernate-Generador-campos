@@ -15,7 +15,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import static main.ConsultasHql.ConsultasHql;
+import static main.ConsultasHql.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -96,173 +96,44 @@ public class App {
                     switch (finalOptionShowClass) {
                         case 1:
                             //Opció per mostrar la classe Aeronau
-                            // Crea un ArrayList para almacenar los objetos de Autonoma
-                            List<Aeronau> aeronauss = new ArrayList<>();
-                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Autonoma
-                            for (int i = 1; i <= limiteRegistros; i++) {
-                                Aeronau aeronau = a.get(Aeronau.class, i);
-                                if ((aeronau instanceof Pilotada || aeronau instanceof Autonoma) && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
-                                    aeronauss.add(aeronau);
-
-                                }
-                            }
-                            // Utiliza los objetos de Autonoma que se encuentran dentro del rango especificado
-                            for (Aeronau aeronaus : aeronauss) {
-                                count++;
-                                System.out.println("\n#-----------------------AERONAU-nº" + count + "-------------------------#\n"
-                                        + aeronaus.toString());
-                            }
-                            System.out.println("\n#-------------------------------------------------------------------------#\n");
+                            ConsultasHqlAeronau(a, 1, 200);
                             break;
                         case 2:
                             //Opció per mostrar la classe Autonoma
-                            // Crea un ArrayList para almacenar los objetos de Autonoma
-                            List<Autonoma> autonomas = new ArrayList<>();
-                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Autonoma
-                            for (int i = 1; i <= limiteRegistros; i++) {
-                                Aeronau aeronau = a.get(Aeronau.class, i);
-                                if (aeronau instanceof Autonoma && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
-                                    autonomas.add((Autonoma) aeronau);
-                                }
-                            }
-                            // Utiliza los objetos de Autonoma que se encuentran dentro del rango especificado
-                            for (Autonoma autonoma : autonomas) {
-                                count++;
-                                System.out.println("\n#-----------------------AUTONOMA-nº" + count + "-------------------------#\n"
-                                        + autonoma.toString());
-                            }
-                            System.out.println("\n#-------------------------------------------------------------------------#\n");
+                            ConsultasHqlAutonoma(a, 1, 200);
                             break;
                         case 3:
                             //Opción para mostrar la clase Dron
-                            List<Dron> drones = new ArrayList<>();
-                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Dron
-                            for (int i = 1; i <= limiteRegistros; i++) {
-                                Aeronau aeronau = a.get(Aeronau.class, i);
-                                if (aeronau instanceof Dron && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
-                                    drones.add((Dron) aeronau);
-                                }
-                            }
-                            // Utiliza los objetos de Dron que se encuentran dentro del rango especificado
-                            for (Dron dron : drones) {
-                                count++;
-                                System.out.println("\n#-----------------------DRON-nº" + count + "-------------------------#\n"
-                                        + dron.toString());
-                            }
-                            System.out.println("\n#-------------------------------------------------------------------------#\n");
+                            ConsultasHqlDron(a, 1, 200);
                             break;
                         case 4:
                             //Opción para mostrar la clase Pilotada
-                            List<Pilotada> pilotadas = new ArrayList<>();
-                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Pilotada
-                            for (int i = 1; i <= limiteRegistros; i++) {
-                                Aeronau aeronau = a.get(Aeronau.class, i);
-                                if (aeronau instanceof Pilotada && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
-                                    pilotadas.add((Pilotada) aeronau);
-                                }
-                            }
-                            for (Pilotada pilotada : pilotadas) {
-                                count++;
-                                System.out.println("\n#-----------------------PILOTADA-nº" + count + "-------------------------#\n");
-                                if (pilotada instanceof Transport) {
-                                    System.out.println(((Transport) pilotada).toString());
-                                } else if (pilotada instanceof Combat) {
-                                    System.out.println(((Combat) pilotada).toString());
-                                }
-                            }
-                            System.out.println("\n#-------------------------------------------------------------------------#\n");
+                            ConsultasHqlPilotada(a, 1, 200);
                             break;
                         case 5:
                             //Opció per mostrar la classe Combat
-                            List<Combat> Combats = new ArrayList<>();
-                            for (int i = 1; i <= limiteRegistros; i++) {
-                                Aeronau aeronau = a.get(Aeronau.class, i);
-                                if (aeronau instanceof Combat && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
-                                    Combats.add((Combat) aeronau);
-                                }
-                            }
-                            for (Combat Combat : Combats) {
-                                count++;
-                                System.out.println("\n#-----------------------COMBAT-nº" + count + "-------------------------#\n"
-                                        + Combat.toString());
-                            }
-                            System.out.println("\n#-------------------------------------------------------------------------#\n");
+                            ConsultasHqlCombat(a, 1, 200);
                             break;
                         case 6:
                             //Opció per mostrar la classe Transport
-                            // Crea un ArrayList para almacenar los objetos de Transport
-                            List<Transport> transportes = new ArrayList<>();
-                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Transport
-                            for (int i = 1; i <= limiteRegistros; i++) {
-                                Aeronau aeronau = a.get(Aeronau.class, i);
-                                if (aeronau instanceof Transport && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
-                                    transportes.add((Transport) aeronau);
-                                }
-                            }
-                            // Utiliza los objetos de Transport que se encuentran dentro del rango especificado
-                            for (Transport transporte : transportes) {
-                                count++;
-                                System.out.println("\n#-----------------------TRANSPORT-nº" + count + "-------------------------#\n"
-                                        + transporte.toString());
-                            }
-                            System.out.println("\n#-------------------------------------------------------------------------#\n");
-                            /**
-                             * Aeronau aeronau = null; aeronau =
-                             * a.get(Transport.class, 1);
-                             * System.out.println(aeronau.toString());*
-                             */
+                            ConsultasHqlTransport(a, 1, 200);
                             break;
                         case 7:
                             //Opció per mostrar la classe Soldat
+                            ConsultasHqlSoldat(a, 1, 200);
                             break;
                         case 8:
                             //Opció per mostrar la classe Mecanic
-                            List<Mecanic> mecanics = new ArrayList<>();
-                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Transport
-                            for (int i = 1; i <= limiteRegistros; i++) {
-                                Soldat soldat = a.get(Soldat.class, i);
-                                if (soldat instanceof Mecanic && soldat.getIdUsuario() >= idInicio && soldat.getIdUsuario() <= idFin) {
-                                    mecanics.add((Mecanic) soldat);
-                                }
-                            }
-                            // Utiliza los objetos de Transport que se encuentran dentro del rango especificado
-                            for (Mecanic mecanicss : mecanics) {
-                                count++;
-                                System.out.println("\n#-----------------------MECANIC-nº" + count + "-------------------------#\n"
-                                        + mecanicss.toString());
-                            }
-                            System.out.println("\n#-------------------------------------------------------------------------#\n");
+                            ConsultasHqlMecanic(a, 1, 200);
                             break;
                         case 9:
                             //Opció per mostrar la classe Pilot
-                            List<Pilot> pilots = new ArrayList<>();
-                            // Itera a través de todos los objetos de Aeronau, y agrega solo aquellos dentro del rango especificado que sean instancias de Transport
-                            for (int i = 1; i <= limiteRegistros; i++) {
-                                Soldat soldat = a.get(Soldat.class, i);
-                                if (soldat instanceof Pilot && soldat.getIdUsuario() >= idInicio && soldat.getIdUsuario() <= idFin) {
-                                    pilots.add((Pilot) soldat);
-                                }
-                            }
-                            // Utiliza los objetos de Transport que se encuentran dentro del rango especificado
-                            for (Pilot pilotss : pilots) {
-                                count++;
-                                System.out.println("\n#-----------------------MECANIC-nº" + count + "-------------------------#\n"
-                                        + pilotss.toString());
-                            }
-                            System.out.println("\n#-------------------------------------------------------------------------#\n");
+                            ConsultasHqlPilot(a, 1, 200);
                             break;
-                        case 10:/**
+                        case 10:
                             //Opció per mostrar la classe Missio
-                            a = singl.getSessio();
-                            TypedQuery<Missio> hqlQuery1 = a.createQuery("SELECT m FROM Missio");
-                            List<Missio> missions = hqlQuery1.getResultList();
-                            for (Missio m : missions) {
-                                System.err.println(m.toString());
-                                break;
-                            }
-                            **/
-                            ConsultasHql(a);
-                            break;
+                            ConsultasHqlMissio(a, 1, 200);
+                            
                     }
                 //Sortida del programa
                 case 5:
@@ -271,17 +142,6 @@ public class App {
                     exit = true;
             }
         } while (!exit);
-    }
-
-    private static <T extends Aeronau> List<T> getAeronauByTypeAndRange(Class<T> clazz, int idInicio, int idFin, int limiteRegistros, Session a) {
-        List<T> aeronaus = new ArrayList<>();
-        for (int i = 1; i <= limiteRegistros; i++) {
-            Aeronau aeronau = a.get(Aeronau.class, i);
-            if (clazz.isInstance(aeronau) && aeronau.getAeronauMatricula() >= idInicio && aeronau.getAeronauMatricula() <= idFin) {
-                aeronaus.add(clazz.cast(aeronau));
-            }
-        }
-        return aeronaus;
     }
 
     /**

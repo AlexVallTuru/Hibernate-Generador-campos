@@ -81,18 +81,11 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
 
     @Override
     public String toString() {
-        String pilotString = "";
-        if (getPilotAeronau().toString() == null) {
-            pilotString = "No conte cap pilot";
-        }
-        else {
-            pilotString = getPilotAeronau().toString();
-        }
+        String pilotString = pilot == null ? "\nSense pilot assignat" : pilot.toString();
+        String mecanicString = mecanic == null ? "\nSense mecànic assignat" : mecanic.toString();
         return "La classe Pilotada conte la següent informació:\n"
-                + "Conte --> Pilot: " + pilotString  
-                + "Conte -->  Mecanic: " + "No està disponible actualment\n"
-                + "Conte --> s Pilotada: " + "No està disponible actualment\n"
+                + pilotString
+                + mecanicString
                 + super.toString();
     }
-
 }

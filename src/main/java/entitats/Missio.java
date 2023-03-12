@@ -8,6 +8,7 @@ import Interficies.TesteableEntity;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,25 +16,28 @@ import java.util.List;
  * @author Alex
  */
 @Entity
-@Table(name="Missio")
-public class Missio implements TesteableEntity, Serializable{
+@Table(name = "Missio")
+public class Missio implements TesteableEntity, Serializable {
+
+     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="codiMissio", nullable = false)
+    @Column(name = "codiMissio", nullable = false,  unique = true)
     int codiMissio;
-    @Column(name="nom")
+    @Column(name = "nom")
     String nom;
-    @Column(name="durada")
+    @Column(name = "durada")
     float durada;
-    @Column(name="dateInici")
+    @Column(name = "dateInici")
     Date dateInici;
-    @Column(name="completada")
+    @Column(name = "completada")
     Boolean completada;
-    @Column(name="ubicacio")
+    @Column(name = "ubicacio")
     String ubicacio;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "Aeronau")
-    private List<Aeronau> aeronau;
+    private List<Aeronau> aeronau = new ArrayList<>();
 
     public Missio() {
         super();
@@ -47,7 +51,6 @@ public class Missio implements TesteableEntity, Serializable{
         this.ubicacio = ubicacio;
         this.aeronau = aeronau;
     }
-    
 
     public Integer getAtributIdentificador() {
         return codiMissio;
@@ -104,7 +107,20 @@ public class Missio implements TesteableEntity, Serializable{
 
     @Override
     public String toString() {
-        return "Missio{" + "codiMissio=" + codiMissio + ", nom=" + nom + ", durada=" + durada + ", dateInici=" + dateInici + ", completada=" + completada + ", ubicacio=" + ubicacio + ", aeronau=" + aeronau + '}';
+        String aeronauStr = "";
+        if (aeronau == null) {
+            aeronauStr = "\nNo conte ninguna Aeronau";
+        }else{
+            aeronauStr =  aeronau.toString();
+        }
+        return "\nLa classe Missio conte la següent informació: "
+                + "\nCodi Missio: " + codiMissio
+                + "\nNom: " + nom
+                + "\nDurada: " + durada
+                + "\nData de inici: " + dateInici
+                + "\nEstà completada: " + completada
+                + "\nHubicacio: " + ubicacio
+                + aeronauStr;
     }
-    
+
 }

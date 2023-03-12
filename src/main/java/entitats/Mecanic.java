@@ -17,12 +17,11 @@ import java.sql.Date;
 @Table(name = "Mecanic")
 public class Mecanic extends Soldat implements TesteableEntity, Serializable {
 
-
     @Column(name = "VEHICULOS_DESTRUIDOS")
     private int vehiculosDestruidos;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pilotada")    
+    @JoinColumn(name = "pilotada")
     @OneToMany(mappedBy = "mecanic", cascade = CascadeType.ALL)
     private Pilotada pilotada;
 
@@ -36,9 +35,6 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
         this.pilotada = pilotada;
     }
 
-
-
-    
     @Override
     public Integer getAtributIdentificador() {
         return super.idUsuario;
@@ -87,9 +83,15 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
 
     @Override
     public String toString() {
+        String pilotadaString;
+        if (pilotada == null) {
+            pilotadaString = "\nSense pilotada assignada";
+        } else {
+            pilotadaString = pilotada.toString();
+        }
         return "\nLa classe Mecanic conte la següent informació: "
                 + "\nvehiculosDestruidos: " + vehiculosDestruidos
-                + "\nPilotada: " + "Work in progress"
-                +super.toString();
-    }        
+                + pilotadaString
+                + super.toString();
+    }
 }

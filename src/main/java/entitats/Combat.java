@@ -172,7 +172,7 @@ public class Combat extends Pilotada implements TesteableEntity, Serializable {
         return "La classe Combat conte la següent informació:"
                 + "\nMàxim número de missils: " +aeronauCombatMaxMissils
                 + "\nMàxima munició per canyo: " +aeronauCombatMaxMunicioCano
-                + "\n" +super.toString();         
+                +super.toString();         
     }
 
     
