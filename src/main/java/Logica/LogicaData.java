@@ -159,28 +159,9 @@ public class LogicaData implements InterfaceLogica {
      */
     private static void deleteEntries(Class classe) {
         //Recoleccio de parametres
-        boolean exit = false;
-        Integer first = null;
-        Integer last = null;
-        while (!exit) { //Si l'usuari introdueix un valor no numeric, el programa ho detecta
-                try { 
-                System.out.println("Indica el rang de IDs per eliminar.");
-                System.out.print("Inici del rang: ");
-                first = in.nextInt();
-                do {
-                    System.out.print("Final del rang: ");
-                    last = in.nextInt();
-                    if (last < first) {
-                        System.out.println("El final del rang no pot ser menor que"
-                                + " l'inici.");
-                    }
-                } while (last < first);
-                exit = true;
-            } catch (NumberFormatException e) {
-                logger.error("Opció no valida");
-                System.out.println("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
-            }
-        }
+        ArrayList<Integer> rang = getEntries();
+        Integer first = rang.get(0);
+        Integer last = rang.get(1);
         
         //Creacio de la sessió
         Session sessio = SingleSession.getInstance().getSessio();
@@ -207,6 +188,41 @@ public class LogicaData implements InterfaceLogica {
             }
             logger.error(e);
         }
+    }
+    
+    /**
+     * Metode que demana a l'usuari un rang de nombres
+     * 
+     * @return 
+     * @author Aitor
+     */
+    private static ArrayList getEntries() {
+        boolean exit = false;
+        Integer first = null;
+        Integer last = null;
+        while (!exit) { //Si l'usuari introdueix un valor no numeric, el programa ho detecta
+                try { 
+                System.out.println("Indica el rang de IDs per eliminar.");
+                System.out.print("Inici del rang: ");
+                first = in.nextInt();
+                do {
+                    System.out.print("Final del rang: ");
+                    last = in.nextInt();
+                    if (last < first) {
+                        System.out.println("El final del rang no pot ser menor que"
+                                + " l'inici.");
+                    }
+                } while (last < first);
+                exit = true;
+            } catch (NumberFormatException e) {
+                logger.error("Opció no valida");
+                System.out.println("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
+            }
+        }
+        ArrayList<Integer> rang = new ArrayList();
+        rang.add(first);
+        rang.add(last);
+        return rang;
     }
 
     /**
