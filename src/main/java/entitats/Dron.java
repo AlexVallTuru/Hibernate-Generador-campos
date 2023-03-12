@@ -10,6 +10,7 @@ import Interficies.TesteableEntity;
 import java.io.Serializable;
 import java.util.List;
 import Utils.Utils;
+import Utils.Utils;
 
 /**
  *
@@ -17,14 +18,14 @@ import Utils.Utils;
  */
 @Entity
 @Table(name = "Dron")
-public class Dron extends Autonoma implements TesteableEntity,Serializable{
+public class Dron extends Autonoma implements TesteableEntity, Serializable {
 
     @Column(name = "numHelices")
     int numHelices;
 
     public Dron() {
         super();
-        
+
     }
 
     public Dron(int numHelices, int tempsMaximDeVol, float pes, int sensors, Integer aeronauMatricula, String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
@@ -32,7 +33,7 @@ public class Dron extends Autonoma implements TesteableEntity,Serializable{
         this.numHelices = numHelices;
     }
 
-@Override
+    @Override
     public Integer getAtributIdentificador() {
         return super.aeronauMatricula;
     }
@@ -83,6 +84,8 @@ public class Dron extends Autonoma implements TesteableEntity,Serializable{
 
     @Override
     public String toString() {
-        return "Dron{" + "numHelices=" + numHelices + "Autonoma=" +super.toString()+ '}';
+        return "\nLa classe Dron conte la següent informació:"
+                + "\nNumero d'helices : " + numHelices
+                + super.toString();
     }
 }

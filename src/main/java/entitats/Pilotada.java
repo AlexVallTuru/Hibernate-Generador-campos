@@ -43,20 +43,20 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
         super(aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.pilot = pilot;
         this.mecanic = mecanic;
+        this.pilot = null;
     }
-
 
     public Pilot getPilotAeronau() {
         return pilot;
     }
 
     public List<Mecanic> getMecanics() {
-       return mecanic; 
+        return mecanic;
     }
-    
-    public void setPilot(Pilot p){
+
+    public void setPilot(Pilot p) {
         this.pilot = p;
-        
+
     }
 
     public void setMecanic(Mecanic mecanic) {
@@ -81,7 +81,11 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
 
     @Override
     public String toString() {
-        return "Pilotada{" + "pilot=" + pilot + ", mecanic=" + getMecanic().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + ", aeronaus=" + getAeronaus().stream().map(a -> a.toString()).collect(Collectors.joining(", "))+ "Aeronau=" +super.toString()+'}';
+        String pilotString = pilot == null ? "\nSense PILOT assignat" : "Conte el seguent PILOT:\nNomb del vehicle: " + pilot.getVehiculo() + "\t\t\t---\t\t\tId Pilot: " + pilot.getIdUsuario() + "\t\t\t---\t\t\tArma principal: " + pilot.getArmaPrincipal();
+        String mecanicString = mecanic.size() == 0 ? "\nSense MECANIC assignat" : "\nConte un total de: "+mecanic.size()+ "MECANICS:" + getMecanic().stream().map(a -> "\nVehicle destruit: "  +a.getVehiculosDestruidos());
+        return "\nLa classe Pilotada conte la següent informació:"
+                + pilotString
+                + mecanicString
+                + super.toString();
     }
-        
 }

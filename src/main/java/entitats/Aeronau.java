@@ -51,10 +51,13 @@ public abstract class Aeronau implements Serializable {
     protected Date aeronauDataFabricacio;
 
     //Relacio
-    @ManyToMany(cascade = {CascadeType.ALL},mappedBy = "aeronau")
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronau")
     protected List<Missio> missio = new ArrayList<>();
+
     //@ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronaus")
     //private List<Pilotada> pilotades = new ArrayList<>();
+
+
     public Aeronau() {
         super();
     }
@@ -120,7 +123,7 @@ public abstract class Aeronau implements Serializable {
         return missio;
     }
 
-     public void setMissio(Missio missio) {
+    public void setMissio(Missio missio) {
         this.missio.add(missio);
     }
 
@@ -134,7 +137,22 @@ public abstract class Aeronau implements Serializable {
 
     @Override
     public String toString() {
-        return "Aeronau{" + "aeronauMatricula=" + aeronauMatricula + ", aeronauNom=" + aeronauNom + ", aeronauRitmePujada=" + aeronauRitmePujada + ", aeronauVelocitatMaxima=" + aeronauVelocitatMaxima + ", aeronauAutopilotada=" + aeronauAutopilotada + ", aeronauDataFabricacio=" + aeronauDataFabricacio + ", missio=" + getMissio().stream().map(a -> a.toString()).collect(Collectors.joining(", "));
-    }
 
+        String missionStr = "";
+        if (missio.size() == 0) {
+            missionStr = "\nNo conte ninguna MISSION";
+        } else {
+            missionStr = "\nConte un total de " + getMissio().size() + " MISSIONS:" + getMissio().stream().map(a -> "\nCodi missio: " + a.getCodiMissio() + "\t\t\t---\t\t\tNom: " + a.getNom()+ "\t\t\t---\t\t\tData de fabricació: " + a.getDurada() + "dies")
+                    .collect(Collectors.joining(", "));
+        }
+        return "\nLa classe Aeronau conte la següent informació:"
+                + "\nMatricula aeronau: " + aeronauMatricula
+                + "\nNom:" + aeronauNom
+                + "\nRitme de Pujada: " + aeronauRitmePujada
+                + "\nVelocitat Maxima: " + aeronauVelocitatMaxima
+                + "\nEs Autopilotada: " + aeronauAutopilotada
+                + "\nData de fabricacio: " + aeronauDataFabricacio
+                + missionStr;
+
+    }
 }

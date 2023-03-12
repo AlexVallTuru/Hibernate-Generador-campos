@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.sql.Date;
 import Utils.Utils;
+import Utils.Utils;
 import java.util.List;
 
 /**
@@ -169,7 +170,10 @@ public class Combat extends Pilotada implements TesteableEntity, Serializable {
 
     @Override
     public String toString() {
-        return "Combat{" + "aeronauCombatMaxMissils=" + aeronauCombatMaxMissils + ", aeronauCombatMaxMunicioCano=" + aeronauCombatMaxMunicioCano + "Pilotada="+super.toString()+'}';
+        return "\nLa classe Combat conte la següent informació:"
+                + "\nMàxim número de missils: " +aeronauCombatMaxMissils
+                + "\nMàxima munició per canyo: " +aeronauCombatMaxMunicioCano
+                +super.toString();         
     }
 
     

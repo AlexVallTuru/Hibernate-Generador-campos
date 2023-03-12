@@ -8,8 +8,15 @@ package Logica;
  *
  * @author Carlos
  */
+import entitats.Aeronau;
+import entitats.Dron;
+import entitats.Soldat;
+import entitats.Mecanic;
+import entitats.Pilot;
+import entitats.Transport;
+import entitats.Missio;
+import entitats.Combat;
 import Interficies.InterfaceLogica;
-import entitats.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -220,11 +227,9 @@ public class LogicaData implements InterfaceLogica {
         2. <Eliminar soldat>
         3. <Eliminar missio>
         4. <Tornar al menú principal>
-                           
+                                                            
         Introdueix un nombre per seleccionar una opció.
         """);
-                                                            
-
     }
 
     /**

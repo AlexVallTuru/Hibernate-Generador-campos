@@ -15,6 +15,7 @@ import java.util.List;
 import Utils.Utils;
 import Utils.Utils;
 import Utils.Utils;
+import Utils.Utils;
 
 /**
  *
@@ -174,7 +175,10 @@ public class Transport extends Pilotada implements TesteableEntity, Serializable
 
     @Override
     public String toString() {
-        return "Transport{" + "aeronauTransportMaxTripulants=" + aeronauTransportMaxTripulants + ", aeronauTransportMaxPes=" + aeronauTransportMaxPes + "Pilotada="+super.toString()+'}';
+        return "\nLa classe Transport conte la següent informació:"
+                + "\nMàxim número de tripulants: " + aeronauTransportMaxTripulants
+                + "\nMàxim pes de l'aeronau:" + aeronauTransportMaxPes 
+                + super.toString();
     }
     
     

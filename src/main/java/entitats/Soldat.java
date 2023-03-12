@@ -152,7 +152,18 @@ public abstract class Soldat implements Serializable {
 
     @Override
     public String toString() {
-        return "Soldat{" + "idUsuario=" + idUsuario + ", vida=" + vida + ", proteccion=" + proteccion + ", numeroDerrotas=" + numeroDerrotas + ", numeroVictorias=" + numeroVictorias + ", armaPrincipal=" + armaPrincipal + ", armaSegundaria=" + armaSegundaria + ", prestigio=" + prestigio + ", armaCQC=" + armaCQC + ", enExpedicion=" + enExpedicion + ", nacimiento=" + nacimiento + '}';
+        return "\nLa classe Soldat conte la següent informació:"
+                +"\nId usuari: " + idUsuario 
+                +"\nVida: " + vida
+                +"\nProteccions: " + proteccion + 
+                "\nNumero de derrotas: " + numeroDerrotas
+                +"\nNumero de victorias: " + numeroVictorias
+                +"\nArma principal: " + armaPrincipal +
+                "\nArma segundaria: " + armaSegundaria +
+                "\nPrestigui: " + prestigio +
+                "\nArma cos a cos: " + armaCQC +
+                "\nEn expedició: " + enExpedicion
+                +"\nData de neixament: " + nacimiento;
     }
 
 }
