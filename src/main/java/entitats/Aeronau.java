@@ -121,7 +121,7 @@ public abstract class Aeronau implements Serializable {
         return missio;
     }
 
-     public void setMissio(Missio missio) {
+    public void setMissio(Missio missio) {
         this.missio.add(missio);
     }
 
@@ -135,7 +135,13 @@ public abstract class Aeronau implements Serializable {
 
     @Override
     public String toString() {
-        String missionsString = missio == null ? "Sense missions assignades" : missio.toString();
+        String missionStr = "";
+        if (missio.size() == 0) {
+            missionStr = "\nNo conte ninguna MISSION";
+        } else {
+            missionStr = " (\nConte un total de " + getMissio().size() + " MISSIONS:" + getMissio().stream().map(a -> "\nCodi missio: " + a.getCodiMissio() + "\t\t\t---\t\t\tNom: " + a.getNom()+ "\t\t\t---\t\t\tData de fabricació: " + a.getDurada() + "dies")
+                    .collect(Collectors.joining(", "));
+        }
         return "\nLa classe Aeronau conte la següent informació:"
                 + "\nMatricula aeronau: " + aeronauMatricula
                 + "\nNom:" + aeronauNom
@@ -143,7 +149,6 @@ public abstract class Aeronau implements Serializable {
                 + "\nVelocitat Maxima: " + aeronauVelocitatMaxima
                 + "\nEs Autopilotada: " + aeronauAutopilotada
                 + "\nData de fabricacio: " + aeronauDataFabricacio
-                + "\nMissions: " + "missionsString";
+                + "\nMissions: " + missionStr;
     }
-
 }

@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -41,6 +42,62 @@ public class Missio implements TesteableEntity, Serializable {
 
     public Missio() {
         super();
+    }
+
+    public int getCodiMissio() {
+        return codiMissio;
+    }
+
+    public void setCodiMissio(int codiMissio) {
+        this.codiMissio = codiMissio;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public float getDurada() {
+        return durada;
+    }
+
+    public void setDurada(float durada) {
+        this.durada = durada;
+    }
+
+    public Date getDateInici() {
+        return dateInici;
+    }
+
+    public void setDateInici(Date dateInici) {
+        this.dateInici = dateInici;
+    }
+
+    public Boolean getCompletada() {
+        return completada;
+    }
+
+    public void setCompletada(Boolean completada) {
+        this.completada = completada;
+    }
+
+    public String getUbicacio() {
+        return ubicacio;
+    }
+
+    public void setUbicacio(String ubicacio) {
+        this.ubicacio = ubicacio;
+    }
+
+    public List<Aeronau> getAeronau() {
+        return aeronau;
+    }
+
+    public void setAeronau(List<Aeronau> aeronau) {
+        this.aeronau = aeronau;
     }
 
     public Missio(String nom, float durada, Date dateInici, Boolean completada, String ubicacio,
@@ -81,25 +138,25 @@ public class Missio implements TesteableEntity, Serializable {
     @Override
     public void setAtributString(String s) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void setAtributFloat(Float f) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void setAtributDate(Date d) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void setAtributBoolean(Boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public void setAeronaus(List<Aeronau> aeronau) {
@@ -117,10 +174,13 @@ public class Missio implements TesteableEntity, Serializable {
     @Override
     public String toString() {
         String aeronauStr = "";
-        if (aeronau == null) {
-            aeronauStr = "\nNo conte ninguna Aeronau";
+        if (aeronau.size() == 0) {
+            aeronauStr = "\nNo conte ninguna AERONAU";
         } else {
-            aeronauStr = aeronau.toString();
+            aeronauStr =" (\nConte un total de " + getAeronaus().size() +" AERONAUS:"+ getAeronaus().stream()
+                    .map(a ->"\nNom: " + a.getAeronauNom().toString() + "\t\t\t---\t\t\tMatricula: " + a.getAeronauMatricula() + "\t\t\t---\t\t\tData de fabricació: "+ a.getAeronauDataFabricacio())
+                    .collect(Collectors.joining(", "));
+
         }
         return "\nLa classe Missio conte la següent informació: "
                 + "\nCodi Missio: " + codiMissio
@@ -130,7 +190,6 @@ public class Missio implements TesteableEntity, Serializable {
                 + "\nEstà completada: " + completada
                 + "\nHubicacio: " + ubicacio
                 + aeronauStr;
-
     }
 
 }
