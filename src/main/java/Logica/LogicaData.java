@@ -220,11 +220,9 @@ public class LogicaData implements InterfaceLogica {
         2. <Eliminar soldat>
         3. <Eliminar missio>
         4. <Tornar al menú principal>
-                           
+                                                            
         Introdueix un nombre per seleccionar una opció.
         """);
-                                                            
-
     }
 
     /**

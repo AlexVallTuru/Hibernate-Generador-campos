@@ -68,70 +68,75 @@ public class App {
                     break;
 
                 case 3:
-                    System.out.println("Introdueix la classe que vol llistar:\n");
-                    drawMenuShowClass();
-                    Integer finalOptionShowClass = null;
-                    Boolean validOption = false;
-                    while (!validOption) {
-                        finalOptionShowClass = checkOptionShowClass();
-                        if (finalOptionShowClass < 1 || finalOptionShowClass > 10) {
-                            System.out.println("L'opcio introduida no es valida, introdueix-ho de nou.");
-                            drawMenuShowClass();
-                        } else {
-                            validOption = true;
+                    Boolean exitList = false;
+                    do {
+                        System.out.println("Introdueix la classe que vol llistar:\n");
+                        drawMenuShowClass();
+                        Integer finalOptionShowClass = null;
+                        Boolean validOption = false;
+                        while (!validOption) {
+                            finalOptionShowClass = checkOptionShowClass();
+                            if (finalOptionShowClass < 1 || finalOptionShowClass > 11) {
+                                System.out.println("L'opcio introduida no es valida, introdueix-ho de nou.");
+                                drawMenuShowClass();
+                            } else {
+                                validOption = true;
+                            }
                         }
-                    }
-                    // Define el rango de IDs que deseas buscar
-                    int idInicio = 1;
-                    int idFin = 205;
-                    int limiteRegistros = 1000;
-                    int count = 0;
+                        // Define el rango de IDs que deseas buscar
+                        int idInicio = 1;
+                        int idFin = 205;
+                        int limiteRegistros = 1000;
+                        int count = 0;
 
-                    switch (finalOptionShowClass) {
-                        case 1:
-                            //Opció per mostrar la classe Aeronau
-                            ConsultasHqlAeronau(session, 1, 200);
-                            break;
-                        case 2:
-                            //Opció per mostrar la classe Autonoma
-                            ConsultasHqlAutonoma(session, 1, 200);
-                            break;
-                        case 3:
-                            //Opción para mostrar la clase Dron
-                            ConsultasHqlDron(session, 1, 200);
-                            break;
-                        case 4:
-                            //Opción para mostrar la clase Pilotada
-                            ConsultasHqlPilotada(session, 1, 200);
-                            break;
-                        case 5:
-                            //Opció per mostrar la classe Combat
-                            ConsultasHqlCombat(session, 1, 200);
-                            break;
-                        case 6:
-                            //Opció per mostrar la classe Transport
-                            ConsultasHqlTransport(session, 1, 200);
-                            break;
-                        case 7:
-                            //Opció per mostrar la classe Soldat
-                            ConsultasHqlSoldat(session, 1, 200);
-                            break;
-                        case 8:
-                            //Opció per mostrar la classe Mecanic
-                            ConsultasHqlMecanic(session, 1, 200);
-                            break;
-                        case 9:
-                            //Opció per mostrar la classe Pilot
-                            ConsultasHqlPilot(session, 1, 200);
-                            break;
-                        case 10:
-                            //Opció per mostrar la classe Missio
-                            ConsultasHqlMissio(session, 1, 200);
-                            break;
-                        case 11:
-                            //Menu principal                       
-                            break;
-                    }
+                        switch (finalOptionShowClass) {
+                            case 1:
+                                //Opció per mostrar la classe Aeronau
+                                ConsultasHqlAeronau(session, 1, 200);
+                                break;
+                            case 2:
+                                //Opció per mostrar la classe Autonoma
+                                ConsultasHqlAutonoma(session, 1, 200);
+                                break;
+                            case 3:
+                                //Opción para mostrar la clase Dron
+                                ConsultasHqlDron(session, 1, 200);
+                                break;
+                            case 4:
+                                //Opción para mostrar la clase Pilotada
+                                ConsultasHqlPilotada(session, 1, 200);
+                                break;
+                            case 5:
+                                //Opció per mostrar la classe Combat
+                                ConsultasHqlCombat(session, 1, 200);
+                                break;
+                            case 6:
+                                //Opció per mostrar la classe Transport
+                                ConsultasHqlTransport(session, 1, 200);
+                                break;
+                            case 7:
+                                //Opció per mostrar la classe Soldat
+                                ConsultasHqlSoldat(session, 1, 200);
+                                break;
+                            case 8:
+                                //Opció per mostrar la classe Mecanic
+                                ConsultasHqlMecanic(session, 1, 200);
+                                break;
+                            case 9:
+                                //Opció per mostrar la classe Pilot
+                                ConsultasHqlPilot(session, 1, 200);
+                                break;
+                            case 10:
+                                //Opció per mostrar la classe Missio
+                                ConsultasHqlMissio(session, 1, 200);
+                                break;
+                            case 11:
+                                //Menu principal                 
+                                exitList = true;
+                                break;
+                        }
+                    } while (!exitList);
+                    break;
                 //Sortida del programa
                 case 4:
                     System.out.println("Fins aviat!");
@@ -224,6 +229,7 @@ public class App {
         System.out.println("8. <Mecanic>");
         System.out.println("9. <Pilot>");
         System.out.println("10. <Missio>");
+        System.out.println("11. <Tornar al menu principal>");
     }
 
     public static Integer checkOptionShowClass() {
@@ -234,7 +240,7 @@ public class App {
             try {
                 String inOption = in.next();
                 finalOption = Integer.parseInt(inOption);
-                if (finalOption < 1 || finalOption > 10) {
+                if (finalOption < 1 || finalOption > 11) {
                     throw new NumberFormatException();
                 }
                 valid = true;
