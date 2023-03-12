@@ -64,9 +64,10 @@ public class ClassFactory implements TesteableFactory {
 
     @Override
     public Missio addAeronausToMissio(List<Aeronau> la, Missio m) throws Exception {
-        if (la.size() > 2) {
+        if (la.size() > 8) {
             throw new Exception();
         }
+        
         for (Object obj : la) {
             if (obj instanceof Aeronau) {
 
@@ -144,7 +145,13 @@ public class ClassFactory implements TesteableFactory {
 
     @Override
     public Missio missioFactory() {
-        return new Missio(fake.name().username(), fake.number().randomNumber(), Utils.localDateToSQLDate(fake.date().birthday()), fake.bool().bool(), fake.address().city(), null);
+        return new Missio(
+                Utils.missions[fake.number().numberBetween(0, Utils.missions.length+1)],
+                fake.number().randomNumber(),
+                Utils.localDateToSQLDate(fake.date().birthday()),
+                fake.bool().bool(),
+                fake.address().city(),
+                new ArrayList());
     }
 
     @Override
@@ -175,7 +182,7 @@ public class ClassFactory implements TesteableFactory {
         int secundaries = Utils.armasSecundarias.length;
         int armesCQC = Utils.armesCQC.length;
         int prestigis = Utils.prestigis.length;
-
+        
         if (tipus == Mecanic.class) {
             soldat = new Mecanic(fake.number().randomDigit(),
                     null,
@@ -214,7 +221,7 @@ public class ClassFactory implements TesteableFactory {
      * @param tipusClase
      * @param elements 
      */
-    public void generadorRegistres(Class<?> tipusClase, int elements) {
+    public void generadorRegistres(Class<?> tipusClase, int elements) throws Exception {
         
         //Obtenir la sessio
         Session sessio = SingleSession.getInstance().getSessio();
@@ -230,21 +237,44 @@ public class ClassFactory implements TesteableFactory {
         for (int i = 0; i < elements; i++) {
             //Generar Soldats
             if (parent == Soldat.class) {
-                sessio.persist(this.soldatFactory(tipusClase));
+                int random = fake.number().numberBetween(0, 2);
+                Soldat soldat = soldatFactory(tipusClase);
+                Aeronau aeronau = aeronauFactory(Utils.pilotades.get(random));
+                
+                if(soldat instanceof Mecanic){
+                    ((Mecanic) soldat).setPilotada((Pilotada) aeronau);
+                }else if(soldat instanceof Pilot){
+                    ((Pilot) soldat).setPilotada((Pilotada) aeronau);
+                }
+                sessio.persist(soldat);
                 logger.info("S'ha generat soldat nº : "+i);
 
             }
 
             //Generar Aeronaus
             if (parent == Pilotada.class || parent == Autonoma.class) {
-                sessio.persist(this.aeronauFactory(tipusClase));
+                Aeronau aeronau = aeronauFactory(tipusClase);
+                if(aeronau instanceof Pilotada ){
+                    Soldat soldatPilot = soldatFactory(Pilot.class);
+                    List<Missio> missions = missionsFactory(fake.number().numberBetween(0, 3));
+                    List<Soldat> mecanic = mecanicsFactory(fake.number().numberBetween(0, 3));
+                    addMissionsToAeronau(missions, aeronau);
+                    addMecanicsToPilotada(mecanic, (Pilotada)aeronau);
+                    addPilotToAeronauPilotada((Pilot)soldatPilot, (Pilotada)aeronau);
+                   
+                }
+                sessio.persist(aeronau);
+                
                 logger.info("S'ha generat aeronau nº : "+i);
 
             }
             
             //Generar Missions
             if(tipusClase == Missio.class){
-                sessio.persist(this.missioFactory());
+                List<Aeronau> aeronau = aeronausFactory(fake.number().numberBetween(0, 9));
+                Missio missio = missioFactory();
+                missio.setAeronaus(aeronau);
+                sessio.persist(missio);
                 logger.info("S'ha generat missio nº : "+i);
             }
             
@@ -253,6 +283,15 @@ public class ClassFactory implements TesteableFactory {
         sessio.getTransaction().commit();
         logger.info("S'han guardat els registres");
        
+    }
+    
+    public List<Aeronau> aeronausFactory(int elements){
+        List<Aeronau> aeronau = new ArrayList<>();
+        for (int i = 0; i <elements; i++) {
+            int random = fake.number().numberBetween(0, 2);
+            aeronau.add(aeronauFactory(Utils.pilotades.get(random)));
+        }
+        return aeronau;
     }
 
 }

@@ -53,8 +53,8 @@ public abstract class Aeronau implements Serializable {
     //Relacio
     @ManyToMany(cascade = {CascadeType.ALL},mappedBy = "aeronau")
     protected List<Missio> missio = new ArrayList<>();
-    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronaus")
-    private List<Pilotada> pilotades = new ArrayList<>();
+    //@ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "aeronaus")
+    //private List<Pilotada> pilotades = new ArrayList<>();
     public Aeronau() {
         super();
     }
@@ -124,17 +124,17 @@ public abstract class Aeronau implements Serializable {
         this.missio.add(missio);
     }
 
-    public List<Pilotada> getPilotades() {
-        return pilotades;
-    }
+    //public List<Pilotada> getPilotades() {
+    //    return pilotades;
+    //}
 
-    public void setPilotades(List<Pilotada> pilotades) {
-        this.pilotades = pilotades;
-    }
+    //public void setPilotades(List<Pilotada> pilotades) {
+    //    this.pilotades = pilotades;
+    //}
 
     @Override
     public String toString() {
-        return "Aeronau{" + "aeronauMatricula=" + aeronauMatricula + ", aeronauNom=" + aeronauNom + ", aeronauRitmePujada=" + aeronauRitmePujada + ", aeronauVelocitatMaxima=" + aeronauVelocitatMaxima + ", aeronauAutopilotada=" + aeronauAutopilotada + ", aeronauDataFabricacio=" + aeronauDataFabricacio + ", missio=" + getMissio().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + ", pilotades=" + getPilotades().stream().map(a -> a.toString()).collect(Collectors.joining(", ")) + '}';
+        return "Aeronau{" + "aeronauMatricula=" + aeronauMatricula + ", aeronauNom=" + aeronauNom + ", aeronauRitmePujada=" + aeronauRitmePujada + ", aeronauVelocitatMaxima=" + aeronauVelocitatMaxima + ", aeronauAutopilotada=" + aeronauAutopilotada + ", aeronauDataFabricacio=" + aeronauDataFabricacio + ", missio=" + getMissio().stream().map(a -> a.toString()).collect(Collectors.joining(", "));
     }
 
 }

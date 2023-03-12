@@ -8,6 +8,7 @@ import Interficies.TesteableEntity;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public class Missio implements TesteableEntity, Serializable{
     String ubicacio;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "Aeronau")
-    private List<Aeronau> aeronau;
+    private List<Aeronau> aeronau = new ArrayList<>();
 
     public Missio() {
         super();

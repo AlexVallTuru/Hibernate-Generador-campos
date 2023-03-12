@@ -84,5 +84,9 @@ public class Pilot extends Soldat implements TesteableEntity {
         return "Pilot{" + "vehiculo=" + vehiculo + ", pilotada=" + pilotada.toString() + "Soldat" + super.toString() + '}';
     }
 
+    public void setPilotada(Pilotada pilotada) {
+        this.pilotada = pilotada;
+    }
+
     
 }
