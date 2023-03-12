@@ -10,8 +10,9 @@ package Logica;
  */
 import entitats.*;
 import Interficies.InterfaceLogica;
-import java.util.Scanner;
+import java.util.*;
 import main.*;
+import static main.ConsultasHql.*;
 import menus.Menus;
 import org.apache.logging.log4j.*;
 import org.hibernate.*;
@@ -144,42 +145,127 @@ public class LogicaData implements InterfaceLogica {
         } while (!exit);
     }
 
+    public void mostrarInformacio(Session session) {
+        Boolean exitList = false;
+        do {
+            System.out.println("Introdueix la classe que vol llistar:\n");
+            drawMenuShowClass();
+            Integer finalOptionShowClass = null;
+            Boolean validOption = false;
+            while (!validOption) {
+                finalOptionShowClass = checkOptionShowClass();
+                if (finalOptionShowClass < 1 || finalOptionShowClass > 11) {
+                    System.out.println("L'opcio introduida no es valida, introdueix-ho de nou.");
+                    drawMenuShowClass();
+                } else {
+                    validOption = true;
+                }
+            }
+            ArrayList<Integer> idIniciFi = getEntries();
+            Integer idInici = idIniciFi.get(0);
+            Integer idFi = idIniciFi.get(1);
+            int count = 0;
+
+            switch (finalOptionShowClass) {
+                case 1:
+                    //Opció per mostrar la classe Aeronau
+                    ConsultasHqlAeronau(session, idInici, idFi);
+                    break;
+                case 2:
+                    //Opció per mostrar la classe Autonoma
+                    ConsultasHqlAutonoma(session, idInici, idFi);
+                    break;
+                case 3:
+                    //Opción para mostrar la clase Dron
+                    ConsultasHqlDron(session, idInici, idFi);
+                    break;
+                case 4:
+                    //Opción para mostrar la clase Pilotada
+                    ConsultasHqlPilotada(session, idInici, idFi);
+                    break;
+                case 5:
+                    //Opció per mostrar la classe Combat
+                    ConsultasHqlCombat(session, idInici, idFi);
+                    break;
+                case 6:
+                    //Opció per mostrar la classe Transport
+                    ConsultasHqlTransport(session, idInici, idFi);
+                    break;
+                case 7:
+                    //Opció per mostrar la classe Soldat
+                    ConsultasHqlSoldat(session, idInici, idFi);
+                    break;
+                case 8:
+                    //Opció per mostrar la classe Mecanic
+                    ConsultasHqlMecanic(session, idInici, idFi);
+                    break;
+                case 9:
+                    //Opció per mostrar la classe Pilot
+                    ConsultasHqlPilot(session, idInici, idFi);
+                    break;
+                case 10:
+                    //Opció per mostrar la classe Missio
+                    ConsultasHqlMissio(session, idInici, idFi);
+                    break;
+                case 11:
+                    //Menu principal                 
+                    exitList = true;
+                    break;
+            }
+        } while (!exitList);
+        //Sortida del programa
+    }
+
+    private static void drawMenuShowClass() {
+        System.out.println("1. <Aeronau>");
+        System.out.println("2. <Autonoma>");
+        System.out.println("3. <Dron>");
+        System.out.println("4. <Pilotada>");
+        System.out.println("5. <Combat>");
+        System.out.println("6. <Transport>");
+        System.out.println("7. <Soldat>");
+        System.out.println("8. <Mecanic>");
+        System.out.println("9. <Pilot>");
+        System.out.println("10. <Missio>");
+        System.out.println("11. <Tornar al menu principal>");
+    }
+
+    public static Integer checkOptionShowClass() {
+        Scanner in = new Scanner(System.in);
+        Boolean valid = false;
+        Integer finalOption = null;
+        while (!valid) {
+            try {
+                String inOption = in.next();
+                finalOption = Integer.parseInt(inOption);
+                if (finalOption < 1 || finalOption > 11) {
+                    throw new NumberFormatException();
+                }
+                valid = true;
+            } catch (NumberFormatException e) {
+                System.out.println("L'opcio introduida no es valida o no es un nombre, introdueix-ho de nou.");
+            }
+        }
+        return finalOption;
+    }
+
     /**
-     * Metode que elimina un rang d'entitats indicades d'una classe 
+     * Metode que elimina un rang d'entitats indicades d'una classe
      * proporcionada.
-     * 
-     * @param classe 
+     *
+     * @param classe
      * @author Aitor
      */
     private static void deleteEntries(Class classe) {
         //Recoleccio de parametres
-        boolean exit = false;
-        Integer first = null;
-        Integer last = null;
-        while (!exit) { //Si l'usuari introdueix un valor no numeric, el programa ho detecta
-                try { 
-                System.out.println("Indica el rang de IDs per eliminar.");
-                System.out.print("Inici del rang: ");
-                first = in.nextInt();
-                do {
-                    System.out.print("Final del rang: ");
-                    last = in.nextInt();
-                    if (last < first) {
-                        System.out.println("El final del rang no pot ser menor que"
-                                + " l'inici.");
-                    }
-                } while (last < first);
-                exit = true;
-            } catch (NumberFormatException e) {
-                logger.error("Opció no valida");
-                System.out.println("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
-            }
-        }
-        
+        ArrayList<Integer> rang = getEntries();
+        Integer first = rang.get(0);
+        Integer last = rang.get(1);
+
         //Creacio de la sessió
         Session sessio = SingleSession.getInstance().getSessio();
         Transaction transaccio = sessio.beginTransaction();
-        
+
         //Loop per eliminar les entitats demanades
         try {
             for (int i = first; i <= last; i++) {
@@ -201,6 +287,41 @@ public class LogicaData implements InterfaceLogica {
             }
             logger.error(e);
         }
+    }
+
+    /**
+     * Metode que demana a l'usuari un rang de nombres
+     *
+     * @return
+     * @author Aitor
+     */
+    private static ArrayList getEntries() {
+        boolean exit = false;
+        Integer first = null;
+        Integer last = null;
+        while (!exit) { //Si l'usuari introdueix un valor no numeric, el programa ho detecta
+            try {
+                System.out.println("Indica el rang de IDs.");
+                System.out.print("Inici del rang: ");
+                first = in.nextInt();
+                do {
+                    System.out.print("Final del rang: ");
+                    last = in.nextInt();
+                    if (last < first) {
+                        System.out.println("El final del rang no pot ser menor que"
+                                + " l'inici.");
+                    }
+                } while (last < first);
+                exit = true;
+            } catch (NumberFormatException e) {
+                logger.error("Opció no valida");
+                System.out.println("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
+            }
+        }
+        ArrayList<Integer> rang = new ArrayList();
+        rang.add(first);
+        rang.add(last);
+        return rang;
     }
 
     /**

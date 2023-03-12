@@ -5,11 +5,7 @@
  */
 package Interficies;
 
-import entitats.Aeronau;
-import entitats.Missio;
-import entitats.Pilot;
-import entitats.Pilotada;
-import entitats.Soldat;
+import entitats.*;
 import java.util.List;
 
 /**
