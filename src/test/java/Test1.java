@@ -5,18 +5,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import java.util.ArrayList;
 import java.util.List;
-import main.ClassFactory;
 import main.SingleSession;
+import entitats.Aeronau;
 import entitats.Combat;
-import entitats.Transport;
+import entitats.Dron;
 import entitats.Mecanic;
 import entitats.Missio;
 import entitats.Pilot;
-import entitats.Dron;
 import entitats.Pilotada;
-import entitats.Aeronau;
+import entitats.Transport;
+import main.ClassFactory;
+
 import org.hibernate.Session;
 import org.junit.jupiter.api.AfterAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -14,48 +14,48 @@ import jakarta.persistence.TypedQuery;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import Logica.LogicaData;
 import java.util.Scanner;
-import static main.ConsultasHql.*;
+import main.ConsultasHql.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 
 /**
  *
- * @author Aitor
+ * @author Aitor, Carlos
  */
 public class App {
 
+    private static SingleSession singleSession = null;
+    private static Session sessio = null;
     private static final Logger logger = LogManager.getLogger(App.class);
+    private static final LogicaData logic = new LogicaData();
 
     private static Session session;
 
     public static void main(String[] args) {
-        ClassFactory cf = new ClassFactory();
 
         session = SingleSession.getInstance().getSessio();
 
         //Inici de sessio
-        logger.info("\nInicio de sesion...");
-        SingleSession singl = null;
-        Session a = null;
+        logger.info("Inici de sessió...");
         Boolean valid = false; //Boolean per verificar inici de sessio
         while (!valid) {
             try {
-                singl = SingleSession.getInstance();
-                a = singl.getSessio();
+                login();
                 valid = true;
-                logger.info("\nCredenciales correctas");
+                logger.info("Credencials correctes");
             } catch (Exception e) {
-                logger.error("\nCredenciales incorrectas");
-                System.out.println("Credenciales incorrectas, por favor introducelas de nuevo");
+                logger.error("Credencials incorrectes");
+                System.out.println("Credencials incorrectes. Si us plau, introdueix-les de nou.");
             }
         }
 
         //Menu principal
         Boolean exit = false;
         do {
-            logger.info("\nMostrando menu principal");
+            logger.info("Mostrant el menu principal");
             drawMenu();
             //Comprobar que l'opció introduida per l'usuari es correcte
             Integer finalOption = checkOption();
@@ -63,18 +63,14 @@ public class App {
             //Crida a funcions
             switch (finalOption) {
                 case 1:
-                    System.out.println("Not implemented.");
+                    logic.generaClasse();
                     break;
 
                 case 2:
-                    System.out.println("Not implemented.");
+                    logic.esborra();
                     break;
 
                 case 3:
-                    System.out.println("Not implemented.");
-                    break;
-
-                case 4:
                     System.out.println("Introdueix la classe que vol llistar:\n4");
                     drawMenuShowClass();
                     Integer finalOptionShowClass = null;
@@ -136,9 +132,9 @@ public class App {
                             
                     }
                 //Sortida del programa
-                case 5:
+                case 4:
                     System.out.println("Fins aviat!");
-                    singl.closeConnection();
+                    singleSession.closeConnection();
                     exit = true;
             }
         } while (!exit);
@@ -152,12 +148,42 @@ public class App {
     private static void drawMenu() {
         //ASCII art per el menu
         System.out.println("\n_ __ ___   ___ _ __  _   _ \r\n| '_ ` _ \\ / _ \\ '_ \\| | | |\r\n| | | | | |  __/ | | | |_| |\r\n|_| |_| |_|\\___|_| |_|\\__,_|\r\n");
-        System.out.println("1. <Afegir elements a una classe>");
-        System.out.println("2. <Eliminar elements d'una classe>");
-        System.out.println("3. <Modificar elements d'una classe>");
-        System.out.println("4. <Llistar elements d'una classe>");
-        System.out.println("5. <Sortir>");
-        System.out.println("\n Introdueix un numero per escogir una opció");
+        System.out.println("""
+                   1. <Crear entitats>
+                   2. <Eliminar entitats>
+                   3. <Listar entitats>
+                   4. <Sortir>
+
+                   Introdueix un nombre per seleccionar una de les opcions.""");
+        
+
+    }
+
+    /**
+     * Login i seleccio de base de dades
+     *
+     * @author Carlos
+     */
+    public static void login() {
+        Scanner in = new Scanner(System.in);
+
+        //Nom usuari DB
+        System.out.print("Usuari: ");
+        String usuari = in.nextLine();
+
+        //Password DB
+        System.out.print("Contrassenya: ");
+        String password = in.nextLine();
+
+        //Nom base de dades
+        System.out.print("Nom de la DDBB: ");
+        String dbName = in.nextLine();
+
+        //Inici de sessio
+        logger.info("Iniciant sessió amb usuari: " + usuari + " a la base de dades " + dbName);
+        singleSession = SingleSession.getInstance(usuari, password, dbName);
+        
+        
     }
 
     /**
@@ -165,6 +191,7 @@ public class App {
      * programa.
      *
      * @return finalOption
+     * @author Aitor
      */
     public static Integer checkOption() {
         Scanner in = new Scanner(System.in);
@@ -179,45 +206,12 @@ public class App {
                 }
                 valid = true;
             } catch (NumberFormatException e) {
-                System.out.println("L'opcio introduida no es valida o no es un nombre, introdueix-ho de nou.");
+                logger.error("Opció no valida");
+                System.out.println("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
+                drawMenu();
             }
         }
         return finalOption;
     }
 
-    public static Date convertDate(String dat) {
-        return Date.valueOf(dat);
-    }
-
-    private static void drawMenuShowClass() {
-        System.out.println("1. <Aeronau>");
-        System.out.println("2. <Autonoma>");
-        System.out.println("3. <Dron>");
-        System.out.println("4. <Pilotada>");
-        System.out.println("5. <Combat>");
-        System.out.println("6. <Transport>");
-        System.out.println("7. <Soldat>");
-        System.out.println("8. <Mecanic>");
-        System.out.println("9. <Pilot>");
-        System.out.println("10. <Missio>");
-    }
-
-    public static Integer checkOptionShowClass() {
-        Scanner in = new Scanner(System.in);
-        Boolean valid = false;
-        Integer finalOption = null;
-        while (!valid) {
-            try {
-                String inOption = in.next();
-                finalOption = Integer.parseInt(inOption);
-                if (finalOption < 1 || finalOption > 10) {
-                    throw new NumberFormatException();
-                }
-                valid = true;
-            } catch (NumberFormatException e) {
-                System.out.println("L'opcio introduida no es valida o no es un nombre, introdueix-ho de nou.");
-            }
-        }
-        return finalOption;
-    }
 }

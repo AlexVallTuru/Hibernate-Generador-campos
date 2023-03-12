@@ -5,8 +5,6 @@
  */
 package entitats;
 
-import entitats.Missio;
-import entitats.Pilotada;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -123,8 +121,8 @@ public abstract class Aeronau implements Serializable {
         return missio;
     }
 
-    public void setMissio(List<Missio> missio) {
-        this.missio = missio;
+     public void setMissio(Missio missio) {
+        this.missio.add(missio);
     }
 
     public List<Pilotada> getPilotades() {
@@ -147,4 +145,5 @@ public abstract class Aeronau implements Serializable {
                 + "\nData de fabricacio: " + aeronauDataFabricacio
                 + "\nMissions: " + missionsString;
     }
+
 }
