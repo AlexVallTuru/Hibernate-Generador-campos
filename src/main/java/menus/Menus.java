@@ -5,7 +5,6 @@
 package menus;
 
 import java.util.Scanner;
-import main.App;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

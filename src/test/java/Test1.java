@@ -6,18 +6,9 @@
  * and open the template in the editor.
  */
 
-import java.util.ArrayList;
-import java.util.List;
-import main.SingleSession;
-import entitats.Aeronau;
-import entitats.Combat;
-import entitats.Dron;
-import entitats.Mecanic;
-import entitats.Missio;
-import entitats.Pilot;
-import entitats.Pilotada;
-import entitats.Transport;
-import main.ClassFactory;
+import java.util.*;
+import main.*;
+import entitats.*;
 
 import org.hibernate.Session;
 import org.junit.jupiter.api.AfterAll;
