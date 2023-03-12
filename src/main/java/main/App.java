@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import Logica.LogicaData;
 import java.util.Scanner;
-import static main.ConsultasHql.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -62,82 +61,12 @@ public class App {
                 case 1:
                     logic.generaClasse();
                     break;
-
                 case 2:
                     logic.esborra();
                     break;
-
                 case 3:
-                    Boolean exitList = false;
-                    do {
-                        System.out.println("Introdueix la classe que vol llistar:\n");
-                        drawMenuShowClass();
-                        Integer finalOptionShowClass = null;
-                        Boolean validOption = false;
-                        while (!validOption) {
-                            finalOptionShowClass = checkOptionShowClass();
-                            if (finalOptionShowClass < 1 || finalOptionShowClass > 11) {
-                                System.out.println("L'opcio introduida no es valida, introdueix-ho de nou.");
-                                drawMenuShowClass();
-                            } else {
-                                validOption = true;
-                            }
-                        }
-                        // Define el rango de IDs que deseas buscar
-                        int idInicio = 1;
-                        int idFin = 205;
-                        int limiteRegistros = 1000;
-                        int count = 0;
-
-                        switch (finalOptionShowClass) {
-                            case 1:
-                                //Opció per mostrar la classe Aeronau
-                                ConsultasHqlAeronau(session, idInicio, idFin);
-                                break;
-                            case 2:
-                                //Opció per mostrar la classe Autonoma
-                                ConsultasHqlAutonoma(session, idInicio, idFin);
-                                break;
-                            case 3:
-                                //Opción para mostrar la clase Dron
-                                ConsultasHqlDron(session, idInicio, idFin);
-                                break;
-                            case 4:
-                                //Opción para mostrar la clase Pilotada
-                                ConsultasHqlPilotada(session, idInicio, idFin);
-                                break;
-                            case 5:
-                                //Opció per mostrar la classe Combat
-                                ConsultasHqlCombat(session, idInicio, idFin);
-                                break;
-                            case 6:
-                                //Opció per mostrar la classe Transport
-                                ConsultasHqlTransport(session, idInicio, idFin);
-                                break;
-                            case 7:
-                                //Opció per mostrar la classe Soldat
-                                ConsultasHqlSoldat(session, idInicio, idFin);
-                                break;
-                            case 8:
-                                //Opció per mostrar la classe Mecanic
-                                ConsultasHqlMecanic(session, idInicio, idFin);
-                                break;
-                            case 9:
-                                //Opció per mostrar la classe Pilot
-                                ConsultasHqlPilot(session, idInicio, idFin);
-                                break;
-                            case 10:
-                                //Opció per mostrar la classe Missio
-                                ConsultasHqlMissio(session, idInicio, idFin);
-                                break;
-                            case 11:
-                                //Menu principal                 
-                                exitList = true;
-                                break;
-                        }
-                    } while (!exitList);
+                    logic.mostrarInformacio(session);
                     break;
-                //Sortida del programa
                 case 4:
                     System.out.println("Fins aviat!");
                     singleSession.closeConnection();
@@ -213,39 +142,6 @@ public class App {
                 logger.error("Opció no valida");
                 System.out.println("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
                 drawMenu();
-            }
-        }
-        return finalOption;
-    }
-
-    private static void drawMenuShowClass() {
-        System.out.println("1. <Aeronau>");
-        System.out.println("2. <Autonoma>");
-        System.out.println("3. <Dron>");
-        System.out.println("4. <Pilotada>");
-        System.out.println("5. <Combat>");
-        System.out.println("6. <Transport>");
-        System.out.println("7. <Soldat>");
-        System.out.println("8. <Mecanic>");
-        System.out.println("9. <Pilot>");
-        System.out.println("10. <Missio>");
-        System.out.println("11. <Tornar al menu principal>");
-    }
-
-    public static Integer checkOptionShowClass() {
-        Scanner in = new Scanner(System.in);
-        Boolean valid = false;
-        Integer finalOption = null;
-        while (!valid) {
-            try {
-                String inOption = in.next();
-                finalOption = Integer.parseInt(inOption);
-                if (finalOption < 1 || finalOption > 11) {
-                    throw new NumberFormatException();
-                }
-                valid = true;
-            } catch (NumberFormatException e) {
-                System.out.println("L'opcio introduida no es valida o no es un nombre, introdueix-ho de nou.");
             }
         }
         return finalOption;
