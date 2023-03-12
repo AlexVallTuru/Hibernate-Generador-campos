@@ -149,6 +149,6 @@ public abstract class Aeronau implements Serializable {
                 + "\nVelocitat Maxima: " + aeronauVelocitatMaxima
                 + "\nEs Autopilotada: " + aeronauAutopilotada
                 + "\nData de fabricacio: " + aeronauDataFabricacio
-                + "\nMissions: " + missionStr;
+                + missionStr;
     }
 }

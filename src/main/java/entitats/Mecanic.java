@@ -81,6 +81,22 @@ public class Mecanic extends Soldat implements TesteableEntity, Serializable {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public int getVehiculosDestruidos() {
+        return vehiculosDestruidos;
+    }
+
+    public void setVehiculosDestruidos(int vehiculosDestruidos) {
+        this.vehiculosDestruidos = vehiculosDestruidos;
+    }
+
+    public Pilotada getPilotada() {
+        return pilotada;
+    }
+
+    public void setPilotada(Pilotada pilotada) {
+        this.pilotada = pilotada;
+    }
+
     @Override
     public String toString() {
         String pilotadaString;
