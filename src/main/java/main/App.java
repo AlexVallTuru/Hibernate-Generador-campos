@@ -92,43 +92,43 @@ public class App {
                         switch (finalOptionShowClass) {
                             case 1:
                                 //Opció per mostrar la classe Aeronau
-                                ConsultasHqlAeronau(session, 1, 200);
+                                ConsultasHqlAeronau(session, idInicio, idFin);
                                 break;
                             case 2:
                                 //Opció per mostrar la classe Autonoma
-                                ConsultasHqlAutonoma(session, 1, 200);
+                                ConsultasHqlAutonoma(session, idInicio, idFin);
                                 break;
                             case 3:
                                 //Opción para mostrar la clase Dron
-                                ConsultasHqlDron(session, 1, 200);
+                                ConsultasHqlDron(session, idInicio, idFin);
                                 break;
                             case 4:
                                 //Opción para mostrar la clase Pilotada
-                                ConsultasHqlPilotada(session, 1, 200);
+                                ConsultasHqlPilotada(session, idInicio, idFin);
                                 break;
                             case 5:
                                 //Opció per mostrar la classe Combat
-                                ConsultasHqlCombat(session, 1, 200);
+                                ConsultasHqlCombat(session, idInicio, idFin);
                                 break;
                             case 6:
                                 //Opció per mostrar la classe Transport
-                                ConsultasHqlTransport(session, 1, 200);
+                                ConsultasHqlTransport(session, idInicio, idFin);
                                 break;
                             case 7:
                                 //Opció per mostrar la classe Soldat
-                                ConsultasHqlSoldat(session, 1, 200);
+                                ConsultasHqlSoldat(session, idInicio, idFin);
                                 break;
                             case 8:
                                 //Opció per mostrar la classe Mecanic
-                                ConsultasHqlMecanic(session, 1, 200);
+                                ConsultasHqlMecanic(session, idInicio, idFin);
                                 break;
                             case 9:
                                 //Opció per mostrar la classe Pilot
-                                ConsultasHqlPilot(session, 1, 200);
+                                ConsultasHqlPilot(session, idInicio, idFin);
                                 break;
                             case 10:
                                 //Opció per mostrar la classe Missio
-                                ConsultasHqlMissio(session, 1, 200);
+                                ConsultasHqlMissio(session, idInicio, idFin);
                                 break;
                             case 11:
                                 //Menu principal                 

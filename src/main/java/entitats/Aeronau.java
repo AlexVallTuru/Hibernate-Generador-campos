@@ -139,7 +139,7 @@ public abstract class Aeronau implements Serializable {
         if (missio.size() == 0) {
             missionStr = "\nNo conte ninguna MISSION";
         } else {
-            missionStr = " (\nConte un total de " + getMissio().size() + " MISSIONS:" + getMissio().stream().map(a -> "\nCodi missio: " + a.getCodiMissio() + "\t\t\t---\t\t\tNom: " + a.getNom()+ "\t\t\t---\t\t\tData de fabricació: " + a.getDurada() + "dies")
+            missionStr = "\nConte un total de " + getMissio().size() + " MISSIONS:" + getMissio().stream().map(a -> "\nCodi missio: " + a.getCodiMissio() + "\t\t\t---\t\t\tNom: " + a.getNom()+ "\t\t\t---\t\t\tData de fabricació: " + a.getDurada() + "dies")
                     .collect(Collectors.joining(", "));
         }
         return "\nLa classe Aeronau conte la següent informació:"

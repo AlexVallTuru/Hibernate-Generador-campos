@@ -191,7 +191,7 @@ public class Pilot extends Soldat implements TesteableEntity {
         } else {
             pilotadaString = pilotada.toString();
         }
-        return "La classe Pilot conte la següent informació:"
+        return "\nLa classe Pilot conte la següent informació:"
                 + "\nNombre vehicule: " + vehiculo
                 + "\n" + pilotadaString
                 + super.toString();
