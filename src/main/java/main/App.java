@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Logica.LogicaData;
 import java.util.Scanner;
-import main.ConsultasHql.*;
+import static main.ConsultasHql.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -57,6 +57,7 @@ public class App {
         do {
             logger.info("Mostrant el menu principal");
             drawMenu();
+            session = singleSession.getSessio();
             //Comprobar que l'opció introduida per l'usuari es correcte
             Integer finalOption = checkOption();
 
@@ -92,44 +93,44 @@ public class App {
                     switch (finalOptionShowClass) {
                         case 1:
                             //Opció per mostrar la classe Aeronau
-                            ConsultasHqlAeronau(a, 1, 200);
+                            ConsultasHqlAeronau(session, 1, 200);
                             break;
                         case 2:
                             //Opció per mostrar la classe Autonoma
-                            ConsultasHqlAutonoma(a, 1, 200);
+                            ConsultasHqlAutonoma(session, 1, 200);
                             break;
                         case 3:
                             //Opción para mostrar la clase Dron
-                            ConsultasHqlDron(a, 1, 200);
+                            ConsultasHqlDron(session, 1, 200);
                             break;
                         case 4:
                             //Opción para mostrar la clase Pilotada
-                            ConsultasHqlPilotada(a, 1, 200);
+                            ConsultasHqlPilotada(session, 1, 200);
                             break;
                         case 5:
                             //Opció per mostrar la classe Combat
-                            ConsultasHqlCombat(a, 1, 200);
+                            ConsultasHqlCombat(session, 1, 200);
                             break;
                         case 6:
                             //Opció per mostrar la classe Transport
-                            ConsultasHqlTransport(a, 1, 200);
+                            ConsultasHqlTransport(session, 1, 200);
                             break;
                         case 7:
                             //Opció per mostrar la classe Soldat
-                            ConsultasHqlSoldat(a, 1, 200);
+                            ConsultasHqlSoldat(session, 1, 200);
                             break;
                         case 8:
                             //Opció per mostrar la classe Mecanic
-                            ConsultasHqlMecanic(a, 1, 200);
+                            ConsultasHqlMecanic(session, 1, 200);
                             break;
                         case 9:
                             //Opció per mostrar la classe Pilot
-                            ConsultasHqlPilot(a, 1, 200);
+                            ConsultasHqlPilot(session, 1, 200);
                             break;
                         case 10:
                             //Opció per mostrar la classe Missio
-                            ConsultasHqlMissio(a, 1, 200);
-                            
+                            ConsultasHqlMissio(session, 1, 200);
+                            break;
                     }
                 //Sortida del programa
                 case 4:
@@ -155,7 +156,6 @@ public class App {
                    4. <Sortir>
 
                    Introdueix un nombre per seleccionar una de les opcions.""");
-        
 
     }
 
@@ -182,8 +182,7 @@ public class App {
         //Inici de sessio
         logger.info("Iniciant sessió amb usuari: " + usuari + " a la base de dades " + dbName);
         singleSession = SingleSession.getInstance(usuari, password, dbName);
-        
-        
+
     }
 
     /**
@@ -214,4 +213,35 @@ public class App {
         return finalOption;
     }
 
+    private static void drawMenuShowClass() {
+        System.out.println("1. <Aeronau>");
+        System.out.println("2. <Autonoma>");
+        System.out.println("3. <Dron>");
+        System.out.println("4. <Pilotada>");
+        System.out.println("5. <Combat>");
+        System.out.println("6. <Transport>");
+        System.out.println("7. <Soldat>");
+        System.out.println("8. <Mecanic>");
+        System.out.println("9. <Pilot>");
+        System.out.println("10. <Missio>");
+    }
+
+    public static Integer checkOptionShowClass() {
+        Scanner in = new Scanner(System.in);
+        Boolean valid = false;
+        Integer finalOption = null;
+        while (!valid) {
+            try {
+                String inOption = in.next();
+                finalOption = Integer.parseInt(inOption);
+                if (finalOption < 1 || finalOption > 10) {
+                    throw new NumberFormatException();
+                }
+                valid = true;
+            } catch (NumberFormatException e) {
+                System.out.println("L'opcio introduida no es valida o no es un nombre, introdueix-ho de nou.");
+            }
+        }
+        return finalOption;
+    }
 }
