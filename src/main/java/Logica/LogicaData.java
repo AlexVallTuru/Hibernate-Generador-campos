@@ -271,13 +271,11 @@ public class LogicaData implements InterfaceLogica {
             for (int i = first; i <= last; i++) {
                 Object deletedEntity = sessio.get(classe, i);
                 if (deletedEntity != null) {
-                    logger.info("Entitat " + i + " eliminada.");
-                    System.out.println("\nEntitat eliminada: ");
+                    logger.info("\nEntitat " + i + " eliminada.");
                     System.out.println(deletedEntity.toString());
                     sessio.delete(deletedEntity);
                 } else { //Si l'entitat no existeix, s'informa a l'usuari
-                    System.out.println("\nL'entitat " + i + " no existeix.");
-                    logger.warn("Entitat no trobada");
+                    logger.warn("\nL'entitat " + i + " no existeix.");
                 }
             }
             transaccio.commit();
@@ -308,14 +306,15 @@ public class LogicaData implements InterfaceLogica {
                     System.out.print("Final del rang: ");
                     last = in.nextInt();
                     if (last < first) {
-                        System.out.println("El final del rang no pot ser menor que"
+                        logger.info("El final del rang no pot ser menor que"
                                 + " l'inici.");
                     }
                 } while (last < first);
                 exit = true;
             } catch (NumberFormatException e) {
                 logger.error("Opció no valida");
-                System.out.println("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
+                logger.info("L'opció introduida no es vàlida o no es un nombre, "
+                        + "introdueix-ho de nou.");
             }
         }
         ArrayList<Integer> rang = new ArrayList();
@@ -360,8 +359,8 @@ public class LogicaData implements InterfaceLogica {
                 }
                 valid = true;
             } catch (NumberFormatException e) {
-                logger.error("Opció no valida");
-                System.out.println("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
+                logger.info("L'opció introduida no es vàlida o no es un nombre, "
+                        + "introdueix-ho de nou.");
                 drawMenu();
             }
         }
