@@ -24,8 +24,8 @@ public class App {
         Boolean valid = false; //Boolean per verificar inici de sessio
         while (!valid) {
             try {
-                login();
-                valid = true;
+
+                valid = login();
                 logger.info("Credencials correctes");
             } catch (Exception e) {
                 logger.error("Credencials incorrectes");
@@ -84,7 +84,7 @@ public class App {
      *
      * @author Carlos
      */
-    public static void login() {
+    public static boolean login() throws Exception {
         Scanner in = new Scanner(System.in);
 
         //Nom usuari DB
@@ -103,6 +103,12 @@ public class App {
         logger.info("Iniciant sessió amb usuari: " + usuari + " a la base de dades " + dbName);
         singleSession = SingleSession.getInstance(usuari, password, dbName);
         session = singleSession.getSessio();
+        if (session != null) {
+            return true;
+        } else {
+
+            return false;
+        }
     }
 
     /**

@@ -229,13 +229,16 @@ public class ClassFactory implements TesteableFactory {
         for (int i = 0; i < elements; i++) {
             //Generar Soldats
             if (parent == Soldat.class) {
+                logger.info("Generant Soldat");
                 int random = fake.number().numberBetween(0, 2);
                 Soldat soldat = soldatFactory(tipusClase);
                 Aeronau aeronau = aeronauFactory(Utils.pilotades.get(random));
 
                 if (soldat instanceof Mecanic) {
+                    logger.info("Generant Soldat [Mecanic]");
                     ((Mecanic) soldat).setPilotada((Pilotada) aeronau);
                 } else if (soldat instanceof Pilot) {
+                    logger.info("Generant Soldat [Pilot]");
                     ((Pilot) soldat).setPilotada((Pilotada) aeronau);
                 }
                 sessio.persist(soldat);
@@ -245,16 +248,32 @@ public class ClassFactory implements TesteableFactory {
 
             //Generar Aeronaus
             if (parent == Pilotada.class || parent == Autonoma.class) {
+                
+                logger.info("Generant Aeronau[Dron]");
                 Aeronau aeronau = aeronauFactory(tipusClase);
+                
                 if (aeronau instanceof Pilotada) {
+                    
+                    logger.info("Generant Aeronau[Pilotada]");
                     Soldat soldatPilot = soldatFactory(Pilot.class);
+                    
+                    logger.info("Generant Pilot");
                     List<Missio> missions = missionsFactory(fake.number().numberBetween(0, 3));
+                    
+                    logger.info("Generant Missions");
                     List<Soldat> mecanic = mecanicsFactory(fake.number().numberBetween(0, 3));
+                    
+                    logger.info("Afegint missions a Aeronau");
                     addMissionsToAeronau(missions, aeronau);
+                    
+                    logger.info("Afegir Mecanics a Aeronau");
                     addMecanicsToPilotada(mecanic, (Pilotada) aeronau);
+                    
+                    logger.info("Afegir Pilot a Aeronau");
                     addPilotToAeronauPilotada((Pilot) soldatPilot, (Pilotada) aeronau);
 
                 }
+                logger.info("Guardant registre...");
                 sessio.persist(aeronau);
 
                 logger.info("S'ha generat aeronau nº : " + i);
@@ -263,9 +282,14 @@ public class ClassFactory implements TesteableFactory {
 
             //Generar Missions
             if (tipusClase == Missio.class) {
+                logger.info("Generant Missio");
+                logger.info("Generar llista d'aeronaus");
                 List<Aeronau> aeronau = aeronausFactory(fake.number().numberBetween(0, 9));
+                
                 Missio missio = missioFactory();
+                logger.info("Afegir missio a aeronau");
                 missio.setAeronaus(aeronau);
+                logger.info("Guardar registre");
                 sessio.persist(missio);
                 logger.info("S'ha generat missio nº : " + i);
             }
