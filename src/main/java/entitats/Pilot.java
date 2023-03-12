@@ -6,7 +6,6 @@ package entitats;
 
 import Interficies.TesteableEntity;
 import Utils.Utils;
-import Utils.Utils;
 import jakarta.persistence.*;
 import java.sql.Date;
 
@@ -18,7 +17,7 @@ import java.sql.Date;
 @Table(name = "Pilot")
 public class Pilot extends Soldat implements TesteableEntity {
 
-    @Column(name = "VEHICULO")
+    @Column(name = "Vehicle")
     private String vehiculo;
     @OneToOne(cascade = CascadeType.ALL)
     private Pilotada pilotada;

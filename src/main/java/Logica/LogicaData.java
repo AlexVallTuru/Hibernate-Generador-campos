@@ -8,14 +8,14 @@ package Logica;
  *
  * @author Carlos
  */
-import entitats.Aeronau;
-import entitats.Dron;
-import entitats.Soldat;
-import entitats.Mecanic;
-import entitats.Pilot;
-import entitats.Transport;
-import entitats.Missio;
 import entitats.Combat;
+import entitats.Aeronau;
+import entitats.Pilot;
+import entitats.Soldat;
+import entitats.Missio;
+import entitats.Mecanic;
+import entitats.Dron;
+import entitats.Transport;
 import Interficies.InterfaceLogica;
 import java.util.ArrayList;
 import java.util.List;

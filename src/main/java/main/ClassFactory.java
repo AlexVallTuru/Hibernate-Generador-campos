@@ -91,28 +91,28 @@ public class ClassFactory implements TesteableFactory {
 
         if (tipus == Transport.class) {
 
+
             aeronau = new Transport(
                     fake.number().randomDigitNotZero(),
                     fake.number().randomDigitNotZero(),
                     null,
-                    new ArrayList<>(),
-                    fake.number().randomDigitNotZero(),
+                    Integer.toString(fake.number().numberBetween(1000, 9999)),
                     fake.aviation().airport(),
-                    fake.number().randomNumber(),
-                    fake.number().randomDigit(),
-                    fake.bool().bool(), Utils.localDateToSQLDate(fake.date().birthday())
+                    (float) fake.number().randomDouble(2, 100, 251),
+                    fake.number().numberBetween(180, 921),
+                    fake.bool().bool(),
+                    Utils.localDateToSQLDate(fake.date().birthday())
             );
         } else if (tipus == Combat.class) {
 
             aeronau = new Combat(
-                    fake.number().randomDigit(),
-                    fake.number().randomDigit(),
+                    fake.number().numberBetween(8, 13),
+                    fake.number().numberBetween(0, 2),
                     null,
-                    new ArrayList<>(),
-                    fake.number().randomDigit(),
+                    Integer.toString(fake.number().numberBetween(1000, 9999)),
                     fake.aviation().aircraft(),
-                    (float) fake.number().randomDouble(2, 0, 90),
-                    fake.number().randomDigit(),
+                    (float) fake.number().randomDouble(2, 100, 250),
+                    fake.number().numberBetween(180, 3000),
                     fake.bool().bool(),
                     Utils.localDateToSQLDate(fake.date().birthday()));
 
@@ -122,10 +122,10 @@ public class ClassFactory implements TesteableFactory {
                     fake.number().randomDigit(),
                     fake.number().randomDigit(),
                     fake.number().randomDigit(),
-                    fake.number().randomDigit(),
+                    Integer.toString(fake.number().numberBetween(1000, 9999)),
                     fake.aviation().aircraft(),
-                    fake.number().randomNumber(),
-                    fake.number().randomDigit(),
+                    (float) fake.number().randomDouble(2, 100, 251),
+                    fake.number().numberBetween(2, 415),
                     fake.bool().bool(),
                     Utils.localDateToSQLDate(fake.date().birthday()));
 
@@ -147,7 +147,7 @@ public class ClassFactory implements TesteableFactory {
     public Missio missioFactory() {
         return new Missio(
                 Utils.missions[fake.number().numberBetween(0, Utils.missions.length+1)],
-                fake.number().randomNumber(),
+                fake.number().numberBetween(1, 15),
                 Utils.localDateToSQLDate(fake.date().birthday()),
                 fake.bool().bool(),
                 fake.address().city(),
@@ -186,10 +186,10 @@ public class ClassFactory implements TesteableFactory {
         if (tipus == Mecanic.class) {
             soldat = new Mecanic(fake.number().randomDigit(),
                     null,
-                    fake.number().numberBetween(0, 100),
-                    fake.number().numberBetween(0, 100),
-                    fake.number().randomDigit(),
-                    fake.number().randomDigit(),
+                    fake.number().numberBetween(0, 101),
+                    fake.number().numberBetween(0, 101),
+                    fake.number().numberBetween(0,1000),
+                    fake.number().numberBetween(0,1000),
                     Utils.armesPrincipals[fake.number().numberBetween(0, principals)],
                     Utils.armasSecundarias[fake.number().numberBetween(0, secundaries)],
                     Utils.prestigis[fake.number().numberBetween(0, prestigis)],
@@ -200,7 +200,7 @@ public class ClassFactory implements TesteableFactory {
         } else if (tipus == Pilot.class) {
 
             soldat = new Pilot(
-                    fake.space().planet(),
+                    fake.aviation().airport(),
                     null,
                     fake.number().numberBetween(0, 100),
                     fake.number().numberBetween(0, 100),
@@ -229,7 +229,7 @@ public class ClassFactory implements TesteableFactory {
         //Obtenir la clase pare
         Class<?> parent = tipusClase.getSuperclass();
         logger.info("La super clase de "+tipusClase+" es "+parent);
-        logger.info("Iniciant trasaccio");
+        logger.info("Iniciant transaccio");
         //Començar la transaccio
         sessio.beginTransaction();
         

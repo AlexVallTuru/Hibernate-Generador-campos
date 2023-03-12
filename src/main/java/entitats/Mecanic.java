@@ -17,7 +17,8 @@ import java.sql.Date;
 @Table(name = "Mecanic")
 public class Mecanic extends Soldat implements TesteableEntity, Serializable {
 
-    @Column(name = "VEHICULOS_DESTRUIDOS")
+
+    @Column(name = "Vehicles Destruits")
     private int vehiculosDestruidos;
 
     @ManyToOne(cascade = CascadeType.ALL)

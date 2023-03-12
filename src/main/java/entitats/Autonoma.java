@@ -6,6 +6,7 @@ package entitats;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -26,12 +27,14 @@ public abstract class Autonoma extends Aeronau implements Serializable {
         super();
     }
 
-    public Autonoma(int tempsMaximDeVol, float pes, int sensors, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
-        super(aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
+    public Autonoma(int tempsMaximDeVol, float pes, int sensors, String aeronauMatricula, String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
+        super(aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.tempsMaximDeVol = tempsMaximDeVol;
         this.pes = pes;
         this.sensors = sensors;
     }
+
+  
 
     public int getTempsMaximDeVol() {
         return tempsMaximDeVol;

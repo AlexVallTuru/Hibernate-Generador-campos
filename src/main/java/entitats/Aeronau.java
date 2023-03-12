@@ -7,6 +7,7 @@ package entitats;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,7 +38,9 @@ public abstract class Aeronau implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id", nullable = false, unique = true)
-    protected Integer aeronauMatricula;
+    protected Integer id_aeronau;
+    @Column(name = "matricula")
+    protected String aeronauMatricula;
     @Column(name = "Nom")
     protected String aeronauNom;
     @Column(name = "RitmePujada", nullable = false)
@@ -45,6 +48,7 @@ public abstract class Aeronau implements Serializable {
     @Column(name = "VelocitatMaxima", nullable = false)
     protected Integer aeronauVelocitatMaxima;
     @Column(name = "EsPilotada", nullable = false)
+    @Convert(converter=org.hibernate.type.YesNoConverter.class)
     protected boolean aeronauAutopilotada;
     @Column(name = "DataFabricacio", nullable = false)
     @Temporal(TemporalType.DATE)
@@ -62,8 +66,8 @@ public abstract class Aeronau implements Serializable {
         super();
     }
 
-    public Aeronau(String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
-
+    public Aeronau(String aeronauMatricula, String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
+        this.aeronauMatricula = aeronauMatricula;
         this.aeronauNom = aeronauNom;
         this.aeronauRitmePujada = aeronauRitmePujada;
         this.aeronauVelocitatMaxima = aeronauVelocitatMaxima;
@@ -71,11 +75,17 @@ public abstract class Aeronau implements Serializable {
         this.aeronauDataFabricacio = aeronauDataFabricacio;
     }
 
-    public Integer getAeronauMatricula() {
+
+    
+
+
+
+
+    public String getAeronauMatricula() {
         return aeronauMatricula;
     }
 
-    public void setAeronauMatricula(Integer aeronauMatricula) {
+    public void setAeronauMatricula(String aeronauMatricula) {
         this.aeronauMatricula = aeronauMatricula;
     }
 

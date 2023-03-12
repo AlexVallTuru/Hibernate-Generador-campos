@@ -30,9 +30,12 @@ public class Missio implements TesteableEntity, Serializable {
     String nom;
     @Column(name = "durada")
     float durada;
-    @Column(name = "dateInici")
+
+    @Column(name="dateInici",unique=true)
+
     Date dateInici;
-    @Column(name = "completada")
+    @Column(name="completada")
+    @Convert(converter=org.hibernate.type.YesNoConverter.class)
     Boolean completada;
     @Column(name = "ubicacio")
     String ubicacio;

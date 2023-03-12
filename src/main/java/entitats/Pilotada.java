@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -39,11 +38,12 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
         super();
     }
 
-    public Pilotada(Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, Float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
-        super(aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
+    public Pilotada(Pilot pilot, String aeronauMatricula, String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
+        super(aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.pilot = pilot;
         this.mecanic = mecanic;
         this.pilot = null;
+
     }
 
     public Pilot getPilotAeronau() {
@@ -82,7 +82,7 @@ public abstract class Pilotada extends Aeronau implements TesteableEntity, Seria
     @Override
     public String toString() {
         String pilotString = pilot == null ? "\nSense PILOT assignat" : "Conte el seguent PILOT:\nNomb del vehicle: " + pilot.getVehiculo() + "\t\t\t---\t\t\tId Pilot: " + pilot.getIdUsuario() + "\t\t\t---\t\t\tArma principal: " + pilot.getArmaPrincipal();
-        String mecanicString = mecanic.size() == 0 ? "\nSense MECANIC assignat" : "\nConte un total de: "+mecanic.size()+ "MECANICS:" + getMecanic().stream().map(a -> "\nVehicle destruit: "  +a.getVehiculosDestruidos());
+        String mecanicString = mecanic.size() == 0 ? "\nSense MECANIC assignat" : "\nConte un total de: " + mecanic.size() + "MECANICS:" + getMecanic().stream().map(a -> "\nVehicle destruit: " + a.getVehiculosDestruidos());
         return "\nLa classe Pilotada conte la següent informació:"
                 + pilotString
                 + mecanicString

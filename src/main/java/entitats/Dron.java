@@ -10,7 +10,6 @@ import Interficies.TesteableEntity;
 import java.io.Serializable;
 import java.util.List;
 import Utils.Utils;
-import Utils.Utils;
 
 /**
  *
@@ -28,14 +27,13 @@ public class Dron extends Autonoma implements TesteableEntity, Serializable {
 
     }
 
-    public Dron(int numHelices, int tempsMaximDeVol, float pes, int sensors, Integer aeronauMatricula, String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
+    public Dron(int numHelices, int tempsMaximDeVol, float pes, int sensors, String aeronauMatricula, String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
         super(tempsMaximDeVol, pes, sensors, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.numHelices = numHelices;
     }
 
-    @Override
     public Integer getAtributIdentificador() {
-        return super.aeronauMatricula;
+        return super.id_aeronau;
     }
 
     @Override

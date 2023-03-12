@@ -13,9 +13,6 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 import Utils.Utils;
-import Utils.Utils;
-import Utils.Utils;
-import Utils.Utils;
 
 /**
  *
@@ -37,11 +34,15 @@ public class Transport extends Pilotada implements TesteableEntity, Serializable
     }
 
     //Constructor
-    public Transport(Integer aeronauTransportMaxTripulants, Integer aeronauTransportMaxPes, Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, float  aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, Date aeronauDataFabricacio) {
-        super(pilot, mecanic, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
+
+    public Transport(Integer aeronauTransportMaxTripulants, Integer aeronauTransportMaxPes, Pilot pilot, String aeronauMatricula, String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
+        super(pilot, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.aeronauTransportMaxTripulants = aeronauTransportMaxTripulants;
         this.aeronauTransportMaxPes = aeronauTransportMaxPes;
     }
+
+
+
     
     /**
      * @return the aeronauTransportMaxTripulants
@@ -73,7 +74,7 @@ public class Transport extends Pilotada implements TesteableEntity, Serializable
 
     @Override
     public Integer getAtributIdentificador() {
-        return super.aeronauMatricula;
+        return super.id_aeronau;
     }
 
     @Override
@@ -117,11 +118,11 @@ public class Transport extends Pilotada implements TesteableEntity, Serializable
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Integer getAeronauMatricula() {
+    public String getAeronauMatricula() {
         return aeronauMatricula;
     }
 
-    public void setAeronauMatricula(Integer aeronauMatricula) {
+    public void setAeronauMatricula(String aeronauMatricula) {
         this.aeronauMatricula = aeronauMatricula;
     }
 

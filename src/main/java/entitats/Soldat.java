@@ -18,29 +18,29 @@ import java.sql.Date;
 public abstract class Soldat implements Serializable {
 
     @Id
-    @Column(name = "ID_USUARIO", nullable = false)
+    @Column(name = "idUsuari", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int idUsuario;
-    @Column(name = "VIDA", nullable = false)
+    @Column(name = "Vida", nullable = false)
     protected float vida;
-    @Column(name = "PROTECCION")
+    @Column(name = "Proteccio")
     protected int proteccion;
-    @Column(name = "DERROTAS", nullable = false)
+    @Column(name = "Derrotes", nullable = false)
     protected int numeroDerrotas;
-    @Column(name = "VICTORIAS", nullable = false)
+    @Column(name = "Victories", nullable = false)
     protected int numeroVictorias;
-    @Column(name = "ARMA_PRINCIPAL", nullable = false)
+    @Column(name = "arma_principal", nullable = false)
     protected String armaPrincipal;
-    @Column(name = "ARMA_SEGUNDARIA", nullable = false)
+    @Column(name = "arma_secundaria", nullable = false)
     protected String armaSegundaria;
-    @Column(name = "PRESTIGIO", nullable = false)
+    @Column(name = "prestigi", nullable = false)
     protected String prestigio;
-    @Column(name = "ARMA_CQC")
+    @Column(name = "arma_cqc")
     protected String armaCQC;
-    @Column(name = "EXPEDICION", nullable = false)
+    @Column(name = "expedicio", nullable = false)
     @Convert(converter=org.hibernate.type.YesNoConverter.class)
     protected Boolean enExpedicion;
-    @Column(name = "NACIMIENTO", nullable = false)
+    @Column(name = "data_naixement", nullable = false)
     @Temporal(TemporalType.DATE)
     protected Date nacimiento;
 

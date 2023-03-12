@@ -33,11 +33,15 @@ public class Combat extends Pilotada implements TesteableEntity, Serializable {
         super();
     }
 
-    public Combat(Integer aeronauCombatMaxMissils, Integer aeronauCombatMaxMunicioCano, Pilot pilot, List<Mecanic> mecanic, Integer aeronauMatricula, String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
-        super(pilot, mecanic, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
+    public Combat(Integer aeronauCombatMaxMissils, Integer aeronauCombatMaxMunicioCano, Pilot pilot, String aeronauMatricula, String aeronauNom, float aeronauRitmePujada, Integer aeronauVelocitatMaxima, boolean aeronauAutopilotada, java.util.Date aeronauDataFabricacio) {
+        super(pilot, aeronauMatricula, aeronauNom, aeronauRitmePujada, aeronauVelocitatMaxima, aeronauAutopilotada, aeronauDataFabricacio);
         this.aeronauCombatMaxMissils = aeronauCombatMaxMissils;
         this.aeronauCombatMaxMunicioCano = aeronauCombatMaxMunicioCano;
     }
+
+
+
+
 
     /**
      * @return the aeronauCombatMaxMissils
@@ -69,7 +73,7 @@ public class Combat extends Pilotada implements TesteableEntity, Serializable {
 
     @Override
     public Integer getAtributIdentificador() {
-        return super.aeronauMatricula;
+        return super.id_aeronau;
     }
 
     @Override
@@ -112,11 +116,11 @@ public class Combat extends Pilotada implements TesteableEntity, Serializable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Integer getAeronauMatricula() {
+    public String getAeronauMatricula() {
         return aeronauMatricula;
     }
 
-    public void setAeronauMatricula(Integer aeronauMatricula) {
+    public void setAeronauMatricula(String aeronauMatricula) {
         this.aeronauMatricula = aeronauMatricula;
     }
 
