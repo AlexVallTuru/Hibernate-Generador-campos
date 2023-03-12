@@ -4,16 +4,7 @@
  */
 package main;
 
-import entitats.Aeronau;
-import entitats.Autonoma;
-import entitats.Combat;
-import entitats.Dron;
-import entitats.Mecanic;
-import entitats.Missio;
-import entitats.Pilot;
-import entitats.Pilotada;
-import entitats.Soldat;
-import entitats.Transport;
+import entitats.*;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
 import org.hibernate.Session;

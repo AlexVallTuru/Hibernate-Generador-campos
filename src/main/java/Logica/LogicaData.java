@@ -8,26 +8,13 @@ package Logica;
  *
  * @author Carlos
  */
-import entitats.Combat;
-import entitats.Aeronau;
-import entitats.Pilot;
-import entitats.Soldat;
-import entitats.Missio;
-import entitats.Mecanic;
-import entitats.Dron;
-import entitats.Transport;
+import entitats.*;
 import Interficies.InterfaceLogica;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import main.App;
-import main.ClassFactory;
-import main.SingleSession;
+import main.*;
 import menus.Menus;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.apache.logging.log4j.*;
+import org.hibernate.*;
 
 /**
  * Clase Logica

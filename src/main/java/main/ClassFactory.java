@@ -6,21 +6,12 @@ package main;
 
 import Interficies.TesteableFactory;
 import com.github.javafaker.Faker;
-import entitats.Aeronau;
-import entitats.Combat;
-import entitats.Dron;
-import entitats.Mecanic;
-import entitats.Missio;
-import entitats.Pilot;
-import entitats.Pilotada;
-import entitats.Soldat;
-import entitats.Transport;
-import java.util.ArrayList;
-import java.util.List;
+
+import entitats.*;
+import java.util.*;
 import Utils.Utils;
 import entitats.Autonoma;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.hibernate.Session;
 
 /**
@@ -28,6 +19,7 @@ import org.hibernate.Session;
  * @author carlo
  */
 public class ClassFactory implements TesteableFactory {
+
     private static final Logger logger = LogManager.getLogger(ClassFactory.class);
     private Faker fake = new Faker();
 
@@ -40,7 +32,7 @@ public class ClassFactory implements TesteableFactory {
 
             if (obj instanceof Mecanic) {
 
-                p.setMecanic((Mecanic)obj);
+                p.setMecanic((Mecanic) obj);
             }
         }
 
@@ -67,7 +59,7 @@ public class ClassFactory implements TesteableFactory {
         if (la.size() > 8) {
             throw new Exception();
         }
-        
+
         for (Object obj : la) {
             if (obj instanceof Aeronau) {
 
@@ -90,7 +82,6 @@ public class ClassFactory implements TesteableFactory {
         Aeronau aeronau = null;
 
         if (tipus == Transport.class) {
-
 
             aeronau = new Transport(
                     fake.number().randomDigitNotZero(),
@@ -146,7 +137,7 @@ public class ClassFactory implements TesteableFactory {
     @Override
     public Missio missioFactory() {
         return new Missio(
-                Utils.missions[fake.number().numberBetween(0, Utils.missions.length+1)],
+                Utils.missions[fake.number().numberBetween(0, Utils.missions.length + 1)],
                 fake.number().numberBetween(1, 15),
                 Utils.localDateToSQLDate(fake.date().birthday()),
                 fake.bool().bool(),
@@ -182,14 +173,14 @@ public class ClassFactory implements TesteableFactory {
         int secundaries = Utils.armasSecundarias.length;
         int armesCQC = Utils.armesCQC.length;
         int prestigis = Utils.prestigis.length;
-        
+
         if (tipus == Mecanic.class) {
             soldat = new Mecanic(fake.number().randomDigit(),
                     null,
                     fake.number().numberBetween(0, 101),
                     fake.number().numberBetween(0, 101),
-                    fake.number().numberBetween(0,1000),
-                    fake.number().numberBetween(0,1000),
+                    fake.number().numberBetween(0, 1000),
+                    fake.number().numberBetween(0, 1000),
                     Utils.armesPrincipals[fake.number().numberBetween(0, principals)],
                     Utils.armasSecundarias[fake.number().numberBetween(0, secundaries)],
                     Utils.prestigis[fake.number().numberBetween(0, prestigis)],
@@ -218,21 +209,22 @@ public class ClassFactory implements TesteableFactory {
 
     /**
      * Funcio per generar nous registres
+     *
      * @param tipusClase
-     * @param elements 
+     * @param elements
      */
     public void generadorRegistres(Class<?> tipusClase, int elements) throws Exception {
-        
+
         //Obtenir la sessio
         Session sessio = SingleSession.getInstance().getSessio();
-        
+
         //Obtenir la clase pare
         Class<?> parent = tipusClase.getSuperclass();
-        logger.info("La super clase de "+tipusClase+" es "+parent);
+        logger.info("La super clase de " + tipusClase + " es " + parent);
         logger.info("Iniciant transaccio");
         //Començar la transaccio
         sessio.beginTransaction();
-        
+
         logger.info("Generant entitats");
         for (int i = 0; i < elements; i++) {
             //Generar Soldats
@@ -240,54 +232,53 @@ public class ClassFactory implements TesteableFactory {
                 int random = fake.number().numberBetween(0, 2);
                 Soldat soldat = soldatFactory(tipusClase);
                 Aeronau aeronau = aeronauFactory(Utils.pilotades.get(random));
-                
-                if(soldat instanceof Mecanic){
+
+                if (soldat instanceof Mecanic) {
                     ((Mecanic) soldat).setPilotada((Pilotada) aeronau);
-                }else if(soldat instanceof Pilot){
+                } else if (soldat instanceof Pilot) {
                     ((Pilot) soldat).setPilotada((Pilotada) aeronau);
                 }
                 sessio.persist(soldat);
-                logger.info("S'ha generat soldat nº : "+i);
+                logger.info("S'ha generat soldat nº : " + i);
 
             }
 
             //Generar Aeronaus
             if (parent == Pilotada.class || parent == Autonoma.class) {
                 Aeronau aeronau = aeronauFactory(tipusClase);
-                if(aeronau instanceof Pilotada ){
+                if (aeronau instanceof Pilotada) {
                     Soldat soldatPilot = soldatFactory(Pilot.class);
                     List<Missio> missions = missionsFactory(fake.number().numberBetween(0, 3));
                     List<Soldat> mecanic = mecanicsFactory(fake.number().numberBetween(0, 3));
                     addMissionsToAeronau(missions, aeronau);
-                    addMecanicsToPilotada(mecanic, (Pilotada)aeronau);
-                    addPilotToAeronauPilotada((Pilot)soldatPilot, (Pilotada)aeronau);
-                   
+                    addMecanicsToPilotada(mecanic, (Pilotada) aeronau);
+                    addPilotToAeronauPilotada((Pilot) soldatPilot, (Pilotada) aeronau);
+
                 }
                 sessio.persist(aeronau);
-                
-                logger.info("S'ha generat aeronau nº : "+i);
+
+                logger.info("S'ha generat aeronau nº : " + i);
 
             }
-            
+
             //Generar Missions
-            if(tipusClase == Missio.class){
+            if (tipusClase == Missio.class) {
                 List<Aeronau> aeronau = aeronausFactory(fake.number().numberBetween(0, 9));
                 Missio missio = missioFactory();
                 missio.setAeronaus(aeronau);
                 sessio.persist(missio);
-                logger.info("S'ha generat missio nº : "+i);
+                logger.info("S'ha generat missio nº : " + i);
             }
-            
-           
+
         }
         sessio.getTransaction().commit();
         logger.info("S'han guardat els registres");
-       
+
     }
-    
-    public List<Aeronau> aeronausFactory(int elements){
+
+    public List<Aeronau> aeronausFactory(int elements) {
         List<Aeronau> aeronau = new ArrayList<>();
-        for (int i = 0; i <elements; i++) {
+        for (int i = 0; i < elements; i++) {
             int random = fake.number().numberBetween(0, 2);
             aeronau.add(aeronauFactory(Utils.pilotades.get(random)));
         }
