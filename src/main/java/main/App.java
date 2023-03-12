@@ -125,8 +125,7 @@ public class App {
                 }
                 valid = true;
             } catch (NumberFormatException e) {
-                logger.error("Opció no valida");
-                System.out.println("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
+                logger.error("L'opció introduida no es vàlida o no es un nombre, introdueix-ho de nou.");
                 drawMenu();
             }
         }
