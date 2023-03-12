@@ -13,12 +13,21 @@ import org.hibernate.Session;
 
 /**
  *
+ *
  * @author Alex
+ * Conjunt de consultes per obtenir la informació de la base de
+ * dades a través de consultes HQL
+ * Les funcions:
+ * Realitza una consulta HQL a la base de dades per obtenir les missions amb el codi entre idInicial i idFinal.
+ * Imprimeix en la consola la informació de cada classe trobada.
+ * @param a sessió d'Hibernate per connectar-se a la base de dades.
+ * @param idInicial valor inicial del rang de codis de missió a consultar.
+ * @param idFinal valor final del rang de codis de missió a consultar.
  */
 public class ConsultasHql {
 
-        private static final Logger logger = LogManager.getLogger(ConsultasHql.class);
-    
+    private static final Logger logger = LogManager.getLogger(ConsultasHql.class);
+
     public static void ConsultasHqlMissio(Session a, int idInicial, int idFinal) {
 //      TypedQuery<Missio> hqlQueryMissio = a.createQuery("SELECT m FROM Missio m JOIN FETCH m.aeronau WHERE m.codiMissio BETWEEN :idInicial AND :idFinal", Missio.class);
         TypedQuery<Missio> hqlQueryMissio = a.createQuery("SELECT m FROM Missio m WHERE m.codiMissio BETWEEN :idInicial AND :idFinal", Missio.class);
