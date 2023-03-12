@@ -23,20 +23,16 @@ import org.hibernate.Session;
 
 /**
  *
- * @author Aitor, Carlos
+ * @author Aitor, Carlos, Alex
  */
 public class App {
 
     private static SingleSession singleSession = null;
-    private static Session sessio = null;
+    private static Session session = null;
     private static final Logger logger = LogManager.getLogger(App.class);
     private static final LogicaData logic = new LogicaData();
 
-    private static Session session;
-
     public static void main(String[] args) {
-
-        session = SingleSession.getInstance().getSessio();
 
         //Inici de sessio
         logger.info("Inici de sessió...");
@@ -57,7 +53,7 @@ public class App {
         do {
             logger.info("Mostrant el menu principal");
             drawMenu();
-            session = singleSession.getSessio();
+            //session = singleSession.getSessio();
             //Comprobar que l'opció introduida per l'usuari es correcte
             Integer finalOption = checkOption();
 
@@ -72,7 +68,7 @@ public class App {
                     break;
 
                 case 3:
-                    System.out.println("Introdueix la classe que vol llistar:\n4");
+                    System.out.println("Introdueix la classe que vol llistar:\n");
                     drawMenuShowClass();
                     Integer finalOptionShowClass = null;
                     Boolean validOption = false;
@@ -90,6 +86,7 @@ public class App {
                     int idFin = 205;
                     int limiteRegistros = 1000;
                     int count = 0;
+
                     switch (finalOptionShowClass) {
                         case 1:
                             //Opció per mostrar la classe Aeronau
@@ -130,6 +127,9 @@ public class App {
                         case 10:
                             //Opció per mostrar la classe Missio
                             ConsultasHqlMissio(session, 1, 200);
+                            break;
+                        case 11:
+                            //Menu principal                       
                             break;
                     }
                 //Sortida del programa
@@ -182,7 +182,7 @@ public class App {
         //Inici de sessio
         logger.info("Iniciant sessió amb usuari: " + usuari + " a la base de dades " + dbName);
         singleSession = SingleSession.getInstance(usuari, password, dbName);
-
+        session = singleSession.getSessio();
     }
 
     /**
